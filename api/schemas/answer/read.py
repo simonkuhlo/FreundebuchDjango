@@ -1,9 +1,11 @@
 from pydantic import BaseModel
 from ..user import UserRead
+from ..question import QuestionRead
+from ..entry import EntryRead
 
 class Answer(BaseModel):
     id: int
-    question_id: int
+    question: QuestionRead
     user: UserRead
-    entry_id: int
+    entry: EntryRead
     string_value: str
