@@ -14,6 +14,7 @@ origins = [
     "http://localhost:8081",
     "http://localhost:6969",
 ]
+api_url = "http://localhost:8081/"
 
 app = FastAPI(title=title, summary=summary, description=description, version=version)
 
@@ -30,6 +31,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Configure Jinja2 templates directory
 templates = Jinja2Templates(directory="templates")
+templates.env.globals["api_url"] = api_url
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):

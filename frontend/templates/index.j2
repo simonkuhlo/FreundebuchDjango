@@ -4,7 +4,7 @@
 {% block main %}
     <h1>Hello from FastAPI + HTMX + Jinja2!</h1>
 
-    <button hx-get="http://localhost:8081/user/" hx-target="#partial-content">Load Partial Content</button>
+    <button hx-get="{{ api_url }}user/" hx-target="#partial-content">Test API call</button>
 
     <div id="partial-content">
         <!-- This will be replaced by response from /partial -->

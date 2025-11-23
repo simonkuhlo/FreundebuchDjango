@@ -12,6 +12,11 @@ description: str = ""
 version: str = "0.0.1"
 origins = [
     "http://localhost:6969",
+    "http://77.23.199.184:6969",
+    "http://127.0.0.1:6969",
+    "http://192.168.178.38:6969",
+    "http://meow.technology:6969",
+    "http://testing.meow.technology:6969",
 ]
 app = FastAPI(title=title, summary=summary, description=description, version=version)
 
