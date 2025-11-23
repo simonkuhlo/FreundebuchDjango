@@ -1,9 +1,7 @@
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-
-class Base(DeclarativeBase):
-    pass
+from models.base import Base
 
 def setup_db():
     Base.metadata.create_all(engine)

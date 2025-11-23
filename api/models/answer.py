@@ -2,7 +2,7 @@ from typing import Optional
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.orm import mapped_column
-from database import Base
+from models.base import Base
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from entry import Entry
@@ -11,7 +11,6 @@ if TYPE_CHECKING:
 
 class Answer(Base):
     __tablename__ = "answer"
-    id: Mapped[int] = mapped_column(primary_key=True)
     question: Mapped["Question"] = relationship("Question", back_populates="answers")
     question_id: Mapped[int] = mapped_column(ForeignKey("question.id"))
     entry: Mapped["Entry"] = relationship("Entry", back_populates="answers")
