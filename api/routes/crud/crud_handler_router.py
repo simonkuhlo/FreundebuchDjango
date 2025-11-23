@@ -1,5 +1,6 @@
 from crud.base import CRUDHandler
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
+
 
 class CRUDHandlerRouter(APIRouter):
     def __init__(self, handler: CRUDHandler):
@@ -7,8 +8,8 @@ class CRUDHandlerRouter(APIRouter):
         super().__init__(prefix=f"/{handler.name}")
 
         @self.get("/")
-        async def get_list():
-            read_objects = self.handler.list()
+        async def get_list(start_id: int = Query(0, ge=0), limit: int = Query(100, ge=1)):
+            read_objects = self.handler.list(start_id=start_id, limit=limit)
             return {"objects": read_objects}
 
         @self.get("/{object_id}")
@@ -29,4 +30,4 @@ class CRUDHandlerRouter(APIRouter):
         @self.delete("/{object_id}")
         async def delete_user(object_id: int):
             self.handler.delete(object_id)
-            return {"Object deleted"}
+            return {"detail": "Object deleted"}
