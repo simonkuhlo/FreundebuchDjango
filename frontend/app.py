@@ -23,26 +23,29 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 templates.env.globals["api_url"] = settings.api_url
 
+# show_... : returns fully rendered page including base template
+# get_...  : returns a single element
+
 @app.get("/", response_class=HTMLResponse)
-async def index(request: Request):
+async def show_index(request: Request):
     return templates.TemplateResponse("index.j2", {"request": request})
 
 @app.get("/test", response_class=HTMLResponse)
-async def partial(request: Request):
+async def get_partial(request: Request):
     return templates.TemplateResponse("partial.j2", {"request": request})
 
 @app.get("/dedication", response_class=HTMLResponse)
-async def partial(request: Request):
+async def show_dedication_page(request: Request):
     return templates.TemplateResponse("dedication.j2", {"request": request})
 
 @app.get("/viewer", response_class=HTMLResponse)
-async def viewer(request: Request):
+async def show_viewer_app(request: Request):
     return templates.TemplateResponse("viewer.j2", {"request": request})
 
 @app.get("/creator", response_class=HTMLResponse)
-async def viewer(request: Request):
+async def show_creator_app(request: Request):
     return templates.TemplateResponse("creator.j2", {"request": request})
 
 @app.get("/favicon.ico")
-async def favicon():
+async def get_favicon():
     return FileResponse("static/img/favicon.ico")
