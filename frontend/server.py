@@ -1,4 +1,8 @@
 import uvicorn
+import settings
+
+def run_server_blocking(app_path: str = "app:app", host: str = settings.server_host, port: int = settings.server_port):
+    uvicorn.run(app_path, host=host, port=port)
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="192.168.178.38", port=6969, reload=True)
+    run_server_blocking()
