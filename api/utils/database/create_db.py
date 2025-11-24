@@ -5,17 +5,16 @@ from models.base import Base
 from add_default_questions import add_default_questions
 
 engine = create_engine("sqlite:///database.sqlite", echo=True)
-main_session = Session(bind=engine)
 
-def setup_db(create_only:bool = False) -> Session:
+def setup_db(create_only:bool = False) -> None:
+    session = Session(bind=engine)
     Base.metadata.create_all(engine)
     if create_only:
-        return main_session
-    create_default_users(main_session)
-    add_default_questions(main_session)
-    return main_session
+        return
+    create_default_users(session)
+    add_default_questions(session)
 
-def create_default_users(session: Session):
+def create_default_users(session: Session) -> None:
     admin_user = User(name="admin", admin=True)
     session.add_all([admin_user])
     session.commit()
