@@ -1,7 +1,6 @@
 
-<link rel="stylesheet" href="/static/style/entry.css">
-
 <div class="flip already_flipped">
+    <link rel="stylesheet" href="/static/style/entry.css">
     {% with entry = previous_entry %}
         <div class="back" data-entry_id="{{ entry.id }}" id="p{{ entry.id }}b">
             {% include "book/entry_page_back.j2" %}
