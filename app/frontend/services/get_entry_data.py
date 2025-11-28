@@ -4,8 +4,10 @@ from api.schemas.answer import AnswerRead, EntryAnswerRead
 from api.schemas.question import QuestionRead
 from api.schemas.user import UserRead
 
-def get_entry_data(entry_id:int) -> Optional[EntryRead]:
+async def get_entry_data(entry_id:int) -> Optional[EntryRead]:
     if entry_id < 0:
+        return None
+    if entry_id == 3:
         return None
     fake_question = QuestionRead(
         id = 0,

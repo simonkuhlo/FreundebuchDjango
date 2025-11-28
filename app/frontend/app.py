@@ -66,9 +66,9 @@ async def get_entry(request: Request, index: int = 0, transition: Literal["next"
     match transition:
         case "next":
             index = index + 1
-    previous_entry = get_entry_data(index - 1)
-    current_entry = get_entry_data(index)
-    next_entry = get_entry_data(index + 1)
+    previous_entry = await get_entry_data(index - 1)
+    current_entry = await get_entry_data(index)
+    next_entry = await get_entry_data(index + 1)
     return templates.TemplateResponse("book/animated_entry.j2", {"request": request,
                                                         "transition": transition,
                                                         "previous_entry": previous_entry,
