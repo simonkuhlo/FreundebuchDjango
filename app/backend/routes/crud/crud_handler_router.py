@@ -5,7 +5,7 @@ from fastapi import APIRouter, Query
 class CRUDHandlerRouter(APIRouter):
     def __init__(self, handler: CRUDHandler):
         self.handler = handler
-        super().__init__(prefix=f"/crud/{handler.name}", tags=["CRUD", handler.name])
+        super().__init__(prefix=f"/crud/{handler.name}", tags=[handler.name])
 
         @self.get("/")
         async def get_list(start_id: int = Query(0, ge=0), limit: int = Query(100, ge=1)):

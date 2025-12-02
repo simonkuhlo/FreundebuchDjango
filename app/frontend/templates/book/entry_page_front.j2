@@ -1,31 +1,11 @@
 <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
     {% if entry != None %}
     <div class="box-v entry-container">
-        {% if entry.answers != None%}
-            {% with answer = entry.answers[0] %}
+        {% for selected_answer in entry.answers %}
+            {% with answer = selected_answer %}
                 {% include "book/elements/answer_viewer.j2" %}
             {% endwith %}
-            {% if entry.answers | length > 1 %}
-            {% with answer = entry.answers[1] %}
-                {% include "book/elements/answer_viewer.j2" %}
-            {% endwith %}
-            {% endif %}
-            {% if entry.answers | length > 2 %}
-            {% with answer = entry.answers[2] %}
-                {% include "book/elements/answer_viewer.j2" %}
-            {% endwith %}
-            {% endif %}
-            {% if entry.answers | length > 3 %}
-            {% with answer = entry.answers[3] %}
-                {% include "book/elements/answer_viewer.j2" %}
-            {% endwith %}
-            {% endif %}
-            {% if entry.answers | length > 4 %}
-            {% with answer = entry.answers[4] %}
-                {% include "book/elements/answer_viewer.j2" %}
-            {% endwith %}
-            {% endif %}
-        {% endif %}
+        {% endfor %}
         <div class="box-h control-element">
             <div class="spacer-h"></div>
             <button hx-get="/book/entry/{{ entry.id }}/next" hx-target="#page-root">Next</button>

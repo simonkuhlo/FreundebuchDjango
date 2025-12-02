@@ -8,7 +8,7 @@ import settings
 
 async def get_entry_data_new(entry_id:int) -> Optional[EntryRead]:
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"{settings.api_url}/entry/{entry_id}")
+        response = await client.get(f"{settings.api_url}/crud/entry/{entry_id}")
         try:
             response.raise_for_status()
         except:

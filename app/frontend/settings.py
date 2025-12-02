@@ -12,4 +12,4 @@ app_origins = [
     "http://localhost:6969",
 ]
 
-api_url = "http://localhost:8081"
+api_url = "http://localhost:8080"
