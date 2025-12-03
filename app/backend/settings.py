@@ -15,3 +15,5 @@ app_origins = [
     "http://meow.technology:6969",
     "http://testing.meow.technology:6969",
 ]
+
+enable_frontend: bool = True

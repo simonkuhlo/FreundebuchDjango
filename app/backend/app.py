@@ -1,3 +1,4 @@
+from fastapi.staticfiles import StaticFiles
 import settings
 from fastapi import FastAPI
 from routes import main_router
@@ -13,4 +14,7 @@ app.add_middleware(
     allow_headers=["*"],          # Allow all headers
 )
 app.include_router(main_router)
-
+if settings.enable_frontend:
+    import frontend as frontend
+    app.include_router(frontend.router)
+    app.mount("/static", StaticFiles(directory="./frontend/static/"), name="static")

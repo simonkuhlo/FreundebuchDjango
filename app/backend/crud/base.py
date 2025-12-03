@@ -34,10 +34,13 @@ class CRUDHandler(Generic[ModelType, ReadSchema, CreateSchema, UpdateSchema]):
             read_object_list.append(self.read_schema.model_validate(db_item))
         return read_object_list
 
-    def get(self, object_id: int) -> Optional[ReadSchema]:
+    def get(self, object_id: int, raise_exceptions: bool = True) -> Optional[ReadSchema]:
         db_item = self.session.query(self.db_model).filter(self.db_model.id == object_id).first()
         if not db_item:
-            raise HTTPException(404, "Object not found")
+            if raise_exceptions:
+                raise HTTPException(404, "Object not found")
+            else:
+                return None
         return self.read_schema.model_validate(db_item)
 
     def create(self, new_object: CreateSchema) -> ReadSchema:
