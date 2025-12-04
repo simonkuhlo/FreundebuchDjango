@@ -4,6 +4,7 @@ from fastapi import FastAPI, Request, Form, APIRouter
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, FileResponse
 from crud import entry, answer
+from . import testroutes
 
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,6 +15,8 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 # Configure Jinja2 templates directory
 templates = Jinja2Templates(directory=f"{BASE_DIR}/templates")
+
+router.include_router(testroutes.router)
 
 # show_... : returns fully rendered page including base template
 # get_...  : returns a single element
@@ -55,11 +58,9 @@ async def get_entry(request: Request, index: int = 0, transition: Literal["next"
     match transition:
         case "next":
             index = index + 1
-    print("test")
     previous_entry = entry.get(index - 1, False)
     current_entry = entry.get(index, False)
     next_entry = entry.get(index + 1, False)
-    print(previous_entry, current_entry, next_entry)
     return templates.TemplateResponse("book/animated_entry.j2", {"request": request,
                                                         "transition": transition,
                                                         "previous_entry": previous_entry,

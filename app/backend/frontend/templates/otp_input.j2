@@ -1,0 +1,23 @@
+{% extends "base.j2" %}
+
+{% block main %}
+    <div class="box-center">
+        <div class="box-v">
+            <div class="box-h">
+                <label for="key_input">
+                    Use OTP here:
+                </label>
+                <input type="text" id="key_input" name="secret">
+            </div>
+            <button hx-post="/tests/otp/use" hx-include="#key_input">Test Key</button>
+            <div class="box-h">
+                <label for="name_input">
+                    Create OTP here:
+                </label>
+                <input type="text" id="name_input" name="name">
+            </div>
+            <button hx-post="/tests/otp/generate" hx-include="#name_input">Create Key</button>
+            <button hx-get="/tests/otp/list">Get List</button>
+        </div>
+    </div>
+{% endblock %}
