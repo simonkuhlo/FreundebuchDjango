@@ -9,7 +9,7 @@ def empty_str_to_none(v):
 
 class EntryCreate(BaseModel):
     user_id: Optional[int] = None
-    secret: str = secret_generator.generate_secret()
+    secret: Optional[str] = secret_generator.generate_secret()
     published: bool = False
 
     @model_validator(mode='before')

@@ -3,6 +3,7 @@ from typing import Optional
 from data.database import session
 from models import Entry
 from schemas.entry import EntryRead, EntryCreate, EntryUpdate, EntryReadOwner
+from utils import secret_generator
 from .base import CRUDHandler
 
 class EntryCRUD(CRUDHandler[Entry, EntryRead, EntryCreate, EntryUpdate]):
@@ -11,6 +12,8 @@ class EntryCRUD(CRUDHandler[Entry, EntryRead, EntryCreate, EntryUpdate]):
         super().__init__("entry", session, Entry, EntryRead, EntryCreate, EntryUpdate)
 
     def create(self, data: EntryCreate) -> EntryReadOwner:
+        if not data.secret:
+            data.secret = secret_generator.generate_secret()
         db_item = Entry(**data.model_dump())
         self.session.add(db_item)
         self.session.commit()
