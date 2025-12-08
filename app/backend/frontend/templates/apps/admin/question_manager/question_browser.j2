@@ -1,0 +1,12 @@
+<div class="box-v question_browser-inner_frame">
+    <div class="box-h question_browser-toolbar">
+        <div class="spacer-h"></div>
+        <button hx-post="/api/crud/question/form_create">+ Add question</button>
+        <button hx-get="/tests/admin/question_browser" hx-target="#question_browser_root">Refresh</button>
+    </div>
+    <div class="box-v question_browser-content_root">
+        {% for question in questions %}
+            {% include "apps/admin/question_manager/question_browser_element.j2" %}
+        {% endfor %}
+    </div>
+</div>

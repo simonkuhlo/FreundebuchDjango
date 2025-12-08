@@ -1,0 +1,20 @@
+{% extends "base.j2" %}
+
+{% block main %}
+    <link rel="stylesheet" href="/static/style/question_manager.css">
+    <h1>Question Manager</h1>
+    <div class="box-h question_manager-root" id="question_manager-root">
+        <div class="spacer-h"></div>
+        <div class="question_browser-root" id="question_browser_root">
+            <p hx-trigger="load" hx-get="/tests/admin/question_browser" hx-target="#question_browser_root">Unable to load question browser.</p>
+            <button hx-get="/tests/admin/question_browser" hx-target="#question_browser_root">Retry</button>
+        </div>
+
+        <h1 style="text-wrap: nowrap; height: 100%; align-content: center; margin: 0; padding-left: 15px; padding-right: 15px;">→</h1>
+
+        <div class="question_details-root" id="question_details-root">
+            <p>Unable to load question details.</p>
+        </div>
+        <div class="spacer-h"></div>
+    </div>
+{% endblock %}

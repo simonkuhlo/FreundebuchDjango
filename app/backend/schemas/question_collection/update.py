@@ -1,6 +1,7 @@
+from typing import Optional
 from pydantic import BaseModel
 
 class Update(BaseModel):
-    name: str
-    description: str
-    question_ids: list[int]
+    title: Optional[str]
+    description: Optional[str]
+    question_ids: Optional[list[int]]

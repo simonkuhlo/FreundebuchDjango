@@ -10,10 +10,12 @@ def add_default_questions(session: Session):
             Question(
                 title="Name",
                 description="What is your name?",
+                short=True,
                      ),
             Question(
                 title="Age",
                 description="How old are you?",
+                short=True,
             ),
             Question(
                 title="Dream",

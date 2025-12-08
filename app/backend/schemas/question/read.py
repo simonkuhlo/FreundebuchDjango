@@ -5,6 +5,7 @@ class Read(BaseModel):
     id: int
     title: str
     description: str
+    short: bool = False
     #answer_type: AnswerType
 
     class Config:

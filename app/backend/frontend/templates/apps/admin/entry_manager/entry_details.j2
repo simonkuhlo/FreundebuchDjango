@@ -1,3 +1,4 @@
+<h2>Entry Details</h2>
 ID: {{ entry.id }} <br>
 User:   {% if  entry.user != None %}
             {{ entry.user.name }}
@@ -5,4 +6,9 @@ User:   {% if  entry.user != None %}
             None
         {% endif %}
 <br>
-Secret: {{ entry.secret }}
+Secret: {{ entry.secret }} <br>
+<h3>Answers</h3>
+{% for answer in entry.answers %}
+    Question: {{ answer.question.description }} <br>
+    Answer: {{ answer.value }} <br><br>
+{% endfor %}

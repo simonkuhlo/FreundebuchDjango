@@ -1,0 +1,20 @@
+<form>
+    <div id="question-edit-result"></div>
+    <div class="box-v">
+        <div class="box-h">
+            <label for="question-title-input">Title</label>
+            <input id="question-title-input" name="title" type="text" value="{{ question.title }}">
+        </div>
+        <div class="box-h">
+            <label for="question-description-input">Description</label>
+            <input id="question-description-input" name="description" type="text" value="{{ question.description }}">
+        </div>
+        <div class="box-h">
+            <label for="question-short-input">Short</label>
+            <input id="question-short-input" name="short" type="checkbox" {% if question.short %}checked{% endif %}>
+        </div>
+    </div>
+    <button hx-put="/api/crud/question/from_form/{{ question.id }}" hx-target="#question-edit-result">
+        Submit
+    </button>
+</form>

@@ -1,5 +1,5 @@
 from typing import Optional
-from sqlalchemy import String, Column
+from sqlalchemy import String, Column, Boolean
 from .questions_in_collection import association_table
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.orm import mapped_column
@@ -13,6 +13,7 @@ class Question(Base):
     __tablename__ = "question"
     title: Mapped[str]
     description: Mapped[str]
+    short: Mapped[bool] = mapped_column(Boolean, default=False)
     collections: Mapped[list["QuestionCollection"]] = relationship(secondary=association_table, back_populates="questions")
     answers: Mapped[list["Answer"]] = relationship("Answer", back_populates="question")
 

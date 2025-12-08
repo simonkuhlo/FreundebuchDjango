@@ -1,6 +1,6 @@
 #create / remove dummy user and entry
 from sqlalchemy.orm import Session
-
+from utils.secret_generator import generate_secret
 from models.user import User
 from models.entry import Entry
 from models.answer import Answer
@@ -10,6 +10,7 @@ def create_dummy_entry(session: Session, user: User = None) -> Entry:
         user = create_dummy_user(session)
     entry = Entry(
         user = user,
+        secret= generate_secret(),
     )
     session.add(entry)
     session.commit()
