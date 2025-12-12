@@ -2,14 +2,24 @@ from typing import Optional
 from frontend.jinja_templates import templates
 
 class ItemBrowserObjectButton:
-    def __init__(self):
-        self.name: str = ""
-        self.on_click_url: str = ""
+    def __init__(self,
+                 on_click_url: str,
+                 name: str = "Unnamed item browser button",
+                 hx_target: str = "this"
+                 ):
+        self.name: str = name
+        self.on_click_url: str = on_click_url
+        self.hx_target: str = on_click_url
+        self.on_click_url: str = on_click_url
+        self.hx_target: str = hx_target
 
 class ItemBrowserObject:
-    def __init__(self):
-        self.title: str = "No title provided"
-        self.on_click_url: Optional[str] = None
+    def __init__(self,
+                 title: str = "No title provided",
+                 on_click_url: Optional[str] = None,
+                 ):
+        self.title: str = title
+        self.on_click_url: Optional[str] = on_click_url
 
 class ItemBrowser:
     def __init__(self,
