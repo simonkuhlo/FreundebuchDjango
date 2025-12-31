@@ -8,7 +8,7 @@ def empty_str_to_none(v):
     return None if v == "" else v
 
 class EntryCreate(BaseModel):
-    user_id: Optional[int] = None
+    owner_id: Optional[int] = None
     secret: Optional[str] = secret_generator.generate_secret()
     published: bool = False
 

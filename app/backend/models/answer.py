@@ -15,8 +15,8 @@ class Answer(Base):
     question_id: Mapped[int] = mapped_column(ForeignKey("question.id"))
     entry: Mapped["Entry"] = relationship("Entry", back_populates="answers")
     entry_id: Mapped[int] = mapped_column(ForeignKey("entry.id"))
-    user: Mapped["User"] = relationship("User", back_populates="answers")
-    user_id: Mapped[int] = mapped_column(ForeignKey("user_account.id"))
+    user: Mapped[Optional["User"]] = relationship("User", back_populates="answers")
+    user_id: Mapped[Optional[int]] = mapped_column(ForeignKey("user_account.id"))
     value: Mapped[str]
 
     def __repr__(self) -> str:

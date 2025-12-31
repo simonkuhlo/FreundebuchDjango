@@ -12,7 +12,7 @@ class User(Base):
     name: Mapped[str] = mapped_column(String(30))
     admin: Mapped[bool] = mapped_column(Boolean, default=False)
     answers: Mapped[list["Answer"]] = relationship("Answer", back_populates="user")
-    entries: Mapped[list["Entry"]] = relationship("Entry", back_populates="user")
+    entries: Mapped[list["Entry"]] = relationship("Entry", back_populates="owner")
 
     def __repr__(self) -> str:
         return f"User(id={self.id!r}"

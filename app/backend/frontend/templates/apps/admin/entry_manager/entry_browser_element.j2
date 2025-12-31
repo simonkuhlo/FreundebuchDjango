@@ -1,7 +1,0 @@
-
-<div hx-get="/tests/admin/entry_details/{{ entry.id }}" hx-target="#entry_details-root" hx-trigger="click" class="entry_browser-element box-h">
-    <p>{{ entry.id }}{% if  entry.user != None %} by {{ entry.user.name }}{% endif %}</p>
-    <div class="spacer-h"></div>
-    <button>Edit</button>
-    <button>Delete</button>
-</div>

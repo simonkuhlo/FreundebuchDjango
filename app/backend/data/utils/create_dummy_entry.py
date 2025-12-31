@@ -5,16 +5,16 @@ from models.user import User
 from models.entry import Entry
 from models.answer import Answer
 
-def create_dummy_entry(session: Session, user: User = None) -> Entry:
-    if user is None:
+def create_dummy_entry(session: Session, owner: User = None) -> Entry:
+    if owner is None:
         user = create_dummy_user(session)
     entry = Entry(
-        user = user,
+        owner = owner,
         secret= generate_secret(),
     )
     session.add(entry)
     session.commit()
-    create_dummy_answers(session=session, entry=entry, user=user)
+    create_dummy_answers(session=session, entry=entry, user=owner)
     session.refresh(entry)
     return entry
 

@@ -7,7 +7,7 @@ from ..user import UserRead
 
 class EntryRead(BaseModel):
     id: int
-    user: Optional[UserRead] = None
+    owner: Optional[UserRead] = None
     published: bool
     answers: list[EntryAnswerRead]
 
