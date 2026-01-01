@@ -26,4 +26,7 @@ class EntryCRUD(CRUDHandler[Entry, EntryRead, EntryCreate, EntryUpdate]):
             return None
         return EntryReadOwner.model_validate(db_item)
 
+    def update(self, object_id: int, updated_object: EntryUpdate) -> EntryReadOwner:
+        return super().update(object_id, updated_object)
+
 handler: EntryCRUD = EntryCRUD()

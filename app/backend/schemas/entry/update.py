@@ -3,4 +3,9 @@ from pydantic import BaseModel
 
 
 class EntryUpdate(BaseModel):
-    published: Optional[bool]
+    owner_id: Optional[int] = None
+    secret: Optional[str] = None
+    published: Optional[bool] = False
+
+    class Config:
+        from_attributes = True
