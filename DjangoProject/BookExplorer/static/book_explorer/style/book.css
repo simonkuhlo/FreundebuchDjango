@@ -1,7 +1,7 @@
 
 .book {
     width: 1400px;
-  display: flex;
+    display: flex;
     justify-content: end;
     perspective: 1400px;
     perspective-origin: 50% 50%;
@@ -61,7 +61,6 @@
   transform: rotateY(0deg);
   transition: .5s;
     border: 1px solid black;
-  color: green;
     box-sizing: border-box;
 }
 

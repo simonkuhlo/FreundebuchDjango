@@ -1,18 +1,64 @@
 <div class="back" data-entry_id="{{ entry.id }}" id="p{{ entry.id }}b">
     {% if entry != None %}
+        <style>
+            .entry-container {
+                font-family: Nunito, sans-serif;
+            }
+        </style>
         <div class="box-v entry-container">
-            <div class="entry-element entry-topic"><h2>{{ entry.user.name }}</h2></div>
-            <div class="entry-element box-h entry-header">
-                <div class="spacer-h">Header Information (Name, age, etc.)<br>This entry has the id {{ entry.id }}</div>
-                <div class="entry-header-image">
-                    Image
+            <div class="entry-element" id="image">
+                Image
+            </div>
+            <div class="entry-element" id="about_me">
+                <div class="entry-element-field">
+                    My name is:
+                    <input type="text">
+                </div>
+                <div class="entry-element-field">
+                    People also call me:
+                    <input type="text">
+                </div>
+                <div class="entry-element-field">
+                    My birthday is on:
+                    <input type="text">
+                </div>
+                <div class="entry-element-field">
+                    I am this tall:
+                    <input type="text">
                 </div>
             </div>
-                <div class="entry-element entry-canvas">
-                <div class="entry-answer-question">Entry Canvas</div>
-
+            <div class="entry-element" id="contact">
+                <div class="entry-element-field">
+                    I am from:
+                    <input type="text">
+                </div>
+                <div class="entry-element-field">
+                    I live in:
+                    <input type="text">
+                </div>
+                <div class="entry-element-field">
+                    How you can reach me:
+                    <input type="text">
+                </div>
             </div>
-
+            <div class="entry-element" id="preferences">
+                <div class="entry-element-field">
+                    I really like:
+                    <input type="text">
+                </div>
+                <div class="entry-element-field">
+                    I really don't like:
+                    <input type="text">
+                </div>
+                <div class="entry-element-field">
+                    My craziest experience:
+                    <input type="text">
+                </div>
+                <div class="entry-element-field">
+                    My loveliest experience:
+                    <input type="text">
+                </div>
+            </div>
             <div class="box-h control-element">
                 <button hx-get="/explorer/entry/{{ entry.id }}/prev" hx-target="#page-root">Back</button>
                 <div class="spacer-h"></div>

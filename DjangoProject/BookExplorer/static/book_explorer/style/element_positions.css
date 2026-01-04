@@ -1,0 +1,88 @@
+.entry-container #image{
+  position: absolute;
+  left: 36px;
+  top: 45px;
+  width: 152px;
+  height: 196px;
+  rotate: 7deg;
+}
+
+.entry-container #about_me{
+    position: absolute;
+    left: 232px;
+    top: 30px;
+    width: 450px;
+    max-height: 255px;
+    background: #FFFFFFFF;
+}
+
+.entry-container #about_me .entry-element-field {
+    flex-direction: row;
+    gap: 5px;
+}
+
+.entry-container #contact{
+    position: absolute;
+    left: 67px;
+    top: 317px;
+    max-height: 300px;
+    width: 230px;
+    background: #FFFFFFFF;
+    border: 1px solid black;
+    rotate: 350deg;
+}
+
+.entry-container #preferences{
+    position: absolute;
+    left: 350px;
+    top: 282px;
+    max-height: 345px;
+    width: 320px;
+    background: #FFFFFFFF;
+    border: 1px solid black;
+}
+
+.entry-container #future{
+    width: 270px;
+    height: 240px;
+    position: absolute;
+    top: 30px;
+    left: 400px;
+    rotate: 6.5deg;
+}
+
+.entry-container #favorites-name{
+    position: absolute;
+    top: 23px;
+    left: 25px;
+    z-index: 1;
+    padding: 5px;
+}
+
+.entry-container #favorites-1{
+    width: 320px;
+    max-height: 350px;
+    position: absolute;
+    top: 35px;
+    left: 50px;
+    rotate: 355deg;
+    z-index: 0;
+}
+
+.entry-container #favorites-2{
+    width: 320px;
+    max-height: 100px;
+    position: absolute;
+    top: 297px;
+    left: 350px;
+    rotate: 3deg;
+    z-index: 1;
+}
+
+.entry-container #custom{
+    width: 622px;
+    height: 189px;
+    position: absolute;
+    top: 415px;
+    left: 46px;
+}

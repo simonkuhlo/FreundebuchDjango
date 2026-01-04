@@ -1,6 +1,52 @@
 <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
     {% if entry != None %}
+    <style>
+        .entry-container {
+            font-family: Nunito, sans-serif;
+        }
+    </style>
     <div class="box-v entry-container">
+        <div class="entry-element" id="favorites-name">
+            MY FAVORITES
+        </div>
+        <div class="entry-element" id="favorites-1">
+            <div class="entry-element-field">
+                Movie / Show
+                <input type="text">
+            </div>
+            <div class="entry-element-field">
+                Animal
+                <input type="text">
+            </div>
+            <div class="entry-element-field">
+                Food
+                <input type="text">
+            </div>
+            <div class="entry-element-field">
+                Book / Literature
+                <input type="text">
+            </div>
+        </div>
+        <div class="entry-element" id="favorites-2">
+            <div class="entry-element-field">
+                Music
+                <input type="text">
+            </div>
+        </div>
+        <div class="entry-element" id="future">
+            <div class="entry-element-field">
+                In the future, I want to become...
+                <input type="text">
+            </div>
+            <div class="entry-element-field">
+                My favorite activity:
+                <input type="text">
+            </div>
+        </div>
+        <div class="entry-element" id="custom">
+            Custom Field - Shoutbox, Drawing, etc.(1 Field)
+            <div class="entry-element-field"></div>
+        </div>
         <div class="box-h control-element">
             <div class="spacer-h"></div>
             <button hx-get="/explorer/entry/{{ entry.id }}/next" hx-target="#page-root">Next</button>
