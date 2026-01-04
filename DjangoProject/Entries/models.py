@@ -17,6 +17,8 @@ class EntryV1(models.Model):
     birthday = models.DateField(blank=True, null=True)
     # I am this tall:
     size = models.CharField(max_length=100, blank=True, null=True)
+    #I am from:
+    origin = models.CharField(max_length=100, blank=True, null=True)
     # Where I live
     location = models.CharField(max_length=500, blank=True, null=True)
     # How you can contact me (Email, Phone number, Discord)
@@ -26,8 +28,10 @@ class EntryV1(models.Model):
     likes = models.CharField(max_length=500, blank=True, null=True)
     # I really don't like...
     dislikes = models.CharField(max_length=500, blank=True, null=True)
-    # The best experience I've ever had:
-    best_experience = models.TextField(blank=True, null=True)
+    # My loveliest experience:
+    loveliest_experience = models.TextField(blank=True, null=True)
+    # My craziest experience:
+    craziest_experience = models.TextField(blank=True, null=True)
     # My favorite book:
     favorite_food = models.CharField(max_length=500, blank=True, null=True)
     # My favorite animal:
@@ -39,9 +43,7 @@ class EntryV1(models.Model):
     # My favorite music:
     favorite_music = models.CharField(max_length=500, blank=True, null=True)
     # I love to do...
-    favorite_activity = models.CharField(max_length=500, blank=True, null=True)
-    # My biggest dream:
-    dream = models.TextField(blank=True, null=True)
+    biggest_idol = models.CharField(max_length=500, blank=True, null=True)
     # In the future, I want to become...
     want_to_become = models.TextField(blank=True, null=True)
 

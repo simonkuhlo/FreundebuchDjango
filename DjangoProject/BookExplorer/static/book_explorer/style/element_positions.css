@@ -10,7 +10,7 @@
 .entry-container #about_me{
     position: absolute;
     left: 232px;
-    top: 30px;
+    top: 25px;
     width: 450px;
     max-height: 255px;
     background: #FFFFFFFF;
@@ -35,8 +35,8 @@
 .entry-container #preferences{
     position: absolute;
     left: 350px;
-    top: 282px;
-    max-height: 345px;
+    top: 285px;
+    max-height: 350px;
     width: 320px;
     background: #FFFFFFFF;
     border: 1px solid black;
@@ -61,7 +61,7 @@
 
 .entry-container #favorites-1{
     width: 320px;
-    max-height: 350px;
+    max-height: 360px;
     position: absolute;
     top: 35px;
     left: 50px;
