@@ -1,10 +1,13 @@
 {% extends "book_explorer/book.html" %}
 
 {% block content %}
-    <div class="flip already_flipped">
-        {% include "book_explorer/page_back.html"%}
-    </div>
-    <div class="flip">
-        {% include "book_explorer/page_front.html"%}
-    </div>
+    <form>
+        {% csrf_token %}
+        <div class="flip already_flipped">
+            {% include "book_explorer/page_back.html"%}
+        </div>
+        <div class="flip">
+            {% include "book_explorer/page_front.html"%}
+        </div>
+    </form>
 {% endblock %}
