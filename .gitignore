@@ -6,3 +6,5 @@ api/database.sqlite
 */.venv
 *.sqlite
 *.sqlite3
+/.idea
+
