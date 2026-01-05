@@ -23,5 +23,4 @@ urlpatterns = [
     path("entry/<int:source_id>/next", views.next_entry, name='next_entry'),
     path("entry/<int:source_id>/prev", views.previous_entry, name='prev_entry'),
     path("create/", views.create, name='create'),
-    path("creator/", views.creator, name='creator'),
 ]

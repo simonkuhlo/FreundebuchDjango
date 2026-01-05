@@ -9,37 +9,39 @@ def book_start(request) -> HttpResponse:
     return render(request, "book_explorer/book.html", context)
 
 def create(request) -> HttpResponse:
-    try:
-        birthday = request.POST["birthday"]
-        if birthday == "":
-            birthday = None
-        new_entry = EntryV1.objects.create(
-            name=request.POST["name"],
-            nicknames=request.POST["nicknames"],
-            birthday=birthday,
-            size=request.POST["size"],
-            origin=request.POST["origin"],
-            location=request.POST["location"],
-            contact=request.POST["contact"],
-            likes=request.POST["likes"],
-            dislikes=request.POST["dislikes"],
-            loveliest_experience=request.POST["loveliest_experience"],
-            craziest_experience=request.POST["craziest_experience"],
-            favorite_food=request.POST["favorite_food"],
-            favorite_book=request.POST["favorite_book"],
-            favorite_movie=request.POST["favorite_movie"],
-            favorite_animal=request.POST["favorite_animal"],
-            favorite_music=request.POST["favorite_music"],
-            biggest_idol=request.POST["biggest_idol"],
-            want_to_become=request.POST["want_to_become"]
-            )
-    except Exception as e:
-        print(e)
-    return next_entry(request, new_entry.id - 1)
+    match request.method:
+        case "POST":
+            try:
+                birthday = request.POST["birthday"]
+                if birthday == "":
+                    birthday = None
+                new_entry = EntryV1.objects.create(
+                    name=request.POST["name"],
+                    nicknames=request.POST["nicknames"],
+                    birthday=birthday,
+                    size=request.POST["size"],
+                    origin=request.POST["origin"],
+                    location=request.POST["location"],
+                    contact=request.POST["contact"],
+                    likes=request.POST["likes"],
+                    dislikes=request.POST["dislikes"],
+                    loveliest_experience=request.POST["loveliest_experience"],
+                    craziest_experience=request.POST["craziest_experience"],
+                    favorite_food=request.POST["favorite_food"],
+                    favorite_book=request.POST["favorite_book"],
+                    favorite_movie=request.POST["favorite_movie"],
+                    favorite_animal=request.POST["favorite_animal"],
+                    favorite_music=request.POST["favorite_music"],
+                    biggest_idol=request.POST["biggest_idol"],
+                    want_to_become=request.POST["want_to_become"]
+                    )
+                return next_entry(request, new_entry.id - 1)
+            except Exception as e:
+                print(e)
+        case _:
+            context = {"edit_mode": True}
+            return render(request, "book_explorer/creator.html", context)
 
-def creator(request) -> HttpResponse:
-    context = {"edit_mode": True}
-    return render(request, "book_explorer/creator.html", context)
 
 def next_entry(request, source_id: int) -> HttpResponse:
     context = {
