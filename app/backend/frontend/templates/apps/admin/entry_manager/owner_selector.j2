@@ -1,6 +1,0 @@
-<select name="owner_id">
-    <option value="" {% if entry.owner == None %} selected {% endif %}> None </option>
-    {% for user in users %}
-        <option value="{{ user.id }}" {% if user.id == entry.owner.id %} selected {% endif %}> {{ user.id }} - {{ user.name }} </option>
-    {% endfor %}
-</select>
