@@ -49,6 +49,9 @@ class EntryV1(models.Model):
     # In the future, I want to become...
     want_to_become = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return f"Entry {self.id} by {self.name}"
+
 class CreateCode(models.Model):
     purpose = models.CharField(max_length=100, default="Unknown")
     secret = models.CharField(max_length=100, default=helpers.generate_secret, primary_key=True)

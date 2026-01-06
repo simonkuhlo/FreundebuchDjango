@@ -14,8 +14,8 @@ def first(request) -> HttpResponse:
     return render(request, "book_explorer/animated_entry.html", context)
 
 def next_entry(request, source_id: int) -> HttpResponse:
-    source_entry = get_object_or_404(EntryV1, pk=source_id)
     try:
+        source_entry = EntryV1.objects.get(pk=source_id)
         current_entry = source_entry.get_next_by_created()
     except EntryV1.DoesNotExist:
         return first(request)
@@ -29,8 +29,8 @@ def next_entry(request, source_id: int) -> HttpResponse:
 
 
 def previous_entry(request, source_id: int) -> HttpResponse:
-    source_entry = get_object_or_404(EntryV1, pk=source_id)
     try:
+        source_entry = EntryV1.objects.get(pk=source_id)
         previous_entry_object = source_entry.get_previous_by_created()
     except EntryV1.DoesNotExist:
         return first(request)
