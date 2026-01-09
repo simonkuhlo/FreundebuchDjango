@@ -37,7 +37,7 @@ def create(request):
                     want_to_become=request.POST["want_to_become"]
                 )
                 CreateCode.objects.filter(pk=request.session["code"]).first().delete()
-                return redirect("/explorer/")
+                return redirect(f"/explorer/partial/entry/{new_entry.get_previous_by_created().id}/next")
             except Exception as e:
                 print(e)
         case _:

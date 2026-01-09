@@ -96,7 +96,7 @@
                 {% if entry %}
                     <button hx-post="/explorer/edit/{{ entry.id }}/save/" hx-target="#page-root" hx-encoding='multipart/form-data'>Save</button>
                 {% else %}
-                    <input type="submit" value="Create">
+                    <button hx-post="/creator/" hx-target="#page-root" hx-encoding='multipart/form-data'>Create</button>
                 {% endif %}
             {% else %}
                 <button hx-get="/explorer/partial/entry/{{ entry.id }}/next" hx-target="#page-root">Next</button>
