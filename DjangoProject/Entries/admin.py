@@ -1,9 +1,14 @@
 from django.contrib import admin
 
-from Entries.models import EntryV1, CreateCode
+from Entries.models import EntryV1, CreateCode, CustomTextField
+
 
 @admin.register(EntryV1)
 class EntryAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(CustomTextField)
+class CustomTextFieldAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(CreateCode)

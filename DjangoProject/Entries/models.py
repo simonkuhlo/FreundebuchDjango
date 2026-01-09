@@ -2,6 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from . import helpers
 
+CUSTOM_FIELD_CHOICES = {
+    "txt" : "Text Field",
+    "img" : "Image Field",
+    "audio" : "Audio Field",
+    "video" : "Video Field",
+    "canvas" : "Canvas Field",
+    "button" : "Button Field",
+}
+
 class EntryV1(models.Model):
     ## Meta Information
     owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
@@ -49,6 +58,8 @@ class EntryV1(models.Model):
     # In the future, I want to become...
     want_to_become = models.TextField(blank=True, null=True)
 
+    custom_field_mode = models.CharField(max_length=10, choices=CUSTOM_FIELD_CHOICES, null=True, blank=True)
+
     def __str__(self):
         return f"Entry {self.id} by {self.name}"
 
@@ -64,3 +75,10 @@ class CreateCode(models.Model):
             return True
         return False
 
+class CustomTextField(models.Model):
+    entry = models.ForeignKey(EntryV1, on_delete=models.CASCADE)
+    text = models.TextField(blank=True, null=True)
+
+CUSTOM_FIELD_MAPPING = {
+    "txt" : CustomTextField,
+}

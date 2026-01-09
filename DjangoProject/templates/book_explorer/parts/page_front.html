@@ -73,21 +73,30 @@
         </div>
         <div class="entry-element" id="custom" style="border-style: dashed">
             {% if edit_mode %}
-                <div class="">
-                    DON'T USE THIS YET
+                <div class="box-center">
                     <div class="box-h" style="gap: 5px;">
-                        <select name="" id="">
-                            <option value="text">[v1] Custom Text</option>
-                            <option value="text" disabled>[v2] Upload Image</option>
-                            <option value="text" disabled>[v2] Upload Audio</option>
-                            <option value="text" disabled>[v2] Upload Video</option>
-                            <option value="text" disabled>[v2] Draw something</option>
-                            <option value="text" disabled>[v3] Make a button</option>
-                        </select>
-                        <button disabled>+ Add custom field</button></div>
+                        <input type="hidden" id="custom_field_type" name="custom_field_type" value=""/>
+                        <form>
+                            <select name="custom_field_select" id="custom_field_select">
+                                <option value="txt">Custom Text</option>
+                                <option value="img" disabled>[v2] Upload Image</option>
+                                <option value="audio" disabled>[v2] Upload Audio</option>
+                                <option value="video" disabled>[v2] Upload Video</option>
+                                <option value="canvas" disabled>[v2] Draw something</option>
+                                <option value="button" disabled>[v3] Make a button</option>
+                            </select>
+                            <button hx-post="/creator/partial/custom_field/" hx-target="#custom" hx-encoding='multipart/form-data'>+ Add custom field</button>
+                        </form>
+                    </div>
                 </div>
             {% else %}
-                bup.
+                {% if entry.rendered_custom_field %}
+                    {{ entry.rendered_custom_field|safe }}
+                {% else %}
+                    {% if entry.custom_field_mode %}
+                        <p hx-get="/explorer/partial/entry/{{ entry.id }}/get_custom_field/" hx-trigger="load" hx-swap="outerHTML">Unable to load custom field.</p>
+                    {% endif %}
+                {% endif %}
             {% endif %}
         </div>
         <div class="box-h control-element">

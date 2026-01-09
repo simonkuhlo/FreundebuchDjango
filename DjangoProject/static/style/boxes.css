@@ -16,10 +16,11 @@
 
 .box-center {
     width: 100%;
-    padding-top: 100px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
     justify-items: center;
     align-items: center;
+    box-sizing: border-box;
 }

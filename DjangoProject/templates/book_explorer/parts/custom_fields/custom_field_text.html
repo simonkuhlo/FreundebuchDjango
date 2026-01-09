@@ -1,0 +1,8 @@
+{% if edit_mode %}
+    <input type="hidden" id="custom_field_type" name="custom_field_type" value="txt"/>
+    <textarea name="custom_text" id="custom_text" style="width: 100%; height: 100%; box-sizing: border-box; resize: none; margin: 0; padding: 0;"></textarea>
+{% else %}
+    <p>
+    {{ custom_text }}
+    </p>
+{% endif %}
