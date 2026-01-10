@@ -19,13 +19,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from . import settings
 
-if settings.DEBUG:
-    urlpatterns = [
+urlpatterns = [
         path('admin/', admin.site.urls),
         path('', include('FreundebuchWebpage.urls')),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-else:
-    urlpatterns = [
-      path('admin/', admin.site.urls),
-      path('', include('FreundebuchWebpage.urls')),
-    ]
