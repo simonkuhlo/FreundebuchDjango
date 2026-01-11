@@ -55,7 +55,10 @@ def create(request):
                     case _:
                         pass
                 CreateCode.objects.filter(pk=request.session["code"]).first().delete()
-                return redirect(f"/explorer/partial/entry/{new_entry.get_previous_by_created().id}/next")
+                try:
+                    return redirect(f"/explorer/partial/entry/{new_entry.get_previous_by_created().id}/next")
+                except:
+                    return redirect(f"/explorer/partial/entry/first")
             except Exception as e:
                 print(e)
         case _:
