@@ -23,6 +23,7 @@ RUN useradd -m -r appuser && \
     mkdir /app && \
     mkdir /app/staticfiles && \
     mkdir /app/media && \
+    mkdir /app/media/uploads && \
     chown -R appuser /app
 
 # Copy the Python dependencies from the builder stage
