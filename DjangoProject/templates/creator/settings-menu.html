@@ -1,0 +1,79 @@
+<style>
+  body { display: flex; flex-direction: column; align-items: center; font-family: sans-serif; margin: 20px; }
+  canvas { border: 1px solid #ccc; cursor: none; }
+  .toolbar {
+      display: flex;
+      flex-direction: row;
+      padding: 5px;
+      gap: 3px;
+  }
+  #brushPreview {
+    position: absolute;
+    pointer-events: none;
+    border: 2px solid black;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.1);
+    transform: translate(-50%, -50%);
+  }
+  .floating {
+    position: absolute;
+    z-index: 2000;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+  }
+  .float-controller {
+    padding: 10px;
+    cursor: move;
+    background-color: #2196F3;
+    color: white;
+    user-select: none; /* prevent text selection while dragging */
+  }
+</style>
+
+<div class="floating" id="controls">
+  <div class="float-controller" id="move">♥ Click here to move ♥</div>
+  <div class="toolbar">
+    <label>Color: <input type="color" id="colorPicker" value="#000000" /></label>
+    <label>Brush Size: <input type="range" id="brushSize" min="1" max="50" value="5" /></label>
+    <button id="eraserBtn">Eraser</button>
+    <button id="clearBtn">Clear</button>
+  </div>
+</div>
+
+<script>
+    dragElement(document.getElementById("controls"));
+
+    function dragElement(element) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      const header = document.getElementById("move");
+      if (header) {
+        header.onmousedown = dragMouseDown;
+      } else {
+        element.onmousedown = dragMouseDown;
+      }
+
+      function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+      }
+
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+</script>

@@ -1,6 +1,7 @@
 {% extends "book_explorer/book.html" %}
 
 {% block content %}
+    {% include "creator/settings-menu.html" %}
     <form action="/creator/" method="post">
         {% csrf_token %}
         <div class="flip already_flipped">

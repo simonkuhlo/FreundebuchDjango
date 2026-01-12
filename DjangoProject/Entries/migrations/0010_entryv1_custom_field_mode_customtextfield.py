@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='entryv1',
             name='custom_field_mode',
-            field=models.CharField(blank=True, choices=[('txt', 'Text Field'), ('img', 'Image Field'), ('audio', 'Audio Field'), ('video', 'Video Field'), ('canvas', 'Canvas Field'), ('button', 'Button Field')], max_length=10, null=True),
+            field=models.CharField(blank=True, choices=[('txt', 'Text Field'), ('img', 'Image Field'), ('audio', 'Audio Field'), ('video', 'Video Field'), ('canvas.html', 'Canvas Field'), ('button', 'Button Field')], max_length=10, null=True),
         ),
         migrations.CreateModel(
             name='CustomTextField',
