@@ -1,0 +1,9 @@
+{% if edit_mode %}
+    {% block field_display %}
+        Custom field type has no display.
+    {% endblock %}
+{% else %}
+    {% block field_editor %}
+        Custom field type has no editor.
+    {% endblock %}
+{% endif %}

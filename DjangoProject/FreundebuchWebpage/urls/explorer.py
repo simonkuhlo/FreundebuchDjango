@@ -9,5 +9,4 @@ urls = [
     path("partial/entry/<int:source_id>/next/", views.explorer.partial.next_entry, name='next_entry'),
     path("partial/entry/<int:source_id>/prev/", views.explorer.partial.previous_entry, name='prev_entry'),
     path("partial/entry/first", views.explorer.partial.first, name='first_entry'),
-    path("partial/entry/<int:entry_id>/get_custom_field/", views.explorer.partial.get_custom_field, name='get_custom_field'),
 ]
