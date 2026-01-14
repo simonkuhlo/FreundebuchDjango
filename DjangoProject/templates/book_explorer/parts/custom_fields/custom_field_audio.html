@@ -1,0 +1,11 @@
+{% extends "book_explorer/parts/custom_fields/custom_field_frame.html" %}
+
+{% block field_display %}
+    <input type="hidden" id="custom_field_type" name="custom_field_type" value="audio"/>
+    Audio Recorder goes here
+    <input type="file" name="custom_audio">
+{% endblock %}
+
+{% block field_editor %}
+    Audio Player goes here
+{% endblock %}
