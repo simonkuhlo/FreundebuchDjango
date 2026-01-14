@@ -1,9 +1,9 @@
 from typing import Optional
-from unittest import case
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from Entries.models import EntryV1, CreateCode, CustomTextField
-from Entries import custom_field_mapping
+from django.shortcuts import render, redirect
+from Entries.models import EntryV1, CreateCode
+from Entries.custom_fields import shortcuts
+
 
 def create(request):
     if not request.session.get("code"):
@@ -40,7 +40,7 @@ def create(request):
                     want_to_become=request.POST["want_to_become"],
                     custom_field_mode=custom_field_type,
                 )
-                custom_field_mapping.create_shortcut(custom_field_type, request,new_entry)
+                custom_field_mapping.create_shortcut(custom_field_type, request, new_entry)
                 CreateCode.objects.filter(pk=request.session["code"]).first().delete()
                 try:
                     return redirect(f"/explorer/partial/entry/{new_entry.get_previous_by_created().id}/next")

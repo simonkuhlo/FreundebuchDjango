@@ -1,9 +1,7 @@
-from unittest import case
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
-from django.template.loader import render_to_string
-from Entries.models import EntryV1, CustomTextField
-from Entries import custom_field_mapping
+from django.shortcuts import render
+from Entries.models import EntryV1
+from Entries.custom_fields import shortcuts
 
 
 def first(request) -> HttpResponse:
