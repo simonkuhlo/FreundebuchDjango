@@ -22,7 +22,7 @@ def create(key:str, request:HttpRequest, entry:EntryV1) -> None:
         handler = get_handler(key)
         handler.create(request, entry)
     finally:
-        return
+        pass
 
 def render_field(key:str, request:HttpRequest, entry:Optional[EntryV1] = None, edit_mode: bool = False) -> HttpResponse:
     try:
