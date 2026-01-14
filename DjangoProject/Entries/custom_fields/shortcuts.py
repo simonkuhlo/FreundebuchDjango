@@ -17,21 +17,21 @@ def get_handler(key:str) -> CustomFieldHandler:
     else:
         raise KeyError("Custom field key not found.")
 
-def create_shortcut(key:str, request:HttpRequest, entry:EntryV1) -> None:
+def create(key:str, request:HttpRequest, entry:EntryV1) -> None:
     try:
         handler = get_handler(key)
         handler.create(request, entry)
     finally:
         return
 
-def render_shortcut(key:str, request:HttpRequest, entry:Optional[EntryV1] = None, edit_mode: bool = False) -> HttpResponse:
+def render_field(key:str, request:HttpRequest, entry:Optional[EntryV1] = None, edit_mode: bool = False) -> HttpResponse:
     try:
         handler = get_handler(key)
     except KeyError:
         return render(request, "book_explorer/parts/custom_fields/not_found.html")
     return handler.get_rendered(request, entry, edit_mode=edit_mode)
 
-def render_str_shortcut(key:str, entry:Optional[EntryV1] = None, edit_mode: bool = False) -> str:
+def render_field_str(key:str, entry:Optional[EntryV1] = None, edit_mode: bool = False) -> str:
     try:
         handler = get_handler(key)
     except KeyError:
