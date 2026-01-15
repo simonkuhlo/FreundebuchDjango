@@ -79,6 +79,26 @@ class CustomTextField(models.Model):
     entry = models.ForeignKey(EntryV1, on_delete=models.CASCADE)
     text = models.TextField(blank=True, null=True)
 
-CUSTOM_FIELD_MAPPING = {
-    "txt" : CustomTextField,
-}
+class CustomImageField(models.Model):
+    entry = models.ForeignKey(EntryV1, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='uploads/', blank=True, null=True)
+
+class CustomAudioField(models.Model):
+    entry = models.ForeignKey(EntryV1, on_delete=models.CASCADE)
+    #TODO add validators
+    audio = models.FileField(upload_to='uploads/', blank=True, null=True)
+
+class CustomVideoField(models.Model):
+    entry = models.ForeignKey(EntryV1, on_delete=models.CASCADE)
+    # TODO add validators
+    video = models.FileField(upload_to='uploads/', blank=True, null=True)
+
+class CustomCanvasField(models.Model):
+    entry = models.ForeignKey(EntryV1, on_delete=models.CASCADE)
+    # TODO add validators
+    canvas = models.FileField(upload_to='uploads/', blank=True, null=True)
+
+class CustomButtonField(models.Model):
+    entry = models.ForeignKey(EntryV1, on_delete=models.CASCADE)
+    onclick_url = models.URLField(blank=True, null=True)
+    text = models.CharField(blank=True, null=True, max_length=100)

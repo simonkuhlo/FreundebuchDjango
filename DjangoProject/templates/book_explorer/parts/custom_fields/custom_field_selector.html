@@ -4,10 +4,10 @@
         <form>
             <select name="custom_field_select" id="custom_field_select">
                 <option value="txt">Custom Text</option>
-                <option value="img" disabled>[v2] Upload Image</option>
-                <option value="audio" disabled>[v2] Upload Audio</option>
-                <option value="video" disabled>[v2] Upload Video</option>
-                <option value="canvas" disabled>[v2] Draw something</option>
+                <option value="img">Upload Image</option>
+                <option value="audio">Upload Audio</option>
+                <option value="canvas" disabled>Draw something</option>
+                <option value="video" disabled>[v3] Upload Video</option>
                 <option value="button" disabled>[v3] Make a button</option>
             </select>
             <button hx-post="/creator/partial/custom_field/" hx-target="#custom" hx-encoding='multipart/form-data'>+ Add custom field</button>
