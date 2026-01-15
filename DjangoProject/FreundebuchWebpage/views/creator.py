@@ -40,7 +40,9 @@ def create(request):
                     want_to_become=request.POST["want_to_become"],
                     custom_field_mode=custom_field_type,
                 )
-                custom_field_mapping.create(custom_field_type, request, new_entry)
+                print(custom_field_type)
+                if custom_field_type:
+                    shortcuts.create(custom_field_type, request, new_entry)
                 CreateCode.objects.filter(pk=request.session["code"]).first().delete()
                 try:
                     return redirect(f"/explorer/partial/entry/{new_entry.get_previous_by_created().id}/next")
@@ -74,6 +76,6 @@ def custom_field(request):
     match request.method:
         case "POST":
             key = request.POST.get("custom_field_select")
-            return custom_field_mapping.render_field(key, request, edit_mode=True)
+            return shortcuts.render_field(key, request, edit_mode=True)
         case _:
             return HttpResponse(status=404)
