@@ -8,7 +8,7 @@
         <div class="box-v entry-container">
             <div class="entry-element" id="image">
                 {% if edit_mode %}
-                    <input type="file" id="" name="image">
+                    <input type="file" id="" name="image" accept="image/*">
                 {% else %}
                     {% if entry.image %}
                     <img src="{{ entry.image.url }}" alt="No Image found">

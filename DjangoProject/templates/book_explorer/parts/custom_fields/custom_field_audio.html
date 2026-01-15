@@ -2,10 +2,11 @@
 
 {% block field_display %}
     <input type="hidden" id="custom_field_type" name="custom_field_type" value="audio"/>
-    Audio Recorder goes here
-    <input type="file" name="custom_audio">
+    <input type="file" name="custom_audio" accept="audio/*">
 {% endblock %}
 
 {% block field_editor %}
-    Audio Player goes here
+    <audio controls preload="auto">
+        <source src="{{ custom_field_db_object.audio.url }}" type="audio/mpeg">
+    </audio>
 {% endblock %}
