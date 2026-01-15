@@ -18,9 +18,14 @@
 
 <div class="box-v" id="news_feed-panel">
     <div class="box-h" id="news_feed-toolbar">
-        <h3>News Feed</h3> <div class="spacer-h"></div> <a class="button" href="">Browse</a> <a class="button" href="">Refresh</a>
+        <h3>News Feed</h3>
+        <div class="spacer-h"></div>
+        <a class="button" href="">Browse</a>
+        <button hx-get="/blogposts/partial/news/" hx-target="#news_feed-content_root-frame">Refresh</button>
     </div>
-    <p hx-get="/blogposts/partial/news" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
-        Unable to load news feed.
-    </p>
+    <div id="news_feed-content_root-frame">
+        <p hx-get="/blogposts/partial/news/" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
+            Unable to load news feed.
+        </p>
+    </div>
 </div>
