@@ -1,6 +1,6 @@
 .header-main {
     max-height: 200px;
-    width: 100%; /* or fixed width */
+    width: 100%;
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid black;
@@ -9,9 +9,9 @@
 
 .header-main img {
   padding: 3px;
-  height: 100px;  /* fills parent's height */
-  width: auto;  /* scale width to keep aspect ratio */
-  display: block; /* remove inline space */
+  height: 100px;
+  width: auto;
+  display: block;
 }
 
 .navbar {

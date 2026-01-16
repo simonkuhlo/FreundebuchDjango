@@ -2,6 +2,20 @@ html * {
   font-family: Nunito, sans-serif;
 }
 
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 5px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
 button {
     border: 1px solid black;
     background: white;

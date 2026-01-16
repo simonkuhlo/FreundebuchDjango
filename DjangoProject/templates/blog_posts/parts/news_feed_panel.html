@@ -1,11 +1,14 @@
 <style>
-    #news_feed-panel {
-        position: fixed;
+    #news_feed_panel-frame {
         right: 0;
+        height: 100%;
+        box-sizing: border-box;
+    }
+    #news_feed-panel {
         width: 300px;
         height: 100%;
-        max-height: 700px;
         padding: 10px;
+        box-sizing: border-box;
     }
     #news_feed-toolbar {
         padding: 5px;
@@ -13,6 +16,7 @@
         text-align: center;
         text-wrap: nowrap;
         gap: 5px;
+        box-sizing: border-box;
     }
     #news_feed-root {
         width: 100%;
@@ -21,22 +25,25 @@
         overflow-y: scroll;
         gap: 5px;
         padding: 3px;
+        box-sizing: border-box;
     }
     #news_feed-root a{
         text-decoration: none;
         color: black;
     }
 </style>
-<div class="box-v" id="news_feed-panel">
-    <div class="box-h" id="news_feed-toolbar">
-        <h3>News Feed</h3>
-        <div class="spacer-h"></div>
-        <a class="button" href="/blogposts/browser/">Browse</a>
-        <button hx-get="/blogposts/partial/news/" hx-target="#news_feed-root">Refresh</button>
-    </div>
-    <div class="box-v" id="news_feed-root">
-        <p hx-get="/blogposts/partial/news/" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
-            Unable to load news feed.
-        </p>
+<div class="box-v" id="news_feed_panel-frame">
+    <div class="box-v" id="news_feed-panel">
+        <div class="box-h" id="news_feed-toolbar">
+            <h3>News Feed</h3>
+            <div class="spacer-h"></div>
+            <a class="button" href="/blogposts/browser/">Browse</a>
+            <button hx-get="/blogposts/partial/news/" hx-target="#news_feed-root">Refresh</button>
+        </div>
+        <div class="box-v" id="news_feed-root">
+            <p hx-get="/blogposts/partial/news/" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
+                Unable to load news feed.
+            </p>
+        </div>
     </div>
 </div>
