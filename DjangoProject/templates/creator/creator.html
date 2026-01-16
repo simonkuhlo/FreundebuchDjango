@@ -1,13 +1,22 @@
 {% extends "book_explorer/book.html" %}
 
-{% block content %}
+{% block start %}
     <form action="/creator/" method="post">
-        {% csrf_token %}
-        <div class="flip already_flipped">
-            {% include "book_explorer/parts/page_back.html" %}
-        </div>
-        <div class="flip">
-            {% include "book_explorer/parts/page_front.html" %}
-        </div>
+    {% csrf_token %}
+    {% include "creator/settings-menu.html" %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="flip already_flipped">
+        {% include "book_explorer/parts/page_back.html" %}
+    </div>
+    <div class="flip">
+        {% include "book_explorer/parts/page_front.html" %}
+    </div>
+
+{% endblock %}
+
+{% block end %}
     </form>
 {% endblock %}

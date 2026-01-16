@@ -1,95 +1,57 @@
 <style>
-  body { display: flex; flex-direction: column; align-items: center; font-family: sans-serif; margin: 20px; }
-  canvas { border: 1px solid #ccc; cursor: none; }
-  .toolbar {
-      display: flex;
-      flex-direction: row;
-      padding: 5px;
-      gap: 3px;
-  }
-  #brushPreview {
-    position: absolute;
-    pointer-events: none;
-    border: 2px solid black;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.1);
-    transform: translate(-50%, -50%);
-  }
-  .floating {
-    position: absolute;
-    z-index: 2000;
-    background-color: #f1f1f1;
-    border: 1px solid #d3d3d3;
-    text-align: center;
-  }
-  .float-controller {
-    padding: 10px;
-    cursor: move;
-    background-color: #2196F3;
-    color: white;
-    user-select: none; /* prevent text selection while dragging */
-  }
-    .dropdown-toggle {
-      display: none; /* hide the checkbox */
+    #settings_container {
+        position: absolute;
+        top: 400px;
+        left: 400px;
+        z-index: 1000;
+        background-color: lightcoral;
     }
-
-.dropdown-toggle-label {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: #333;
-  color: #fff;
-  cursor: pointer;
-}
-
-/* Hide menu by default */
-.dropdown-toggle-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: none;
-  background: #444;
-}
-
-/* Show menu when checkbox is checked */
-.dropdown-toggle:checked ~ .dropdown-toggle-menu {
-  display: block;
-}
-
-.dropdown-toggle-menu li a {
-  display: block;
-  padding: 0.5rem 1rem;
-  color: #fff;
-  text-decoration: none;
-}
-
+  .float-controller {
+      min-height: 50px;
+      width: 20px;
+      cursor: move;
+      background-color: lightblue;
+      text-align: center;
+      align-content: center;
+  }
+  #settings_container label{
+      text-align: center;
+      align-content: center;
+      padding: 5px;
+  }
+  #settings-toggle {
+      display: none;
+  }
+  #settings-menu {
+      display: none;
+      height: 100px;
+      width: 200px;
+      background-color: lightcoral;
+  }
+  #settings-toggle-label {
+      transform: rotate(0);
+  }
+  #settings-toggle:checked ~ #settings-toggle-label {
+      transform: rotate(180deg);
+  }
+  #settings-toggle:checked ~ #settings-menu {
+      display: block;
+  }
 </style>
 
-<div class="floating" id="controls">
-  <div class="float-controller" id="move">♥ Click here to move ♥</div>
-  <div class="toolbar">
-    <label>Color: <input type="color" id="colorPicker" value="#000000" /></label>
-    <label>Brush Size: <input type="range" id="brushSize" min="1" max="50" value="5" /></label>
-    <button id="eraserBtn">Eraser</button>
-    <button id="clearBtn">Clear</button>
-    <div class="dropdown-toggle-frame">
-        <!-- Hidden checkbox controls state -->
-        <input type="checkbox" id="toggle" class="dropdown-toggle">
-
-        <!-- Label is the visible button -->
-        <label for="toggle" class="dropdown-toggle-label">Menu ▼</label>
-
-        <!-- The menu -->
-        <ul class="dropdown-toggle-menu">
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        </ul>
+<div class="box-h" id="settings_container">
+    <div class="float-controller" id="move">
+      ♥
     </div>
-  </div>
+    <input id="settings-toggle" type="checkbox">
+    <label for="settings-toggle" id="settings-toggle-label">< <br> ⚙️ <br> <</label>
+    <div id="settings-menu">
+        ⚙️ Settings Menu ⚙️
+    </div>
 </div>
 
 <script>
-    dragElement(document.getElementById("controls"));
+    dragElement(document.getElementById("settings_container"));
 
     function dragElement(element) {
       let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
