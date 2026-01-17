@@ -2,8 +2,15 @@
 
 
 {% block main %}
-
-<div class="box-center">
+<style>
+    #enter_key-frame {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+</style>
+<div id="enter_key-frame">
     <div class="box-v">
         <h2>Enter code</h2>
         <p>Creating a new entry is protected. If you don't have a code, sign in or ask Simon for one!</p>
@@ -17,8 +24,8 @@
             <input type="text" name="code">
             <input type="submit" value="Submit">
         </form>
-
     </div>
+
 </div>
 
 {% endblock %}

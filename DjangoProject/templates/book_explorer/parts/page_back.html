@@ -8,7 +8,8 @@
         <div class="box-v entry-container">
             <div class="entry-element" id="image">
                 {% if edit_mode %}
-                    <input type="file" id="" name="image" accept="image/*">
+                    <img id="imagePreview" src="" alt="Preview" style="display:none; max-width: 200px;">
+                    <input type="file" id="image_input" name="image" accept="image/*">
                 {% else %}
                     {% if entry.image %}
                     <img src="{{ entry.image.url }}" alt="No Image found">
@@ -125,3 +126,22 @@
         </div>
     {% endif %}
 </div>
+<script>
+  const fileInput = document.getElementById('image_input');
+  const preview   = document.getElementById('imagePreview');
+
+  fileInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (!file) {
+      preview.style.display = 'none';
+      preview.src = '';
+      return;
+    }
+
+    // Quick, memory‑cheap preview
+    const url = URL.createObjectURL(file);
+    preview.src = url;
+    preview.style.display = 'block';
+    console.log("alarm!")
+  });
+</script>
