@@ -6,7 +6,17 @@
     background-color: #cccccc;
     padding: 5px;
     box-sizing: border-box;
+    border: 1px solid black;
 }
+
+.blog_post_preview:hover {
+    background-color: lightyellow;
+}
+
+.blog_post_preview:active {
+    background-color: antiquewhite;
+}
+
 .blog_post_preview h3 {
     margin: 0;
     padding-bottom: 2px;
