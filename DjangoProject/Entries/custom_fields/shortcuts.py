@@ -14,7 +14,8 @@ custom_field_mapping = {
     "txt" : CustomTextFieldHandler,
     "img" : CustomImageFieldHandler,
     "audio" : CustomAudioFieldHandler,
-    "canvas" : CustomCanvasFieldHandler
+    "canvas" : CustomCanvasFieldHandler,
+    "button" : CustomButtonFieldHandler
 }
 
 
