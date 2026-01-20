@@ -7,12 +7,14 @@ from .custom_audio_field_handler import CustomAudioFieldHandler
 from .custom_field_handler import CustomFieldHandler
 from .custom_image_field_handler import CustomImageFieldHandler
 from .custom_text_field_handler import CustomTextFieldHandler
+from .custom_canvas_field_handler import CustomCanvasFieldHandler
 from Entries.models import EntryV1
 
 custom_field_mapping = {
     "txt" : CustomTextFieldHandler,
     "img" : CustomImageFieldHandler,
     "audio" : CustomAudioFieldHandler,
+    "canvas" : CustomCanvasFieldHandler
 }
 
 

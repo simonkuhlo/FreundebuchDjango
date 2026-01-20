@@ -43,6 +43,14 @@
         }
     </style>
     <script>
+        // Target your fixed child div(s)
+        const childDiv = document.getElementById('overlay');
+        const body = document.body;
+
+        // Append to body (moves it, doesn't copy)
+        body.appendChild(childDiv);
+    </script>
+    <script>
         const overlay = document.getElementById('overlay');
         document.getElementById('openPopup').onclick = () => overlay.style.display = 'flex';
         document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';

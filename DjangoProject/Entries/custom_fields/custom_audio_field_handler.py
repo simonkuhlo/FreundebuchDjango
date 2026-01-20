@@ -1,5 +1,4 @@
 from typing import Type
-
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.http import HttpRequest
