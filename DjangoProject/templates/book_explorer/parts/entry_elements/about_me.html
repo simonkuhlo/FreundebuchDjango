@@ -10,7 +10,7 @@
     <div class="entry-element-field">
         People also call me:
         {% if edit_mode %}
-            <input name="nicknames" type="text">
+            <input name="nicknames" type="text" {% if entry %} value={{ entry.nicknames }} {% endif %}>
         {% else %}
             <p>{{ entry.nicknames }}</p>
         {% endif %}

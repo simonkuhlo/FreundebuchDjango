@@ -50,8 +50,7 @@ def create(request):
             except Exception as e:
                 print(e)
         case _:
-            context = {"edit_mode": True}
-            return render(request, "creator/creator.html", context)
+            return render(request, "creator/creator.html")
 
 def enter_key(request, key: Optional[str] = None):
     code = key

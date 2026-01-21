@@ -7,14 +7,14 @@
 {% endblock %}
 
 {% block content %}
-
-    <div class="flip already_flipped">
-        {% include "book_explorer/parts/page_back.html" %}
-    </div>
-    <div class="flip">
-        {% include "book_explorer/parts/page_front.html" %}
-    </div>
-
+    {% with edit_mode = True %}
+        <div class="flip already_flipped">
+            {% include "book_explorer/parts/page_back.html" %}
+        </div>
+        <div class="flip">
+            {% include "book_explorer/parts/page_front.html" %}
+        </div>
+    {% endwith %}
 {% endblock %}
 
 {% block end %}

@@ -8,7 +8,7 @@
                 <div class="spacer-h"></div>
                 {% if edit_mode %}
                     {% if entry %}
-                        <button hx-post="/explorer/edit/{{ entry.id }}/save/" hx-target="#page-root" hx-encoding='multipart/form-data'>Save</button>
+                        <button hx-post="/creator/edit/{{ entry.id }}/save/" hx-target="#page-root" hx-encoding='multipart/form-data'>Save</button>
                     {% else %}
                         <button hx-post="/creator/" hx-target="#page-root" hx-encoding='multipart/form-data'>Create</button>
                     {% endif %}
