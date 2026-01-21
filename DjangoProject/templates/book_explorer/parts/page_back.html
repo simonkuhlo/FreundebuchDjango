@@ -1,147 +1,18 @@
 <div class="back" data-entry_id="{{ entry.id }}" id="p{{ entry.id }}b">
     {% if entry != None or edit_mode %}
-        <style>
-            .entry-container {
-                font-family: Nunito, sans-serif;
-            }
-        </style>
         <div class="box-v entry-container">
-            <div class="entry-element" id="image">
-                {% if edit_mode %}
-                    <label for="image_input">
-                        <img id="imagePreview" src="" alt="Upload Image">
-                    </label>
-                    <input type="file" id="image_input" name="image" accept="image/*" style="display: none">
-                {% else %}
-                    {% if entry.image %}
-                        <img src="{{ entry.image.url }}" alt="No Image found">
-                    {% endif %}
-                {% endif %}
-            </div>
-            <div class="entry-element" id="about_me">
-                <div class="entry-element-field">
-                    My name is:
-                    {% if edit_mode %}
-                        <input required name="name" type="text">
-                    {% else %}
-                        <p>{{ entry.name }}</p>
-                    {% endif %}
-                </div>
-                <div class="entry-element-field">
-                    People also call me:
-                    {% if edit_mode %}
-                        <input name="nicknames" type="text">
-                    {% else %}
-                        <p>{{ entry.nicknames }}</p>
-                    {% endif %}
-                </div>
-                <div class="entry-element-field">
-                    My birthday is on:
-                    {% if edit_mode %}
-                        <input name="birthday" type="date">
-                    {% else %}
-                        <p>{{ entry.birthday }}</p>
-                    {% endif %}
-                </div>
-                <div class="entry-element-field">
-                    I am this tall:
-                    {% if edit_mode %}
-                        <input name="size" type="text">
-                    {% else %}
-                        <p>{{ entry.size }}</p>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="entry-element" id="contact">
-                <div class="entry-element-field">
-                    I am from:
-                    {% if edit_mode %}
-                        <input name="origin" type="text">
-                    {% else %}
-                        <p>{{ entry.origin }}</p>
-                    {% endif %}
-                </div>
-                <div class="entry-element-field">
-                    I live in:
-                    {% if edit_mode %}
-                        <input name="location" type="text">
-                    {% else %}
-                        <p>{{ entry.location }}</p>
-                    {% endif %}
-                </div>
-                <div class="entry-element-field">
-                    How you can reach me:
-                    {% if edit_mode %}
-                        <input name="contact" type="text">
-                    {% else %}
-                        <p>{{ entry.contact }}</p>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="entry-element" id="preferences">
-                <div class="entry-element-field">
-                    I really like:
-                    {% if edit_mode %}
-                        <input name="likes" type="text">
-                    {% else %}
-                        <p>{{ entry.likes }}</p>
-                    {% endif %}
-                </div>
-                <div class="entry-element-field">
-                    I really don't like:
-                    {% if edit_mode %}
-                        <input name="dislikes" type="text">
-                    {% else %}
-                        <p>{{ entry.dislikes }}</p>
-                    {% endif %}
-                </div>
-                <div class="entry-element-field">
-                    My craziest experience:
-                    {% if edit_mode %}
-                        <input name="craziest_experience" type="text">
-                    {% else %}
-                        <p>{{ entry.craziest_experience }}</p>
-                    {% endif %}
-                </div>
-                <div class="entry-element-field">
-                    My loveliest experience:
-                    {% if edit_mode %}
-                        <input name="loveliest_experience" type="text">
-                    {% else %}
-                        <p>{{ entry.loveliest_experience }}</p>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="box-h control-element">
-                {% if not edit_mode %}
+            {% include "book_explorer/parts/entry_elements/entry_image.html" %}
+            {% include "book_explorer/parts/entry_elements/about_me.html" %}
+            {% include "book_explorer/parts/entry_elements/contact.html" %}
+            {% include "book_explorer/parts/entry_elements/preferences.html" %}
+            {% if not edit_mode %}
+                <div class="box-h control-element">
                     <button hx-get="/explorer/partial/entry/{{ entry.id }}/prev" hx-target="#page-root">Back</button>
-                {% endif %}
-                <div class="spacer-h"></div>
-            </div>
+                    <div class="spacer-h"></div>
+                </div>
+            {% endif %}
         </div>
     {% else %}
-        <div class="box-center">
-            <div class="box-v">
-                Entry not found. <br>
-                <button  hx-get="/explorer/partial/start" hx-target="#page-root">Reset</button>
-            </div>
-        </div>
+        {% include "book_explorer/parts/entry_not_found_page.html" %}
     {% endif %}
 </div>
-<script>
-  const fileInput = document.getElementById('image_input');
-  const preview   = document.getElementById('imagePreview');
-
-  fileInput.addEventListener('change', function () {
-    const file = this.files[0];
-    if (!file) {
-      preview.style.display = 'none';
-      preview.src = '';
-      return;
-    }
-
-    // Quick, memory‑cheap preview
-    const url = URL.createObjectURL(file);
-    preview.src = url;
-  });
-</script>

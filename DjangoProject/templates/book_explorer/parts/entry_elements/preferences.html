@@ -1,0 +1,34 @@
+<div class="entry-element" id="preferences">
+    <div class="entry-element-field">
+        I really like:
+        {% if edit_mode %}
+            <input name="likes" type="text">
+        {% else %}
+            <p>{{ entry.likes }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        I really don't like:
+        {% if edit_mode %}
+            <input name="dislikes" type="text">
+        {% else %}
+            <p>{{ entry.dislikes }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        My craziest experience:
+        {% if edit_mode %}
+            <input name="craziest_experience" type="text">
+        {% else %}
+            <p>{{ entry.craziest_experience }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        My loveliest experience:
+        {% if edit_mode %}
+            <input name="loveliest_experience" type="text">
+        {% else %}
+            <p>{{ entry.loveliest_experience }}</p>
+        {% endif %}
+    </div>
+</div>

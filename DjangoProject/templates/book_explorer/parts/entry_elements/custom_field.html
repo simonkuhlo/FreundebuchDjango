@@ -1,0 +1,9 @@
+<div class="entry-element" id="custom" style="border-style: dashed">
+    {% if edit_mode %}
+        {% include "book_explorer/parts/custom_fields/custom_field_selector.html" %}
+    {% else %}
+        {% if entry.rendered_custom_field %}
+            {{ entry.rendered_custom_field|safe }}
+        {% endif %}
+    {% endif %}
+</div>

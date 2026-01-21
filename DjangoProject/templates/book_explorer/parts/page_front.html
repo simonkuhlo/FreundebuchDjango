@@ -1,104 +1,23 @@
 <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
     {% if entry != None or edit_mode %}
-    <style>
-        .entry-container {
-            font-family: Nunito, sans-serif;
-        }
-    </style>
-    <div class="box-v entry-container">
-        <div class="entry-element" id="favorites-name">
-            MY FAVORITES
-        </div>
-        <div class="entry-element" id="favorites-1">
-            <div class="entry-element-field">
-                Movie / Show
+        <div class="box-v entry-container">
+            {% include "book_explorer/parts/entry_elements/favorites.html" %}
+            {% include "book_explorer/parts/entry_elements/future.html" %}
+            {% include "book_explorer/parts/entry_elements/custom_field.html" %}
+            <div class="box-h control-element">
+                <div class="spacer-h"></div>
                 {% if edit_mode %}
-                    <input name="favorite_movie" type="text">
+                    {% if entry %}
+                        <button hx-post="/explorer/edit/{{ entry.id }}/save/" hx-target="#page-root" hx-encoding='multipart/form-data'>Save</button>
+                    {% else %}
+                        <button hx-post="/creator/" hx-target="#page-root" hx-encoding='multipart/form-data'>Create</button>
+                    {% endif %}
                 {% else %}
-                    <p>{{ entry.favorite_movie }}</p>
-                {% endif %}
-            </div>
-            <div class="entry-element-field">
-                Animal
-                {% if edit_mode %}
-                    <input name="favorite_animal" type="text">
-                {% else %}
-                    <p>{{ entry.favorite_animal }}</p>
-                {% endif %}
-            </div>
-            <div class="entry-element-field">
-                Food
-                {% if edit_mode %}
-                    <input name="favorite_food" type="text">
-                {% else %}
-                    <p>{{ entry.favorite_food }}</p>
-                {% endif %}
-            </div>
-            <div class="entry-element-field">
-                Book / Literature
-                {% if edit_mode %}
-                    <input name="favorite_book" type="text">
-                {% else %}
-                    <p>{{ entry.favorite_book }}</p>
+                    <button hx-get="/explorer/partial/entry/{{ entry.id }}/next" hx-target="#page-root">Next</button>
                 {% endif %}
             </div>
         </div>
-        <div class="entry-element" id="favorites-2">
-            <div class="entry-element-field">
-                Music
-                {% if edit_mode %}
-                    <input name="favorite_music" type="text">
-                {% else %}
-                    <p>{{ entry.favorite_music }}</p>
-                {% endif %}
-            </div>
-        </div>
-        <div class="entry-element" id="future">
-            <div class="entry-element-field">
-                In the future, I want to become...
-                {% if edit_mode %}
-                    <input name="want_to_become" type="text">
-                {% else %}
-                    <p>{{ entry.want_to_become }}</p>
-                {% endif %}
-            </div>
-            <div class="entry-element-field">
-                My biggest idol:
-                {% if edit_mode %}
-                    <input name="biggest_idol" type="text">
-                {% else %}
-                    <p>{{ entry.biggest_idol }}</p>
-                {% endif %}
-            </div>
-        </div>
-        <div class="entry-element" id="custom" style="border-style: dashed">
-            {% if edit_mode %}
-                {% include "book_explorer/parts/custom_fields/custom_field_selector.html" %}
-            {% else %}
-                {% if entry.rendered_custom_field %}
-                    {{ entry.rendered_custom_field|safe }}
-                {% endif %}
-            {% endif %}
-        </div>
-        <div class="box-h control-element">
-            <div class="spacer-h"></div>
-            {% if edit_mode %}
-                {% if entry %}
-                    <button hx-post="/explorer/edit/{{ entry.id }}/save/" hx-target="#page-root" hx-encoding='multipart/form-data'>Save</button>
-                {% else %}
-                    <button hx-post="/creator/" hx-target="#page-root" hx-encoding='multipart/form-data'>Create</button>
-                {% endif %}
-            {% else %}
-                <button hx-get="/explorer/partial/entry/{{ entry.id }}/next" hx-target="#page-root">Next</button>
-            {% endif %}
-        </div>
-    </div>
     {% else %}
-        <div class="box-center">
-            <div class="box-v">
-                Entry not found. <br>
-                <button  hx-get="/explorer/partial/start" hx-target="#page-root">Reset</button>
-            </div>
-        </div>
+        {% include "book_explorer/parts/entry_not_found_page.html" %}
     {% endif %}
 </div>

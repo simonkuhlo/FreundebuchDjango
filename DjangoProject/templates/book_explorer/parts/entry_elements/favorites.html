@@ -1,0 +1,47 @@
+<div class="entry-element" id="favorites-name">
+    MY FAVORITES
+</div>
+<div class="entry-element" id="favorites-1">
+    <div class="entry-element-field">
+        Movie / Show
+        {% if edit_mode %}
+            <input name="favorite_movie" type="text">
+        {% else %}
+            <p>{{ entry.favorite_movie }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        Animal
+        {% if edit_mode %}
+            <input name="favorite_animal" type="text">
+        {% else %}
+            <p>{{ entry.favorite_animal }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        Food
+        {% if edit_mode %}
+            <input name="favorite_food" type="text">
+        {% else %}
+            <p>{{ entry.favorite_food }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        Book / Literature
+        {% if edit_mode %}
+            <input name="favorite_book" type="text">
+        {% else %}
+            <p>{{ entry.favorite_book }}</p>
+        {% endif %}
+    </div>
+</div>
+<div class="entry-element" id="favorites-2">
+    <div class="entry-element-field">
+        Music
+        {% if edit_mode %}
+            <input name="favorite_music" type="text">
+        {% else %}
+            <p>{{ entry.favorite_music }}</p>
+        {% endif %}
+    </div>
+</div>
