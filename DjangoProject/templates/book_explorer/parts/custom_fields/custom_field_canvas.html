@@ -13,10 +13,35 @@
     <div id="overlay">
       <div class="popup">
         <h2>My Popup</h2>
-        <p>This popup is in front of the main screen.</p>
+          <div class="toolbar">
+            <label>Color: <input type="color" id="colorPicker" value="#000000" /></label>
+            <label>Brush Size: <input type="range" id="brushSize" min="1" max="50" value="5" /></label>
+            <button id="eraserBtn">Eraser</button>
+            <button id="clearBtn">Clear</button>
+          </div>
+        <canvas id="canvas" width="800" height="500"></canvas>
+        <div id="brushPreview"></div>
         <button id="closePopup">Close</button>
       </div>
     </div>
+    <style>
+      body { display: flex; flex-direction: column; align-items: center; font-family: sans-serif; margin: 20px; }
+      canvas { border: 1px solid #ccc; cursor: none; }
+      .toolbar {
+          display: flex;
+          flex-direction: row;
+          padding: 5px;
+          gap: 3px;
+      }
+      #brushPreview {
+        position: absolute;
+        pointer-events: none;
+        border: 2px solid black;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.1);
+        transform: translate(-50%, -50%);
+      }
+    </style>
     <style>
             /* Hide overlay by default */
         #overlay {
@@ -35,11 +60,14 @@
         /* The popup box */
         .popup {
           background: #fff;
+            display: flex;
+            flex-direction: column;
           padding: 20px;
           border-radius: 8px;
-          max-width: 400px;
-          width: 90%;
+          width: 400px;
+          max-width: 90%;
           box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            box-sizing: border-box;
         }
     </style>
     <script>
@@ -54,6 +82,118 @@
         const overlay = document.getElementById('overlay');
         document.getElementById('openPopup').onclick = () => overlay.style.display = 'flex';
         document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';
+    </script>
+    <script>
+        dragElement(document.getElementById("controls"));
+
+        function dragElement(element) {
+          let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+          const header = document.getElementById("move");
+          if (header) {
+            header.onmousedown = dragMouseDown;
+          } else {
+            element.onmousedown = dragMouseDown;
+          }
+
+          function dragMouseDown(e) {
+            e.preventDefault();
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+          }
+
+          function elementDrag(e) {
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            element.style.top = (element.offsetTop - pos2) + "px";
+            element.style.left = (element.offsetLeft - pos1) + "px";
+          }
+
+          function closeDragElement() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+          }
+        }
+    </script>
+
+    <script>
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      const colorPicker = document.getElementById('colorPicker');
+      const brushSize = document.getElementById('brushSize');
+      const eraserBtn = document.getElementById('eraserBtn');
+      const clearBtn = document.getElementById('clearBtn');
+      const brushPreview = document.getElementById('brushPreview');
+
+      let isDrawing = false;
+      let currentColor = colorPicker.value;
+      let currentSize = brushSize.value;
+      let isEraser = false;
+
+      canvas.addEventListener('mousedown', e => {
+        isDrawing = true;
+        ctx.beginPath();
+        ctx.moveTo(e.offsetX, e.offsetY);
+      });
+
+      canvas.addEventListener('mouseup', () => {
+        isDrawing = false;
+        ctx.closePath();
+      });
+
+      canvas.addEventListener('mouseout', () => {
+        isDrawing = false;
+      });
+
+      canvas.addEventListener('mousemove', e => {
+        // Update brush preview position and size
+        brushPreview.style.left = e.pageX + 'px';
+        brushPreview.style.top = e.pageY + 'px';
+        brushPreview.style.width = currentSize + 'px';
+        brushPreview.style.height = currentSize + 'px';
+        brushPreview.style.borderColor = isEraser ? 'white' : currentColor;
+
+        if (!isDrawing) return;
+
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.lineWidth = currentSize;
+        ctx.strokeStyle = isEraser ? 'white' : currentColor;
+        ctx.stroke();
+      });
+
+      colorPicker.addEventListener('input', e => {
+        currentColor = e.target.value;
+        if (!isEraser) brushPreview.style.borderColor = currentColor;
+      });
+
+      brushSize.addEventListener('input', e => {
+        currentSize = e.target.value;
+      });
+
+      eraserBtn.addEventListener('click', () => {
+        isEraser = !isEraser;
+        if (isEraser) {
+            eraserBtn.innerHTML = "Brush"
+        } else {
+            eraserBtn.innerHTML = "Eraser"
+        }
+
+      });
+
+      clearBtn.addEventListener('click', () => {
+        ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight)
+      });
+
+      // Initialize brush preview size and color
+      brushPreview.style.width = currentSize + 'px';
+      brushPreview.style.height = currentSize + 'px';
+      brushPreview.style.borderColor = currentColor;
     </script>
 
 
