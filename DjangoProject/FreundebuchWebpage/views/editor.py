@@ -14,3 +14,5 @@ def edit(request, entry_id: int):
                 'entry': entry,
             }
             return render(request, "creator/creator.html", context=context)
+        case _:
+            return HttpResponse(status=404)

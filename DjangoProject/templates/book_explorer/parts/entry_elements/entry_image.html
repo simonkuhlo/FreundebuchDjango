@@ -1,7 +1,7 @@
 <div class="entry-element" id="image">
     {% if edit_mode %}
         <label for="image_input">
-            <img id="imagePreview" src="" alt="Upload Image">
+            <img id="imagePreview" src="{% if entry %}{% if entry.image %} value={{ entry.image.url }} {% endif %}{% endif %}" alt="Upload Image">
         </label>
         <input type="file" id="image_input" name="image" accept="image/*" style="display: none">
     {% else %}

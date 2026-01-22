@@ -2,7 +2,7 @@
     <div class="entry-element-field">
         My name is:
         {% if edit_mode %}
-            <input required name="name" type="text">
+            <input required name="name" type="text" {% if entry %} value={{ entry.name }} {% endif %}>
         {% else %}
             <p>{{ entry.name }}</p>
         {% endif %}
@@ -18,7 +18,7 @@
     <div class="entry-element-field">
         My birthday is on:
         {% if edit_mode %}
-            <input name="birthday" type="date">
+            <input name="birthday" type="date" {% if entry %} value={{ entry.birthday|date:'Y-m-d' }} {% endif %}>
         {% else %}
             <p>{{ entry.birthday }}</p>
         {% endif %}
@@ -26,7 +26,7 @@
     <div class="entry-element-field">
         I am this tall:
         {% if edit_mode %}
-            <input name="size" type="text">
+            <input name="size" type="text" {% if entry %} value={{ entry.size }} {% endif %}>
         {% else %}
             <p>{{ entry.size }}</p>
         {% endif %}
