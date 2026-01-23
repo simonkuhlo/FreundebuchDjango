@@ -10,6 +10,8 @@ def edit(request, entry_id: int):
         case 'POST':
             return
         case 'GET':
+            entry.rendered_custom_field = shortcuts.render_field_str(entry.custom_field_mode, entry)
+            print(entry.rendered_custom_field)
             context = {
                 'entry': entry,
             }
