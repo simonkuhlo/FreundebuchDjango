@@ -1,0 +1,18 @@
+{% extends "main/main.html" %}
+
+
+{% block main %}
+
+<div>
+    {% if error %}
+        Error: {{ error }}
+    {% endif %}
+    {% if entry %}
+        <form action="/editor/{{ entry.id }}/delete/">
+            <input name="confirm_id" type="text" id="confirm_id_input">
+            <input type="submit">
+        </form>
+    {% endif %}
+</div>
+
+{% endblock %}

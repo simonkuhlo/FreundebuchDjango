@@ -6,7 +6,7 @@ from .. import views
 urls = [
     path('login/', views.user.login_page, name='login'),
     path('logout/', views.user.logout_page, name='logout'),
-    path('logout/', views.user.register_page, name='register'),
+    path('register/', views.user.register_page, name='register'),
     path('account/', views.user.account_page, name='account'),
     path('own_entry/', views.user.own_entry, name='own_entry'),
 ]

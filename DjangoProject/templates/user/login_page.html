@@ -6,16 +6,17 @@
 <div class="box-center">
     <form action="/user/login/" method="post">
         {% csrf_token %}
-        <div class="box-v">
-            <div class="box-h">
+        <div class="box-v basic-spacing">
+            <div class="box-h basic-spacing">
                 <label for="username_input">Username: </label>
                 <input name="username" type="text" id="username_input">
             </div>
-            <div class="box-h">
+            <div class="box-h basic-spacing">
                 <label for="password_input">Password: </label>
                 <input name="password" type="password" id="password_input">
             </div>
             <input type="submit">
+            <a href="/user/register/">Register here</a>
         </div>
     </form>
 </div>

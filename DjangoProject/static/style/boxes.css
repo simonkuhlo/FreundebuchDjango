@@ -9,6 +9,10 @@
     flex-direction: column;
 }
 
+.box-h input {
+    flex: 1 0 auto;
+}
+
 .basic-spacing {
     gap: 3px;
     padding: 3px;

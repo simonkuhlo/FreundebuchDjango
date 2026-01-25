@@ -1,0 +1,11 @@
+{% extends "main/main.html" %}
+
+
+{% block main %}
+
+{% if entry %}
+    <a href="/editor/{{ entry.id }}/" class="button">Edit Entry</a>
+    <a href="/editor/{{ entry.id }}/delete" class="button">Delete Entry</a>
+{% endif %}
+
+{% endblock %}
