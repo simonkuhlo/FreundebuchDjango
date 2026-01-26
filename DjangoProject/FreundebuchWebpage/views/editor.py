@@ -5,7 +5,11 @@ from Entries.models import EntryV1, CreateCode
 from Entries.custom_fields import shortcuts
 
 def edit(request, entry_id: int):
-    entry = EntryV1.objects.get(id=entry_id)
+    entry = EntryV1.objects.filter(id=entry_id).first()
+    if not entry:
+        return render(request, "main/status_pages/not_found.html", {"message": "Entry not found..."})
+    if request.user != entry.owner:
+        return render(request, "main/status_pages/permission_denied.html")
     match request.method:
         case 'POST':
             return
@@ -21,9 +25,9 @@ def edit(request, entry_id: int):
 def delete(request, entry_id: int):
     entry = EntryV1.objects.filter(id=entry_id).first()
     if not entry:
-        return render(request, "editor/delete_entry.html", {"error": "Entry not found..."})
+        return render(request, "main/status_pages/not_found.html", {"message": "Entry not found..."})
     if request.user != entry.owner:
-        return render(request, "editor/permission_denied.html")
+        return render(request, "main/status_pages/permission_denied.html")
     match request.method:
         case 'POST':
             confirm_id = request.POST.get('confirm_id')
