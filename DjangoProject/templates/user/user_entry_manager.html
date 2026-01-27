@@ -6,6 +6,8 @@
 {% if entry %}
     <a href="/editor/{{ entry.id }}/" class="button">Edit Entry</a>
     <a href="/editor/{{ entry.id }}/delete" class="button">Delete Entry</a>
+{% else %}
+    Error: Entry not found...
 {% endif %}
 
 {% endblock %}

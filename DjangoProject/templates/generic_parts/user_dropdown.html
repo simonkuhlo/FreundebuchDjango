@@ -1,0 +1,11 @@
+{% if request.user.is_authenticated %}
+    <div class="dropdown">
+        <a href="/user/account/" class="dropdown-toggle">Account</a>
+        <div class="dropdown-menu dropdown-reverse">
+            <a href="/user/account/">Manage Account</a>
+            <a href="/user/logout">Logout</a>
+        </div>
+    </div>
+{% else %}
+    <a href="/user/login">Login</a>
+{% endif %}
