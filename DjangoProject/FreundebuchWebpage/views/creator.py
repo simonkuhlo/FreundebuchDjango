@@ -4,60 +4,52 @@ from django.shortcuts import render, redirect
 from Entries.models import EntryV1, CreateCode
 from Entries.custom_fields import shortcuts
 from settings import settings
+from ..helpers import can_create_entry
 
 
 def create(request):
-    if request.user.is_authenticated:
-        entries = EntryV1.objects.filter(owner_id=request.user.id)
-        if entries.count() >= settings.user.max_entries:
-            return redirect("/creator/enter_key")
-    else:
-        if not request.session.get("code"):
-            return redirect("/creator/enter_key")
-        if not CreateCode.objects.filter(pk=request.session["code"]).exists():
-            return redirect("/creator/enter_key")
+    if not can_create_entry(request):
+        return redirect("/creator/enter_key")
     match request.method:
         case "POST":
-            try:
-                birthday = request.POST["birthday"]
-                if birthday == "":
-                    birthday = None
-                custom_field_type = request.POST["custom_field_type"]
-                image_file = request.FILES.get("image")
-                new_entry = EntryV1.objects.create(
-                    name=request.POST["name"],
-                    image=image_file,
-                    nicknames=request.POST["nicknames"],
-                    birthday=birthday,
-                    size=request.POST["size"],
-                    origin=request.POST["origin"],
-                    location=request.POST["location"],
-                    contact=request.POST["contact"],
-                    likes=request.POST["likes"],
-                    dislikes=request.POST["dislikes"],
-                    loveliest_experience=request.POST["loveliest_experience"],
-                    craziest_experience=request.POST["craziest_experience"],
-                    favorite_food=request.POST["favorite_food"],
-                    favorite_book=request.POST["favorite_book"],
-                    favorite_movie=request.POST["favorite_movie"],
-                    favorite_animal=request.POST["favorite_animal"],
-                    favorite_music=request.POST["favorite_music"],
-                    biggest_idol=request.POST["biggest_idol"],
-                    want_to_become=request.POST["want_to_become"],
-                    custom_field_mode=custom_field_type,
-                )
-                if custom_field_type:
-                    shortcuts.create(custom_field_type, request, new_entry)
-                if request.user.is_authenticated:
-                    new_entry.author = request.user
-                    new_entry.save()
+            birthday = request.POST["birthday"]
+            if birthday == "":
+                birthday = None
+            custom_field_type = request.POST["custom_field_type"]
+            image_file = request.FILES.get("image")
+            new_entry = EntryV1.objects.create(
+                name=request.POST["name"],
+                image=image_file,
+                nicknames=request.POST["nicknames"],
+                birthday=birthday,
+                size=request.POST["size"],
+                origin=request.POST["origin"],
+                location=request.POST["location"],
+                contact=request.POST["contact"],
+                likes=request.POST["likes"],
+                dislikes=request.POST["dislikes"],
+                loveliest_experience=request.POST["loveliest_experience"],
+                craziest_experience=request.POST["craziest_experience"],
+                favorite_food=request.POST["favorite_food"],
+                favorite_book=request.POST["favorite_book"],
+                favorite_movie=request.POST["favorite_movie"],
+                favorite_animal=request.POST["favorite_animal"],
+                favorite_music=request.POST["favorite_music"],
+                biggest_idol=request.POST["biggest_idol"],
+                want_to_become=request.POST["want_to_become"],
+                custom_field_mode=custom_field_type,
+            )
+            if custom_field_type:
+                shortcuts.create(custom_field_type, request, new_entry)
+            if request.user.is_authenticated:
+                new_entry.author = request.user
+                new_entry.save()
+            if request.session.exists("code"):
                 CreateCode.objects.filter(pk=request.session["code"]).first().delete()
-                try:
-                    return redirect(f"/explorer/partial/entry/{new_entry.get_previous_by_created().id}/next")
-                except:
-                    return redirect(f"/explorer/partial/entry/first")
-            except Exception as e:
-                print(e)
+            try:
+                return redirect(f"/explorer/partial/entry/{new_entry.get_previous_by_created().id}/next")
+            except:
+                return redirect(f"/explorer/partial/entry/first")
         case _:
             return render(request, "creator/creator.html")
 
