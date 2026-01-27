@@ -3,7 +3,15 @@
 
 {% block main %}
 
-    Account Page
-    <a href="/user/own_entry/" class="button">Own Entry</a>
+    Your Entries:
+    <div class="box-h basic-spacing">
+        {% for entry in entries %}
+            <div class="box-v basic-spacing card-s">
+                {{ entry.id }}
+                <a href="/editor/{{ entry.id }}/" class="button">Edit</a>
+                <a href="/editor/{{ entry.id }}/delete" class="button">Delete</a>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

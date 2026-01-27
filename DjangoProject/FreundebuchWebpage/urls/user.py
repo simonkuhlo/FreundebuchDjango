@@ -8,5 +8,4 @@ urls = [
     path('logout/', views.user.logout_page, name='logout'),
     path('register/', views.user.register_page, name='register'),
     path('account/', views.user.account_page, name='account'),
-    path('own_entry/', views.user.own_entry, name='own_entry'),
 ]

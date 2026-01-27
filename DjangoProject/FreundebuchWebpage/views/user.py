@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render
 
+from Entries.models import EntryV1
+
 
 def login_page(request):
     match request.method:
@@ -21,6 +23,7 @@ def login_page(request):
         case _:
             return HttpResponseNotAllowed(['GET', 'POST'])
 
+@login_required
 def logout_page(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
@@ -44,9 +47,7 @@ def register_page(request):
             return HttpResponseNotAllowed(['GET', 'POST'])
 
 @login_required
-def own_entry(request):
-    return render(request, "user/user_entry_manager.html")
-
-@login_required
 def account_page(request):
-    return render(request, "user/account_page.html")
+    entries = EntryV1.objects.filter(owner_id=request.user.id)
+    context = {"entries": entries}
+    return render(request, "user/account_page.html", context)
