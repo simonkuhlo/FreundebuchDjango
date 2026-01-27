@@ -3,16 +3,22 @@
 
 {% block main %}
 
-<div>
-    {% if error %}
-        Error: {{ error }}
-    {% endif %}
-    {% if entry %}
-        <form action="/editor/{{ entry.id }}/delete/">
-            <input name="confirm_id" type="text" id="confirm_id_input">
-            <input type="submit">
-        </form>
-    {% endif %}
-</div>
+{% if error %}
+    Error: {{ error }}
+{% endif %}
+{% if entry %}
+    <div class="box-center">
+        <div class="box-v">
+            <h2>Delete Entry</h2>
+            Do you really want to delete this entry? Enter its ID ({{ entry.id }}) below to confirm.
+            <form action="/editor/{{ entry.id }}/delete/" method="post">
+                {% csrf_token %}
+                <input name="confirm_id" type="text" id="confirm_id_input">
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+{% endif %}
+
 
 {% endblock %}

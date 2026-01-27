@@ -24,6 +24,7 @@ def edit(request, entry_id: int):
 
 def delete(request, entry_id: int):
     entry = EntryV1.objects.filter(id=entry_id).first()
+    context = {"entry": entry}
     if not entry:
         return render(request, "main/status_pages/not_found.html", {"message": "Entry not found..."})
     if request.user != entry.owner:
@@ -36,7 +37,7 @@ def delete(request, entry_id: int):
             entry.delete()
             return render(request, "editor/delete_success.html")
         case 'GET':
-            return render(request, "editor/delete_entry.html")
+            return render(request, "editor/delete_entry.html", context)
         case _:
             return HttpResponseNotAllowed(['GET', 'POST'])
 
