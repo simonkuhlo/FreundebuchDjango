@@ -19,21 +19,31 @@
         object-fit: contain;
     }
     </style>
-
-    Your Entries:
-    <div class="box-h basic-spacing">
-        {% for entry in entries %}
-            <div class="box-v basic-spacing card-s">
-                <div class="image_box">
-                    <img src="{% if entry.image %}{{ entry.image.url }}{% endif %}" alt="Image" class="expand">
+    <div class="box-v basic-spacing">
+        Your Entries:
+        <div class="box-h basic-spacing">
+            {% for entry in entries %}
+                <div class="box-v basic-spacing card-s">
+                    <div class="image_box">
+                        <img src="{% if entry.image %}{{ entry.image.url }}{% endif %}" alt="Image" class="expand">
+                    </div>
+                    <div class="box-h-center">{{ entry.id }}</div>
+                    <div class="box-h basic-spacing">
+                        <a href="/editor/{{ entry.id }}/" class="button expand-h">✏️</a>
+                        <a href="/editor/{{ entry.id }}/delete" class="button expand-h">❌</a>
+                    </div>
                 </div>
-                <div class="box-h-center">{{ entry.id }}</div>
-                <div class="box-h basic-spacing">
-                    <a href="/editor/{{ entry.id }}/" class="button expand-h">✏️</a>
-                    <a href="/editor/{{ entry.id }}/delete" class="button expand-h">❌</a>
-                </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+            {% if can_create_entry %}
+                <a href="/creator/" class="clean_text">
+                    <div class="box-v basic-spacing card-s">
+                        <div class="box-center">
+                            +
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+        </div>
     </div>
 
 {% endblock %}

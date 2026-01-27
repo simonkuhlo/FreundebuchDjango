@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render
 
 from Entries.models import EntryV1
+from settings import settings
 
 
 def login_page(request):
@@ -49,5 +50,9 @@ def register_page(request):
 @login_required
 def account_page(request):
     entries = EntryV1.objects.filter(owner_id=request.user.id)
-    context = {"entries": entries}
+    can_create_entry = entries.count() < settings.user.max_entries
+    context = {
+        "entries": entries,
+        "can_create_entry": can_create_entry
+        }
     return render(request, "user/account_page.html", context)

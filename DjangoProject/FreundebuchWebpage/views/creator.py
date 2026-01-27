@@ -3,13 +3,19 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from Entries.models import EntryV1, CreateCode
 from Entries.custom_fields import shortcuts
+from settings import settings
 
 
 def create(request):
-    if not request.session.get("code"):
-        return redirect("/creator/enter_key")
-    if not CreateCode.objects.filter(pk=request.session["code"]).exists():
-        return redirect("/creator/enter_key")
+    if request.user.is_authenticated:
+        entries = EntryV1.objects.filter(owner_id=request.user.id)
+        if entries.count() >= settings.user.max_entries:
+            return redirect("/creator/enter_key")
+    else:
+        if not request.session.get("code"):
+            return redirect("/creator/enter_key")
+        if not CreateCode.objects.filter(pk=request.session["code"]).exists():
+            return redirect("/creator/enter_key")
     match request.method:
         case "POST":
             try:
