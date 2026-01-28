@@ -1,7 +1,7 @@
 {% extends "book_explorer/book.html" %}
 
 {% block start %}
-    <form action="/creator/" method="post">
+    <form action="/creator/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% include "creator/settings-menu.html" %}
 {% endblock %}
