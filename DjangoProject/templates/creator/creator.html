@@ -3,6 +3,7 @@
 {% block start %}
     <form action="/creator/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    {{ entry_form.non_field_errors }}
     {% include "creator/settings-menu.html" %}
 {% endblock %}
 

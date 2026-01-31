@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from Entries.models import EntryV1, CreateCode
 from Entries.custom_fields import shortcuts
 from settings import settings
+from ..forms.entry_form import EntryForm
 from ..helpers import can_create_entry
 
 
@@ -51,7 +52,10 @@ def create(request):
             except:
                 return redirect(f"/explorer/partial/entry/first")
         case _:
-            return render(request, "creator/creator.html")
+            context = {
+                "entry_form" : EntryForm()
+            }
+            return render(request, "creator/creator.html", context)
 
 def enter_key(request, key: Optional[str] = None):
     code = key
