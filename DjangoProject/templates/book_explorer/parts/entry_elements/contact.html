@@ -2,7 +2,7 @@
     <div class="entry-element-field">
         I am from:
         {% if edit_mode %}
-            <input name="origin" type="text" {% if entry %} value={{ entry.origin }} {% endif %}>
+            {{ entry_form.origin.as_field_group }}
         {% else %}
             <p>{{ entry.origin }}</p>
         {% endif %}
@@ -10,7 +10,7 @@
     <div class="entry-element-field">
         I live in:
         {% if edit_mode %}
-            <input name="location" type="text" {% if entry %} value={{ entry.location }} {% endif %}>
+            {{ entry_form.location.as_field_group }}
         {% else %}
             <p>{{ entry.location }}</p>
         {% endif %}
@@ -18,7 +18,7 @@
     <div class="entry-element-field">
         How you can reach me:
         {% if edit_mode %}
-            <input name="contact" type="text" {% if entry %} value={{ entry.contact }} {% endif %}>
+            {{ entry_form.contact.as_field_group }}
         {% else %}
             <p>{{ entry.contact }}</p>
         {% endif %}

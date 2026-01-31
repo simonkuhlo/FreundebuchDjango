@@ -24,5 +24,6 @@ class EntryForm(ModelForm):
             "favorite_movie",
             "favorite_music",
             "biggest_idol",
+            "want_to_become",
             "custom_field_mode"
         ]

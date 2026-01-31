@@ -2,7 +2,7 @@
     <div class="entry-element-field">
         I really like:
         {% if edit_mode %}
-            <input name="likes" type="text" {% if entry %} value={{ entry.likes }} {% endif %}>
+            {{ entry_form.likes.as_field_group }}
         {% else %}
             <p>{{ entry.likes }}</p>
         {% endif %}
@@ -10,7 +10,7 @@
     <div class="entry-element-field">
         I really don't like:
         {% if edit_mode %}
-            <input name="dislikes" type="text" {% if entry %} value={{ entry.dislikes }} {% endif %}>
+            {{ entry_form.dislikes.as_field_group }}
         {% else %}
             <p>{{ entry.dislikes }}</p>
         {% endif %}
@@ -18,7 +18,7 @@
     <div class="entry-element-field">
         My craziest experience:
         {% if edit_mode %}
-            <input name="craziest_experience" type="text" {% if entry %} value={{ entry.craziest_experience }} {% endif %}>
+            {{ entry_form.craziest_experience.as_field_group }}
         {% else %}
             <p>{{ entry.craziest_experience }}</p>
         {% endif %}
@@ -26,7 +26,7 @@
     <div class="entry-element-field">
         My loveliest experience:
         {% if edit_mode %}
-            <input name="loveliest_experience" type="text" {% if entry %} value={{ entry.loveliest_experience }} {% endif %}>
+            {{ entry_form.loveliest_experience.as_field_group }}
         {% else %}
             <p>{{ entry.loveliest_experience }}</p>
         {% endif %}

@@ -5,7 +5,7 @@
     <div class="entry-element-field">
         Movie / Show
         {% if edit_mode %}
-            <input name="favorite_movie" type="text" {% if entry %} value={{ entry.favorite_movie }} {% endif %}>
+            {{ entry_form.favorite_movie.as_field_group }}
         {% else %}
             <p>{{ entry.favorite_movie }}</p>
         {% endif %}
@@ -13,7 +13,7 @@
     <div class="entry-element-field">
         Animal
         {% if edit_mode %}
-            <input name="favorite_animal" type="text" {% if entry %} value={{ entry.favorite_animal }} {% endif %}>
+            {{ entry_form.favorite_animal.as_field_group }}
         {% else %}
             <p>{{ entry.favorite_animal }}</p>
         {% endif %}
@@ -21,7 +21,7 @@
     <div class="entry-element-field">
         Food
         {% if edit_mode %}
-            <input name="favorite_food" type="text" {% if entry %} value={{ entry.favorite_food }} {% endif %}>
+            {{ entry_form.favorite_food.as_field_group }}
         {% else %}
             <p>{{ entry.favorite_food }}</p>
         {% endif %}
@@ -29,7 +29,7 @@
     <div class="entry-element-field">
         Book / Literature
         {% if edit_mode %}
-            <input name="favorite_book" type="text" {% if entry %} value={{ entry.favorite_book }} {% endif %}>
+            {{ entry_form.favorite_book.as_field_group }}
         {% else %}
             <p>{{ entry.favorite_book }}</p>
         {% endif %}
@@ -39,7 +39,7 @@
     <div class="entry-element-field">
         Music
         {% if edit_mode %}
-            <input name="favorite_music" type="text" {% if entry %} value={{ entry.favorite_music }} {% endif %}>
+            {{ entry_form.favorite_music.as_field_group }}
         {% else %}
             <p>{{ entry.favorite_music }}</p>
         {% endif %}
