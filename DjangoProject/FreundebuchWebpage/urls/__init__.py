@@ -21,6 +21,7 @@ from . import explorer, blogposts, user
 from . import pages, explorer, creator, editor
 
 urlpatterns = [
+    path('form_test/', views.form_test.form_test, name="form_test"),
     path('', include(pages.urls), name='pages'),
     path('explorer/', include(explorer.urls), name='explorer'),
     path('creator/', include(creator.urls), name='creator'),
