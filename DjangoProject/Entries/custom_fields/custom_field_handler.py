@@ -6,6 +6,7 @@ from django.template.loader import render_to_string
 from Entries.models import EntryV1, CustomTextField
 from abc import ABC, abstractmethod
 
+
 class CustomFieldHandler(ABC):
 
     @property

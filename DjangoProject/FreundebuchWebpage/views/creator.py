@@ -48,9 +48,9 @@ def create(request):
             if request.session.exists("code"):
                 CreateCode.objects.filter(pk=request.session["code"]).first().delete()
             try:
-                return redirect(f"/explorer/partial/entry/{new_entry.get_previous_by_created().id}/next")
+                return redirect(f"/explorer/entry/{new_entry.get_previous_by_created().id}/next")
             except:
-                return redirect(f"/explorer/partial/entry/first")
+                return redirect(f"/explorer/entry/first")
         case _:
             context = {
                 "entry_form" : EntryForm()

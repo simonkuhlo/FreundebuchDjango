@@ -104,6 +104,10 @@
     pointer-events: auto;
 }
 
+.flip input {
+    pointer-events: auto;
+}
+
 @keyframes flipAnimation {
   from {
     transform: rotateY(0deg);

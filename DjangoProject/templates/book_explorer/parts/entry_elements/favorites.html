@@ -6,7 +6,7 @@
         {% if edit_mode %}
             {{ entry_form.favorite_movie.as_field_group }}
         {% else %}
-            {{ entry.favorite_movie.verbose_name }}
+            Movie / Show
             <p>{{ entry.favorite_movie }}</p>
         {% endif %}
     </div>
@@ -14,7 +14,7 @@
         {% if edit_mode %}
             {{ entry_form.favorite_animal.as_field_group }}
         {% else %}
-            {{ entry.favorite_animal.verbose_name }}
+            Animal
             <p>{{ entry.favorite_animal }}</p>
         {% endif %}
     </div>
@@ -22,7 +22,7 @@
         {% if edit_mode %}
             {{ entry_form.favorite_food.as_field_group }}
         {% else %}
-            {{ entry.favorite_food.verbose_name }}
+            Food
             <p>{{ entry.favorite_food }}</p>
         {% endif %}
     </div>
@@ -30,7 +30,7 @@
         {% if edit_mode %}
             {{ entry_form.favorite_book.as_field_group }}
         {% else %}
-            {{ entry.favorite_book.verbose_name }}
+            Book / Literature
             <p>{{ entry.favorite_book }}</p>
         {% endif %}
     </div>
@@ -40,7 +40,7 @@
         {% if edit_mode %}
             {{ entry_form.favorite_music.as_field_group }}
         {% else %}
-            {{ entry.music.verbose_name }}
+            Music
             <p>{{ entry.favorite_music }}</p>
         {% endif %}
     </div>

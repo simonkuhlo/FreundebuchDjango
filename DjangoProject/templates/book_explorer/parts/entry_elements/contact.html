@@ -3,7 +3,7 @@
         {% if edit_mode %}
             {{ entry_form.origin.as_field_group }}
         {% else %}
-            {{ entry.origin.verbose_name }}
+            I am from:
             <p>{{ entry.origin }}</p>
         {% endif %}
     </div>
@@ -11,7 +11,7 @@
         {% if edit_mode %}
             {{ entry_form.location.as_field_group }}
         {% else %}
-            {{ entry.location.verbose_name }}
+            I live in:
             <p>{{ entry.location }}</p>
         {% endif %}
     </div>
@@ -19,7 +19,7 @@
         {% if edit_mode %}
             {{ entry_form.contact.as_field_group }}
         {% else %}
-            {{ entry.contact.verbose_name }}
+            How you can reach me:
             <p>{{ entry.contact }}</p>
         {% endif %}
     </div>

@@ -3,7 +3,7 @@
         {% if edit_mode %}
             {{ entry_form.name.as_field_group }}
         {% else %}
-            {{ entry.name.verbose_name }}
+            My name is:
             <p>{{ entry.name }}</p>
         {% endif %}
     </div>
@@ -11,7 +11,7 @@
         {% if edit_mode %}
             {{ entry_form.nicknames.as_field_group }}
         {% else %}
-            {{ entry.nicknames.verbose_name }}
+            People also call me:
             <p>{{ entry.nicknames }}</p>
         {% endif %}
     </div>
@@ -19,7 +19,7 @@
         {% if edit_mode %}
             {{ entry_form.birthday.as_field_group }}
         {% else %}
-            {{ entry.birthday.verbose_name }}
+            My birthday is on:
             <p>{{ entry.birthday }}</p>
         {% endif %}
     </div>
@@ -27,7 +27,7 @@
         {% if edit_mode %}
             {{ entry_form.size.as_field_group }}
         {% else %}
-            {{ entry.size.as_field_group.verbose_name }}
+            I am this tall:
             <p>{{ entry.size }}</p>
         {% endif %}
     </div>
