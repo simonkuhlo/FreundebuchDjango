@@ -1,25 +1,25 @@
 <div class="entry-element" id="contact">
     <div class="entry-element-field">
-        I am from:
         {% if edit_mode %}
             {{ entry_form.origin.as_field_group }}
         {% else %}
+            {{ entry.origin.verbose_name }}
             <p>{{ entry.origin }}</p>
         {% endif %}
     </div>
     <div class="entry-element-field">
-        I live in:
         {% if edit_mode %}
             {{ entry_form.location.as_field_group }}
         {% else %}
+            {{ entry.location.verbose_name }}
             <p>{{ entry.location }}</p>
         {% endif %}
     </div>
     <div class="entry-element-field">
-        How you can reach me:
         {% if edit_mode %}
             {{ entry_form.contact.as_field_group }}
         {% else %}
+            {{ entry.contact.verbose_name }}
             <p>{{ entry.contact }}</p>
         {% endif %}
     </div>

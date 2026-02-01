@@ -3,44 +3,44 @@
 </div>
 <div class="entry-element" id="favorites-1">
     <div class="entry-element-field">
-        Movie / Show
         {% if edit_mode %}
             {{ entry_form.favorite_movie.as_field_group }}
         {% else %}
+            {{ entry.favorite_movie.verbose_name }}
             <p>{{ entry.favorite_movie }}</p>
         {% endif %}
     </div>
     <div class="entry-element-field">
-        Animal
         {% if edit_mode %}
             {{ entry_form.favorite_animal.as_field_group }}
         {% else %}
+            {{ entry.favorite_animal.verbose_name }}
             <p>{{ entry.favorite_animal }}</p>
         {% endif %}
     </div>
     <div class="entry-element-field">
-        Food
         {% if edit_mode %}
             {{ entry_form.favorite_food.as_field_group }}
         {% else %}
+            {{ entry.favorite_food.verbose_name }}
             <p>{{ entry.favorite_food }}</p>
         {% endif %}
     </div>
     <div class="entry-element-field">
-        Book / Literature
         {% if edit_mode %}
             {{ entry_form.favorite_book.as_field_group }}
         {% else %}
+            {{ entry.favorite_book.verbose_name }}
             <p>{{ entry.favorite_book }}</p>
         {% endif %}
     </div>
 </div>
 <div class="entry-element" id="favorites-2">
     <div class="entry-element-field">
-        Music
         {% if edit_mode %}
             {{ entry_form.favorite_music.as_field_group }}
         {% else %}
+            {{ entry.music.verbose_name }}
             <p>{{ entry.favorite_music }}</p>
         {% endif %}
     </div>
