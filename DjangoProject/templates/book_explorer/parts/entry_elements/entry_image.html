@@ -1,9 +1,9 @@
 <div class="entry-element" id="image">
     {% if edit_mode %}
-        <label for="image_input">
-            <img id="imagePreview" src="{% if entry %}{% if entry.image %} {{ entry.image.url }} {% endif %}{% endif %}" alt="Upload Image">
+        <label for="{{ entry_form.image.id_for_label }}">
+            <img id="imagePreview" src="{% if entry %}{% if entry.image %}{{ entry.image.url }}{% endif %}{% endif %}" alt="Upload Image">
         </label>
-        <input type="file" id="image_input" name="image" accept="image/*" style="display: none">
+        {{ entry_form.image }}
     {% else %}
         {% if entry.image %}
             <img src="{{ entry.image.url }}" alt="No Image found">
@@ -11,19 +11,25 @@
     {% endif %}
 </div>
 <script>
-  const fileInput = document.getElementById('image_input');
+  const fileInput = document.getElementById('{{ entry_form.image.id_for_label }}');
   const preview   = document.getElementById('imagePreview');
 
   fileInput.addEventListener('change', function () {
     const file = this.files[0];
     if (!file) {
-      preview.style.display = 'none';
-      preview.src = '';
-      return;
+        preview.style.display = 'none';  // Hide instead of empty src
+        return;
     }
 
-    // Quick, memory‑cheap preview
+    // Revoke previous URL if exists
+    if (preview.dataset.prevUrl) {
+        URL.revokeObjectURL(preview.dataset.prevUrl);
+    }
+
     const url = URL.createObjectURL(file);
+    preview.dataset.prevUrl = url;  // Store for cleanup
     preview.src = url;
-  });
+    preview.style.display = 'block';
+});
+
 </script>

@@ -1,4 +1,4 @@
-from django.forms import ModelForm, widgets
+from django.forms import ModelForm, widgets, ImageField, FileInput
 from Entries.models import EntryV1
 
 
@@ -27,3 +27,7 @@ class EntryForm(ModelForm):
             "want_to_become",
             "custom_field_mode"
         ]
+
+    image = ImageField(
+        widget=FileInput(attrs={'accept': 'image/*', "hidden" : True}),
+    )

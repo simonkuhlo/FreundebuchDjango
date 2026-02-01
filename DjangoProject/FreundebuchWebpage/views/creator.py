@@ -15,6 +15,9 @@ def create(request):
         case "POST":
             custom_field_type = request.POST["custom_field_type"]
             entry_form = EntryForm(request.POST)
+            if not entry_form.is_valid():
+                print(entry_form.errors)
+                return render(request, "creator/creator.html", {"entry_form" : EntryForm()})
             new_entry = entry_form.save()
             if custom_field_type:
                 shortcuts.create(custom_field_type, request, new_entry)
