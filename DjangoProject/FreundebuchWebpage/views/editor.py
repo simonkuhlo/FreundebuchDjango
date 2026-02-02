@@ -14,7 +14,14 @@ def edit(request, entry_id: int):
         return render(request, "main/status_pages/permission_denied.html")
     match request.method:
         case 'POST':
-            entry_form = EntryForm(request.POST, instance = entry)
+            entry_form = EntryForm(request.POST, request.FILES, instance = entry)
+            if not entry_form.is_valid():
+                entry.rendered_custom_field = shortcuts.render_field_str(entry.custom_field_mode, entry)
+                context = {
+                    'entry': entry,
+                    "entry_form": entry_form
+                }
+                return render(request, "creator/creator.html", context=context)
             entry_form.save()
             try:
                 return redirect(f"/explorer/entry/{entry.get_previous_by_created().id}")
