@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import render, redirect
 from Entries.models import EntryV1, CreateCode
 from Entries.custom_fields import shortcuts
+from FreundebuchWebpage.forms.entry_customization_form import EntryCustomizationForm
 from FreundebuchWebpage.forms.entry_form import EntryForm
 
 
@@ -30,9 +31,11 @@ def edit(request, entry_id: int):
         case 'GET':
             entry.rendered_custom_field = shortcuts.render_field_str(entry.custom_field_mode, entry)
             entry_form = EntryForm(instance = entry)
+            customization_form = EntryCustomizationForm()
             context = {
                 'entry': entry,
-                "entry_form" : entry_form
+                "entry_form" : entry_form,
+                "customization_form" : customization_form
             }
             return render(request, "creator/creator.html", context=context)
         case _:

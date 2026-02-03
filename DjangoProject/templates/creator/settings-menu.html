@@ -45,34 +45,7 @@
     <div id="settings-menu">
         <div class="box-v basic-spacing">
             <div class="box-h-center">⚙️ Settings Menu ⚙️</div>
-            <div class="box-h">
-                <label for="customize-background_color">Background color</label>
-                <input type="color" name="customize-background_color" id="customize-background_color">
-            </div>
-            <div class="box-h">
-                <label for="customize-font_color">Font color</label>
-                <input type="color" name="customize-font_color" id="customize-font_color">
-            </div>
-            <div class="box-h">
-                <label for="customize-element_background_color">Element background color</label>
-                <input type="color" name="customize-element_background_color" id="customize-element_background_color">
-            </div>
-            <div class="box-h">
-                <label for="customize-border_color">Border color</label>
-                <input type="color" name="customize-border_color" id="customize-border_color">
-            </div>
-            <div class="box-h">
-                <label for="customize-background_image">Background image</label>
-                <input type="file" name="customize-background_image" id="customize-background_image" accept="image/*">
-            </div>
-            <div class="box-h">
-                <label for="customize-font">Font</label>
-                <select name="customize-font" id="customize-font">
-                    <option value="default">Default</option>
-                    <option value="comic">Comic</option>
-                </select>
-            </div>
-
+            {{ customization_form }}
         </div>
     </div>
 </div>

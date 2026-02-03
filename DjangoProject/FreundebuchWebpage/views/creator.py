@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from Entries.models import EntryV1, CreateCode
 from Entries.custom_fields import shortcuts
 from settings import settings
+from ..forms.entry_customization_form import EntryCustomizationForm
 from ..forms.entry_form import EntryForm
 from ..helpers import can_create_entry
 
@@ -32,6 +33,7 @@ def create(request):
                 return redirect(f"/explorer/entry/first")
         case _:
             context = {
+                "customization_form": EntryCustomizationForm(),
                 "entry_form" : EntryForm()
             }
             return render(request, "creator/creator.html", context)

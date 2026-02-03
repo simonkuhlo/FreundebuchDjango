@@ -11,10 +11,23 @@ CUSTOM_FIELD_CHOICES = {
     "button" : "Button Field",
 }
 
+class EntryCustomization(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True, unique=True)
+    public = models.BooleanField(default=False, blank=True, null=True)
+    font_color = models.CharField(max_length=20, blank=True, null=True)
+    font_style = models.CharField(max_length=20, blank=True, null=True)
+    border_color = models.CharField(max_length=20, blank=True, null=True)
+    border_width = models.IntegerField(blank=True, null=True)
+    border_style = models.CharField(max_length=100, blank=True, null=True)
+    border_radius = models.IntegerField(blank=True, null=True)
+
+    #TODO add validation
+    additional_css = models.TextField()
+
 class EntryV1(models.Model):
     ## Meta Information
     owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    secret = models.CharField(max_length=100, blank=True, null=True)
+    customization = models.ForeignKey(EntryCustomization, on_delete=models.CASCADE, blank=True, null=True)
     published = models.BooleanField(default=True)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
