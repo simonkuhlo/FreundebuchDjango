@@ -1,0 +1,17 @@
+{% if entry != None or edit_mode %}
+    <div class="box-v entry-container">
+        {% include "book_explorer/parts/entry_elements/favorites.html" %}
+        {% include "book_explorer/parts/entry_elements/future.html" %}
+        {% include "book_explorer/parts/entry_elements/custom_field.html" %}
+        <div class="box-h control-element">
+            <div class="spacer-h"></div>
+            {% if edit_mode %}
+                <input class="button" type="submit">
+            {% else %}
+                <button hx-get="/explorer/partial/entry/{{ entry.id }}/next" hx-target="#page-root">Next</button>
+            {% endif %}
+        </div>
+    </div>
+{% else %}
+    {% include "book_explorer/parts/entry_not_found_page.html" %}
+{% endif %}

@@ -4,7 +4,7 @@
     <form action="{% if entry %}/editor/{{ entry.id }}/{% else %}/creator/{% endif %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ entry_form.non_field_errors }}
-    {% include "creator/settings-menu.html" %}
+    {% include "editor/settings-menu.html" %}
 {% endblock %}
 
 {% block content %}

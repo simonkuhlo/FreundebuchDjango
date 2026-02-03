@@ -18,7 +18,7 @@ def create(request):
             entry_form = EntryForm(request.POST)
             if not entry_form.is_valid():
                 print(entry_form.errors)
-                return render(request, "creator/creator.html", {"entry_form" : EntryForm()})
+                return render(request, "creator/../../templates/editor/editor.html", {"entry_form" : EntryForm()})
             new_entry = entry_form.save()
             if custom_field_type:
                 shortcuts.create(custom_field_type, request, new_entry)
@@ -36,14 +36,14 @@ def create(request):
                 "customization_form": EntryCustomizationForm(),
                 "entry_form" : EntryForm()
             }
-            return render(request, "creator/creator.html", context)
+            return render(request, "creator/../../templates/editor/editor.html", context)
 
 def enter_key(request, key: Optional[str] = None):
     code = key
     match request.method:
         case "GET":
             if not key:
-                return render(request, "creator/enter_creation_code.html")
+                return render(request, "creator/../../templates/editor/enter_creation_code.html")
         case "POST":
             code = request.POST.get("code")
         case _:
@@ -54,7 +54,7 @@ def enter_key(request, key: Optional[str] = None):
         return redirect("/creator/")
     else:
         context = {"failure" : True}
-        return render(request, "creator/enter_creation_code.html", context)
+        return render(request, "creator/../../templates/editor/enter_creation_code.html", context)
 
 def custom_field(request):
     match request.method:

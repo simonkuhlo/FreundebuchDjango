@@ -1,19 +1,26 @@
 {% if previous_entry != None %}
     <div class="flip already_flipped">
-        {% include "book_explorer/parts/page_back.html" with entry=previous_entry %}
+        <div class="back" data-entry_id="{{ entry.id }}" id="p{{ entry.id }}b">
+            {% include "book_explorer/parts/entry_page_1.html" with entry=previous_entry %}
+        </div>
     </div>
 {% endif %}
 
 <div class="flip {% if transition == "prev" %} unflipped {% else %} flipped {% endif %}" style="z-index:1;">
-    {% include "book_explorer/parts/page_back.html" with entry=current_entry %}
-
-    {% if previous_entry != None %}
-        {% include "book_explorer/parts/page_front.html" with entry=previous_entry%}
-    {% else %}
-        {% include "book_explorer/parts/start_page.html" %}
-    {% endif %}
+    <div class="back" data-entry_id="{{ entry.id }}" id="p{{ entry.id }}b">
+        {% include "book_explorer/parts/entry_page_1.html" with entry=current_entry %}
+    </div>
+    <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
+        {% if previous_entry != None %}
+            {% include "book_explorer/parts/entry_page_2.html" with entry=previous_entry%}
+        {% else %}
+            {% include "book_explorer/parts/start_page.html" %}
+        {% endif %}
+    </div>
 </div>
 
 <div class="flip">
-    {% include "book_explorer/parts/page_front.html" with entry=current_entry %}
+    <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
+        {% include "book_explorer/parts/entry_page_2.html" with entry=current_entry %}
+    </div>
 </div>

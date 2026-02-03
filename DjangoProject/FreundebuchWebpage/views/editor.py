@@ -22,7 +22,7 @@ def edit(request, entry_id: int):
                     'entry': entry,
                     "entry_form": entry_form
                 }
-                return render(request, "creator/creator.html", context=context)
+                return render(request, "creator/../../templates/editor/editor.html", context=context)
             entry_form.save()
             try:
                 return redirect(f"/explorer/entry/{entry.get_previous_by_created().id}")
@@ -37,7 +37,7 @@ def edit(request, entry_id: int):
                 "entry_form" : entry_form,
                 "customization_form" : customization_form
             }
-            return render(request, "creator/creator.html", context=context)
+            return render(request, "creator/../../templates/editor/editor.html", context=context)
         case _:
             return HttpResponseNotAllowed(['GET', 'POST'])
 
@@ -52,11 +52,11 @@ def delete(request, entry_id: int):
         case 'POST':
             confirm_id = request.POST.get('confirm_id')
             if entry_id != int(confirm_id):
-                return render(request, "editor/delete_entry.html", {"error": "Confirmation failed..."})
+                return render(request, "editor/actions/delete_entry.html", {"error": "Confirmation failed..."})
             entry.delete()
-            return render(request, "editor/delete_success.html")
+            return render(request, "editor/actions/delete_success.html")
         case 'GET':
-            return render(request, "editor/delete_entry.html", context)
+            return render(request, "editor/actions/delete_entry.html", context)
         case _:
             return HttpResponseNotAllowed(['GET', 'POST'])
 
