@@ -28,6 +28,4 @@ class EntryForm(ModelForm):
             "custom_field_mode"
         ]
 
-    image = ImageField(
-        widget=FileInput(attrs={'accept': 'image/*', "hidden" : True}),
-    )
+    image = ImageField(required=False, widget=FileInput(attrs={'accept': 'image/*', "hidden" : True}))

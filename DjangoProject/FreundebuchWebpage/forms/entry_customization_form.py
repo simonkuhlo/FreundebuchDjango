@@ -7,7 +7,6 @@ class EntryCustomizationForm(ModelForm):
     class Meta:
         model = EntryCustomization
         fields = [
-            "name",
             "font_color",
             "font_style",
             "border_color",

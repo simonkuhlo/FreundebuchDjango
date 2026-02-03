@@ -15,7 +15,7 @@ def create(request):
     match request.method:
         case "POST":
             custom_field_type = request.POST["custom_field_type"]
-            entry_form = EntryForm(request.POST)
+            entry_form = EntryForm(request.POST, request.FILES)
             if not entry_form.is_valid():
                 print(entry_form.errors)
                 return render(request, "editor/editor.html", {"entry_form" : EntryForm()})

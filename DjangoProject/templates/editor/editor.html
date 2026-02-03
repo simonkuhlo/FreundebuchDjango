@@ -10,10 +10,14 @@
 {% block content %}
     {% with edit_mode=True %}
         <div class="flip already_flipped">
-            {% include "book_explorer/parts/page_back.html" %}
+            <div class="back" data-entry_id="{{ entry.id }}" id="p{{ entry.id }}b">
+                {% include "book_explorer/parts/entry_page_1.html" with entry=current_entry %}
+            </div>
         </div>
         <div class="flip">
-            {% include "book_explorer/parts/page_front.html" %}
+            <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
+                {% include "book_explorer/parts/entry_page_2.html" with entry=previous_entry%}
+            </div>
         </div>
     {% endwith %}
 {% endblock %}

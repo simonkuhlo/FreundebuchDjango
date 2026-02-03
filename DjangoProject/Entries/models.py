@@ -22,7 +22,7 @@ class EntryCustomization(models.Model):
     border_radius = models.IntegerField(blank=True, null=True)
 
     #TODO add validation
-    additional_css = models.TextField()
+    additional_css = models.TextField(blank=True, null=True)
 
 class EntryV1(models.Model):
     ## Meta Information
