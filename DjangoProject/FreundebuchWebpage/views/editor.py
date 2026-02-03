@@ -22,7 +22,7 @@ def edit(request, entry_id: int):
                     'entry': entry,
                     "entry_form": entry_form
                 }
-                return render(request, "creator/../../templates/editor/editor.html", context=context)
+                return render(request, "editor/editor.html", context=context)
             entry_form.save()
             try:
                 return redirect(f"/explorer/entry/{entry.get_previous_by_created().id}")
@@ -37,7 +37,7 @@ def edit(request, entry_id: int):
                 "entry_form" : entry_form,
                 "customization_form" : customization_form
             }
-            return render(request, "creator/../../templates/editor/editor.html", context=context)
+            return render(request, "editor/editor.html", context=context)
         case _:
             return HttpResponseNotAllowed(['GET', 'POST'])
 
