@@ -18,13 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from .. import views
 from . import explorer, blogposts, user
-from . import pages, explorer, creator, editor
+from . import pages, explorer, creator, entry
 
 urlpatterns = [
     path('', include(pages.urls), name='pages'),
     path('explorer/', include(explorer.urls), name='explorer'),
     path('creator/', include(creator.urls), name='creator'),
     path('blogposts/', include(blogposts.urls), name='blogposts'),
-    path('editor/', include(editor.urls), name='editor'),
+    path('entry/', include(entry.urls), name='editor'),
     path('user/', include(user.urls), name='user'),
 ]

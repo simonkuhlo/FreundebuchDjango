@@ -1,7 +1,6 @@
 from Entries.models import EntryV1, CreateCode
 from settings import settings
 
-
 def can_create_entry(request) -> bool:
     if request.user.is_authenticated:
         if settings.user.max_entries == -1:
@@ -15,3 +14,10 @@ def can_create_entry(request) -> bool:
         if not CreateCode.objects.filter(pk=request.session["code"]).exists():
             return False
     return True
+
+def can_edit_entry(request, entry: EntryV1) -> bool:
+    if request.user.is_authenticated:
+        if entry.owner == request.user:
+            return True
+    #TODO Check if session has entry secret stored
+    return False
