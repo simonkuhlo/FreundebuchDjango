@@ -4,7 +4,9 @@
     "port" : 6969
   },
   "system" : {
-
+    "debug_mode" : true,
+    "language_code" : "en-us",
+    "timezone" : "UTC"
   },
   "entries" : {
     "creation_protected" : true
