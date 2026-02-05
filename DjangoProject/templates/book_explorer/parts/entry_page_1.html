@@ -1,5 +1,5 @@
 {% if entry != None or edit_mode %}
-    <div class="box-v entry-container">
+    <div class="box-v entry-container {% if entry %}entry-{{ entry.id }}{% endif %}">
         {% include "book_explorer/parts/entry_elements/entry_image.html" %}
         {% include "book_explorer/parts/entry_elements/about_me.html" %}
         {% include "book_explorer/parts/entry_elements/contact.html" %}

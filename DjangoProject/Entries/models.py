@@ -15,11 +15,12 @@ class EntryCustomization(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True, unique=True)
     public = models.BooleanField(default=False, blank=True, null=True)
     font_color = models.CharField(max_length=20, blank=True, null=True)
-    font_style = models.CharField(max_length=20, blank=True, null=True)
+    font_style = models.CharField(max_length=30, blank=True, null=True)
     border_color = models.CharField(max_length=20, blank=True, null=True)
     border_width = models.IntegerField(blank=True, null=True)
     border_style = models.CharField(max_length=100, blank=True, null=True)
     border_radius = models.IntegerField(blank=True, null=True)
+    background_color = models.CharField(max_length=20, blank=True, null=True)
 
     #TODO add validation
     additional_css = models.TextField(blank=True, null=True)
@@ -32,43 +33,24 @@ class EntryV1(models.Model):
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
     ## -- Questions --
-    # I am...
     name = models.CharField(verbose_name="My name is:", max_length=100)
-    # Others also call me...
     nicknames = models.CharField(verbose_name="People also call me:", max_length=500, blank=True, null=True)
-    # My birthday is:
     birthday = models.DateField(verbose_name="My birthday is on:", blank=True, null=True)
-    # I am this tall:
     size = models.CharField(verbose_name="I am this tall:", max_length=100, blank=True, null=True)
-    #I am from:
     origin = models.CharField(verbose_name="I am from:", max_length=100, blank=True, null=True)
-    # Where I live
     location = models.CharField(verbose_name="I live in:", max_length=500, blank=True, null=True)
-    # How you can contact me (Email, Phone number, Discord)
     contact = models.CharField(verbose_name="How you can reach me:", max_length=500, blank=True, null=True)
-    # Image
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    # I really like...
     likes = models.CharField(verbose_name="I really like:", max_length=500, blank=True, null=True)
-    # I really don't like...
     dislikes = models.CharField(verbose_name="I really don't like:", max_length=500, blank=True, null=True)
-    # My loveliest experience:
     loveliest_experience = models.CharField(verbose_name="My loveliest experience:", blank=True, null=True)
-    # My craziest experience:
     craziest_experience = models.CharField(verbose_name="My craziest experience:", blank=True, null=True)
-    # My favorite book:
     favorite_food = models.CharField(verbose_name="Food", max_length=500, blank=True, null=True)
-    # My favorite animal:
     favorite_animal = models.CharField(verbose_name="Animal", max_length=500, blank=True, null=True)
-    # My favorite book:
     favorite_book = models.CharField(verbose_name="Book / Literature", max_length=500, blank=True, null=True)
-    # My favorite movie:
     favorite_movie = models.CharField(verbose_name="Movie / Show", max_length=500, blank=True, null=True)
-    # My favorite music:
     favorite_music = models.CharField(verbose_name="Music", max_length=500, blank=True, null=True)
-    # I love to do...
     biggest_idol = models.CharField(verbose_name="My biggest idol:", max_length=500, blank=True, null=True)
-    # In the future, I want to become...
     want_to_become = models.CharField(verbose_name="In the future, I want to become...", blank=True, null=True)
 
     custom_field_mode = models.CharField(max_length=10, choices=CUSTOM_FIELD_CHOICES, null=True, blank=True)

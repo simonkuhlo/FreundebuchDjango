@@ -13,7 +13,9 @@ class EntryCustomizationForm(ModelForm):
             "border_width",
             "border_style",
             "border_radius",
-            "additional_css"
+            "background_color",
+            "additional_css",
         ]
-    font_color = CharField(widget=ColorInput())
-    border_color = CharField(widget=ColorInput())
+    font_color = CharField(widget=ColorInput(), required=False)
+    border_color = CharField(widget=ColorInput(), required=False)
+    background_color = CharField(widget=ColorInput(), required=False)
