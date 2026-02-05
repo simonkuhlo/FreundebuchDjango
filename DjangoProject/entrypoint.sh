@@ -2,4 +2,13 @@
 
 python manage.py collectstatic --noinput --clear
 python manage.py migrate --noinput
-python -m gunicorn --bind 0.0.0.0:8000 --workers 3 BlumeMain.wsgi:application
+
+# Gunicorn with structured logging to stdout
+exec python -m gunicorn \
+  --bind 0.0.0.0:8000 \
+  --workers 3 \
+  --worker-class uvicorn.workers.UvicornWorker \
+  --log-level info \
+  --access-logfile - \
+  --error-logfile - \
+  BlumeMain.wsgi:application
