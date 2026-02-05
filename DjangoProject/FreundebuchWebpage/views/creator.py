@@ -37,29 +37,3 @@ def create(request):
                 "entry_form" : EntryForm()
             }
             return render(request, "editor/editor.html", context)
-
-def enter_key(request, key: Optional[str] = None):
-    code = key
-    match request.method:
-        case "GET":
-            if not key:
-                return render(request, "editor/enter_creation_code.html")
-        case "POST":
-            code = request.POST.get("code")
-        case _:
-            return HttpResponse(status=404)
-    code_objects = CreateCode.objects.filter(secret=code).first()
-    if code_objects:
-        request.session["code"] = code
-        return redirect("/creator/")
-    else:
-        context = {"failure" : True}
-        return render(request, "editor/enter_creation_code.html", context)
-
-def custom_field(request):
-    match request.method:
-        case "POST":
-            key = request.POST.get("custom_field_select")
-            return shortcuts.render_field(key, request, edit_mode=True)
-        case _:
-            return HttpResponse(status=404)
