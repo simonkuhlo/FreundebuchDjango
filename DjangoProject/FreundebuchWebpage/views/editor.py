@@ -9,8 +9,9 @@ from FreundebuchWebpage.forms.entry_form import EntryForm
 
 def editor(request, entry_id: Optional[int] = None):
     entry = EntryV1.objects.filter(id=entry_id).first() if entry_id else None
-    if request.user != entry.owner:
-        return render(request, "main/status_pages/permission_denied.html")
+    if entry:
+        if request.user != entry.owner:
+            return render(request, "main/status_pages/permission_denied.html")
     match request.method:
         case 'POST':
             entry_form = EntryForm(request.POST, request.FILES, instance = entry)
@@ -22,6 +23,9 @@ def editor(request, entry_id: Optional[int] = None):
                 }
                 return render(request, "editor/editor.html", context=context)
             entry = entry_form.save()
+            if request.user.is_authenticated:
+                entry.owner = request.user
+            entry.save()
             try:
                 return redirect(f"/explorer/entry/{entry.get_previous_by_created().id}/")
             except:

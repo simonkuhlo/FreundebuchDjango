@@ -27,10 +27,10 @@ def delete(request, entry_id: int):
             return HttpResponseNotAllowed(['GET', 'POST'])
 
 def new(request):
-    return redirect(f"editor/new/")
+    return redirect(f"/editor/new/")
 
 def edit(request, entry_id:int):
-    return redirect(f"editor/{entry_id}/")
+    return redirect(f"/editor/{entry_id}/")
 
 def view(request, entry_id:int):
-    return redirect(f"explorer/entry/{entry_id}/")
+    return redirect(f"/explorer/entry/{entry_id}/")
