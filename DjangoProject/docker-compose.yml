@@ -2,8 +2,8 @@ services:
   db:
     image: postgres:17
     restart: unless-stopped
-    #ports:
-      #- "5432:5432" #Questionable - only expose if needed
+    ports:
+      - "5432:5432" #Questionable - only expose if needed
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - logs_postgres:/var/log/postgresql
@@ -14,20 +14,12 @@ services:
         max-file: "3"
     env_file:
       - .env.prod
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U $POSTGRES_USER" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
 
   django-web:
     build: .
     restart: unless-stopped
     container_name: django-docker
-    depends_on:
-      db:
-        condition: service_healthy
 
     volumes:
       - static_data:/app/staticfiles
