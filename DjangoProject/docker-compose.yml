@@ -7,12 +7,18 @@ services:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - .env.prod
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dbuser -d dockerdjango"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
 
   django-web:
     build: .
     container_name: django-docker
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - static_data:/app/staticfiles
       - media_data:/app/media

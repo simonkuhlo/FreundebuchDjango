@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
 python manage.py collectstatic --noinput --clear
+#TODO optimize migration process (dont migrate every container startup)
 python manage.py migrate --noinput
 python -m gunicorn --bind 0.0.0.0:8000 --workers 3 BlumeMain.wsgi:application
