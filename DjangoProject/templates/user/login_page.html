@@ -7,6 +7,7 @@
     <form action="/user/login/" method="post">
         {% csrf_token %}
         <div class="box-v basic-spacing">
+            {{ error }}
             <div class="box-h basic-spacing">
                 <label for="username_input">Username: </label>
                 <input name="username" type="text" id="username_input">

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render
-from ..helpers import can_create_entry
+from ..entry_helpers import can_create_entry
 from Entries.models import EntryV1
 from settings import settings
 
@@ -18,7 +18,7 @@ def login_page(request):
                 auth.login(request, user)
                 return HttpResponseRedirect('/')
             else:
-                return
+                return render(request, "user/login_page.html", {'error': 'Username or password incorrect.'})
         case 'GET':
             return render(request, "user/login_page.html")
         case _:
