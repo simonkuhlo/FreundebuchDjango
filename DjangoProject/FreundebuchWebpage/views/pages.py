@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
 from Entries.models import CreateCode, EntryV1
-from SimonsLogging import default_logger
 
 def index(request):
     return render(request, "main/main.html")
 
 def dedication(request):
-    default_logger.log_info("Hi! This is a test!")
     return render(request, "main/dedication.html")
 
 def entry_browser(request, page: int = 0, interval: int = 20):

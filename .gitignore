@@ -11,3 +11,4 @@ api/database.sqlite
 /DjangoProject/media
 DjangoProject/django
 DjangoProject/.env.prod
+DjangoProject/log.txt
