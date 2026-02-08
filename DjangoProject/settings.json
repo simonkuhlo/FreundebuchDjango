@@ -15,5 +15,22 @@
   "user" : {
     "max_entries" : 1,
     "code_overrides_limit" : true
+  },
+  "logging" : {
+    "level" : 5,
+    "console" : {
+      "active" : true,
+      "log_level_override" : null
+    },
+    "file" : {
+      "active" : true,
+      "log_level_override" : null,
+      "file_path" : "",
+      "file_name" : "log.txt"
+    },
+    "database" : {
+      "active" : true,
+      "log_level_override" : null
+    }
   }
 }

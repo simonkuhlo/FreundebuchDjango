@@ -1,5 +1,7 @@
 # config.py
 from pathlib import Path
+from typing import Optional
+
 from pydantic import BaseModel, Field
 import json
 
@@ -26,10 +28,31 @@ class EntriesSettings(BaseModel):
     # TODO NOT IMPLEMENTED
     creation_is_protected: bool = Field(default=True) # If enabled, only logged in users or creation codes can create new entries
 
+class BaseLoggingOutputSettings(BaseModel):
+    active: bool = Field(default=True)
+    log_level_override: Optional[int] = Field(default=None)
+
+class ConsoleLoggingSettings(BaseLoggingOutputSettings):
+    pass
+
+class DatabaseLoggingSettings(BaseLoggingOutputSettings):
+    pass
+
+class FileLoggingSettings(BaseLoggingOutputSettings):
+    file_path: str = Field(default="")
+    file_name: str = Field(default="log.txt")
+
+class LoggingSettings(BaseModel):
+    level: int = Field(default=0)
+    console: ConsoleLoggingSettings = ConsoleLoggingSettings()
+    file: FileLoggingSettings = FileLoggingSettings()
+    database: DatabaseLoggingSettings = DatabaseLoggingSettings()
+
 class Settings(BaseModel):
     network: NetworkSettings = NetworkSettings()
     system: SystemSettings = SystemSettings()
     user: UserSettings = UserSettings()
+    logging: LoggingSettings = LoggingSettings()
 
     @classmethod
     def from_json(cls, path: Path) -> "Settings":
@@ -37,7 +60,6 @@ class Settings(BaseModel):
             data = json.load(f)
         return cls(**data)
 
-# load from JSON once at import time
 settings = Settings.from_json(BASE_DIR / "settings.json")
 
 if __name__ == "__main__":
