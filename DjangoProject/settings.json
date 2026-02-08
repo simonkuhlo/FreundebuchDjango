@@ -5,6 +5,7 @@
   },
   "system" : {
     "debug_mode" : true,
+    "log_level" : 5,
     "language_code" : "en-us",
     "timezone" : "UTC"
   },

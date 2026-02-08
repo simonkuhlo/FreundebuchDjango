@@ -13,6 +13,7 @@ class NetworkSettings(BaseModel):
 
 class SystemSettings(BaseModel):
     debug_mode: bool = Field(default=True)
+    log_level: int = Field(default=0)
     language_code: str = Field(default="en-us")
     timezone: str = Field(default="UTC")
 
