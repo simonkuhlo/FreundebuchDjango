@@ -6,7 +6,7 @@ from Entries.custom_fields import shortcuts
 from settings import settings
 from ..forms.entry_customization_form import EntryCustomizationForm
 from ..forms.entry_form import EntryForm
-from ..helpers import can_create_entry
+from ..entry_helpers import can_create_entry
 
 
 def create(request):
@@ -17,7 +17,6 @@ def create(request):
             custom_field_type = request.POST["custom_field_type"]
             entry_form = EntryForm(request.POST, request.FILES)
             if not entry_form.is_valid():
-                print(entry_form.errors)
                 return render(request, "editor/editor.html", {"entry_form" : EntryForm()})
             new_entry = entry_form.save()
             if custom_field_type:

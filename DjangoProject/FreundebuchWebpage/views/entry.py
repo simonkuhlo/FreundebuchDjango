@@ -5,7 +5,7 @@ from Entries.models import EntryV1, CreateCode
 from Entries.custom_fields import shortcuts
 from FreundebuchWebpage.forms.entry_customization_form import EntryCustomizationForm
 from FreundebuchWebpage.forms.entry_form import EntryForm
-from .. import helpers
+from .. import entry_helpers
 
 def delete(request, entry_id: int):
     entry = EntryV1.objects.filter(id=entry_id).first()

@@ -2,21 +2,25 @@ from typing import Optional
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import render, redirect
 from Entries.models import EntryV1, CreateCode
-from Entries.custom_fields import shortcuts
+from Entries.custom_fields import shortcuts as custom_field_shortcuts
 from FreundebuchWebpage.forms.entry_customization_form import EntryCustomizationForm
 from FreundebuchWebpage.forms.entry_form import EntryForm
+from ..entry_helpers import can_create_entry, can_edit_entry
 
 
 def editor(request, entry_id: Optional[int] = None):
     entry = EntryV1.objects.filter(id=entry_id).first() if entry_id else None
     if entry:
-        if request.user != entry.owner:
-            return render(request, "main/status_pages/permission_denied.html")
+        if not can_edit_entry(request, entry):
+            return render(request, "main/status_pages/permission_denied.html", status=401)
+    else:
+        if not can_create_entry(request):
+            return redirect("/editor/enter_key/", status=401)
     match request.method:
         case 'POST':
             entry_form = EntryForm(request.POST, request.FILES, instance = entry)
             if not entry_form.is_valid():
-                entry.rendered_custom_field = shortcuts.render_field_str(entry.custom_field_mode, entry)
+                entry.rendered_custom_field = custom_field_shortcuts.render_field_str(entry.custom_field_mode, entry)
                 context = {
                     'entry': entry,
                     "entry_form": entry_form
@@ -32,7 +36,7 @@ def editor(request, entry_id: Optional[int] = None):
                 return redirect(f"/explorer/entry/first/")
         case 'GET':
             if entry:
-                entry.rendered_custom_field = shortcuts.render_field_str(entry.custom_field_mode, entry)
+                entry.rendered_custom_field = custom_field_shortcuts.render_field_str(entry.custom_field_mode, entry)
             entry_form = EntryForm(instance = entry)
             customization_form = EntryCustomizationForm()
             context = {
@@ -66,6 +70,6 @@ def custom_field(request):
     match request.method:
         case "POST":
             key = request.POST.get("custom_field_select")
-            return shortcuts.render_field(key, request, edit_mode=True)
+            return custom_field_shortcuts.render_field(key, request, edit_mode=True)
         case _:
             return HttpResponse(status=404)

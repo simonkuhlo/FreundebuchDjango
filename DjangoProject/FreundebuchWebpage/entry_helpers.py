@@ -1,5 +1,11 @@
+from typing import Optional
 from Entries.models import EntryV1, CreateCode
 from settings import settings
+
+def check_permission(request, entry: Optional[EntryV1] = None) -> bool:
+    if entry:
+        return can_edit_entry(request, entry)
+    return can_create_entry(request)
 
 def can_create_entry(request) -> bool:
     if request.user.is_authenticated:
