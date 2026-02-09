@@ -1,5 +1,5 @@
 """
-URL configuration for BlumeMain project.
+URL configuration for Project project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -17,13 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .. import views
-from . import explorer, blogposts, user
+from . import explorer, user
 from . import pages, explorer, entry, editor
 
 urlpatterns = [
     path('', include(pages.urls), name='pages'),
     path('explorer/', include(explorer.urls), name='explorer'),
-    path('blogposts/', include(blogposts.urls), name='blogposts'),
     path('entry/', include(entry.urls), name='entry'),
     path('editor/', include(editor.urls), name='editor'),
     path('user/', include(user.urls), name='user'),

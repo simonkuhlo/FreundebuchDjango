@@ -1,7 +1,9 @@
+from django.shortcuts import render
+
 from django.db.models import QuerySet
 from django.shortcuts import render
 
-from ..models import BlogPost
+from .models import BlogPost
 
 def browser(request):
     return render(request, "blog_posts/browser.html")
