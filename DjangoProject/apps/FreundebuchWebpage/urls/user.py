@@ -1,8 +1,9 @@
 from django.urls import path
+from ..views import user
 
 urls = [
-    path('login/', apps.FreundebuchWebpage.views.user.login_page, name='login'),
-    path('logout/', apps.FreundebuchWebpage.views.user.logout_page, name='logout'),
-    path('register/', apps.FreundebuchWebpage.views.user.register_page, name='register'),
-    path('account/', apps.FreundebuchWebpage.views.user.account_page, name='account'),
+    path('login/', user.login_page, name='login'),
+    path('logout/', user.logout_page, name='logout'),
+    path('register/', user.register_page, name='register'),
+    path('account/', user.account_page, name='account'),
 ]

@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Entries.apps.EntriesConfig',
-    'FreundebuchWebpage.apps.FreundebuchwebpageConfig',
-    'Blog.apps.BlogConfig'
+    'apps.Entries.apps.EntriesConfig',
+    'apps.FreundebuchWebpage.apps.FreundebuchwebpageConfig',
+    'apps.Blog.apps.BlogConfig'
 ]
 
 MIDDLEWARE = [

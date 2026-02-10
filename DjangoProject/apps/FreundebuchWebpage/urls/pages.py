@@ -1,6 +1,7 @@
 from django.urls import path
+from ..views import pages
 
 urls = [
-    path('', apps.FreundebuchWebpage.views.pages.index, name='index'),
-    path('dedication/', apps.FreundebuchWebpage.views.pages.dedication, name='dedication'),
+    path('', pages.index, name='index'),
+    path('dedication/', pages.dedication, name='dedication'),
 ]
