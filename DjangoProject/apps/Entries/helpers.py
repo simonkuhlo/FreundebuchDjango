@@ -1,6 +1,6 @@
 from typing import Optional
 from apps.Entries.models import EntryV1, CreateCode
-from settings import settings
+from _lib.settings import settings
 
 def check_permission(request, entry: Optional[EntryV1] = None) -> bool:
     if entry:

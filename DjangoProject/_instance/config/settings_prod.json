@@ -5,9 +5,20 @@
   },
   "system" : {
     "debug_mode" : true,
-    "log_level" : 5,
     "language_code" : "en-us",
-    "timezone" : "UTC"
+    "timezone" : "UTC",
+    "paths" : {
+      "path_dotenv" : "_instance/config/.env.local",
+      "path_database" : "_instance/data/django.db",
+      "path_nginx_conf" : "_instance/config/nginx.conf",
+      "media_root" : "_instance/data/media",
+      "static_root" : "_instance/data/staticfiles"
+    },
+    "database" : {
+      "engine" : "postgresql",
+      "host" : "db",
+      "port" : 5432
+    }
   },
   "entries" : {
     "creation_protected" : true

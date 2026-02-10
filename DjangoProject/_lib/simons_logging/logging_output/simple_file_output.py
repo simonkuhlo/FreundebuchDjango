@@ -1,7 +1,7 @@
 from os import PathLike
 from typing import Optional
-from simons_logging.log_level import LogLevel
-from simons_logging.log_message import LogMessage
+from _lib.simons_logging.log_level import LogLevel
+from _lib.simons_logging.log_message import LogMessage
 from .abstract_logging_output import LoggingOutput
 import os
 

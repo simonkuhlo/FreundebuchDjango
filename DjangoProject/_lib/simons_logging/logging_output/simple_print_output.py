@@ -1,4 +1,4 @@
-from simons_logging.log_message import LogMessage
+from _lib.simons_logging.log_message import LogMessage
 from .abstract_logging_output import LoggingOutput
 
 class SimplePrintOutput(LoggingOutput):

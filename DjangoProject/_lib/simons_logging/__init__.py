@@ -1,7 +1,7 @@
 from typing import List
 from .logger import Logger
 from .logging_output import SimpleFileOutput, SimplePrintOutput, LoggingOutput
-from settings import settings
+from _lib.settings import settings
 
 file_output: SimpleFileOutput = SimpleFileOutput(
     log_level_override=settings.logging.file.log_level_override,

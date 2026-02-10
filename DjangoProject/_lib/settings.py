@@ -7,6 +7,19 @@ import json
 
 BASE_DIR = Path(__file__).resolve().parent
 
+class PathSettings(BaseModel):
+    path_dotenv: str = Field(default=".dotenv")
+    path_database: str = Field(default="django.db.db")
+    path_nginx_conf: str = Field(default="nginx.conf")
+    media_root: str = Field(default="media")
+    static_root: str = Field(default="staticfiles")
+
+class DatabaseSettings(BaseModel):
+    engine: str = Field(default="sqlite3")
+    name: str = Field(default="django.db")
+    port: int = Field(default=5432)
+    host: str = Field(default="127.0.0.1")
+
 class NetworkSettings(BaseModel):
     # TODO NOT IMPLEMENTED
     host: str = Field(default="127.0.0.1") # The used hostname
@@ -15,9 +28,10 @@ class NetworkSettings(BaseModel):
 
 class SystemSettings(BaseModel):
     debug_mode: bool = Field(default=True)
-    log_level: int = Field(default=0)
     language_code: str = Field(default="en-us")
     timezone: str = Field(default="UTC")
+    paths: PathSettings = PathSettings()
+    database: DatabaseSettings = DatabaseSettings()
 
 class UserSettings(BaseModel):
     max_entries: int = Field(default=1) # -1 = no limit
@@ -60,7 +74,7 @@ class Settings(BaseModel):
             data = json.load(f)
         return cls(**data)
 
-settings = Settings.from_json(BASE_DIR / "settings.json")
+settings = Settings.from_json(BASE_DIR / "../_instance/config/settings_dev.json")
 
 if __name__ == "__main__":
     print(settings)
