@@ -18,10 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from . import settings
-from Blog import urls as blog_urls
+from apps.Blog import urls as blog_urls
 
 urlpatterns = [
         path('blogposts/', include(blog_urls), name='blog'),
         path('admin/', admin.site.urls),
-        path('', include('FreundebuchWebpage.urls')),
+        path('', include('apps.FreundebuchWebpage.urls')),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
