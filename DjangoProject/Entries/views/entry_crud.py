@@ -1,11 +1,7 @@
-from typing import Optional
-from django.http import HttpResponse, HttpResponseNotAllowed
+from django.http import HttpResponseNotAllowed
 from django.shortcuts import render, redirect
-from Entries.models import EntryV1, CreateCode
-from Entries.custom_fields import shortcuts
-from FreundebuchWebpage.forms.entry_customization_form import EntryCustomizationForm
-from FreundebuchWebpage.forms.entry_form import EntryForm
-from .. import entry_helpers
+from Entries.models import EntryV1
+
 
 def delete(request, entry_id: int):
     entry = EntryV1.objects.filter(id=entry_id).first()

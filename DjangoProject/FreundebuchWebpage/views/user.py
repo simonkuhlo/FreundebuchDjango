@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render
-from ..entry_helpers import can_create_entry
 from Entries.models import EntryV1
 from settings import settings
 
@@ -49,6 +48,7 @@ def register_page(request):
 
 @login_required
 def account_page(request):
+    #TODO Change to HTMX request
     entries = EntryV1.objects.filter(owner_id=request.user.id)
     context = {
         "entries": entries,

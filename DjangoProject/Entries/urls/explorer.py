@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .. import views
+from FreundebuchWebpage import views
 
 urls = [
     path('', views.explorer.pages.book_start, name='book_start'),

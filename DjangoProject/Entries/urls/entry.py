@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .. import views
+from FreundebuchWebpage import views
 
 urls = [
     path('<int:entry_id>/edit/', views.entry.edit, name='edit_entry'),
