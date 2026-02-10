@@ -1,12 +1,6 @@
-import random
-import string
 from typing import Optional
 from Entries.models import EntryV1, CreateCode
 from settings import settings
-
-def generate_secret(length: int = 8) -> str:
-    random_string = ''.join(random.choices(string.ascii_letters + string.digits, k=length))
-    return random_string
 
 def check_permission(request, entry: Optional[EntryV1] = None) -> bool:
     if entry:

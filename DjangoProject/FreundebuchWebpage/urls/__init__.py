@@ -1,5 +1,5 @@
 """
-URL configuration for Project project.
+URL configuration for _project project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -16,13 +16,9 @@ Including another URLconf
 """
 from django.urls import path, include
 from . import user
-from . import pages, explorer
-from Entries.urls import editor, explorer, entry
+from . import pages
 
 urlpatterns = [
     path('', include(pages.urls), name='pages'),
-    path('explorer/', include(explorer.urls), name='explorer'),
-    path('entry/', include(entry.urls), name='entry'),
-    path('editor/', include(editor.urls), name='editor'),
     path('user/', include(user.urls), name='user'),
 ]
