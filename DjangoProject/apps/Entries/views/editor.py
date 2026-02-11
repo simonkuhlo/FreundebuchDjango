@@ -15,7 +15,7 @@ def editor(request, entry_id: Optional[int] = None):
             return render(request, "main/status_pages/permission_denied.html", status=401)
     else:
         if not can_create_entry(request):
-            return redirect("/editor/enter_key/", status=401)
+            return redirect("/entries/editor/enter_key/", status=401)
     match request.method:
         case 'POST':
             entry_form = EntryForm(request.POST, request.FILES, instance = entry)
@@ -31,9 +31,9 @@ def editor(request, entry_id: Optional[int] = None):
                 entry.owner = request.user
             entry.save()
             try:
-                return redirect(f"/explorer/entry/{entry.get_previous_by_created().id}/")
+                return redirect(f"/entries/explorer/entry/{entry.get_previous_by_created().id}/")
             except:
-                return redirect(f"/explorer/entry/first/")
+                return redirect(f"/entries/explorer/entry/first/")
         case 'GET':
             if entry:
                 entry.rendered_custom_field = custom_field_shortcuts.render_field_str(entry.custom_field_mode, entry)
