@@ -3,9 +3,9 @@ from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import render, redirect
 from apps.Entries.models import EntryV1, CreateCode
 from apps.Entries.custom_fields import shortcuts as custom_field_shortcuts
-from apps.Entries.forms import EntryCustomizationForm
+from ..forms.entry_customization_form import EntryCustomizationForm
 from apps.Entries.forms.entry_form import EntryForm
-from ..entry_helpers import can_create_entry, can_edit_entry
+from ..helpers import can_create_entry, can_edit_entry
 
 
 def editor(request, entry_id: Optional[int] = None):

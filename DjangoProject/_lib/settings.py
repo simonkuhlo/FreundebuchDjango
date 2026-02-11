@@ -74,7 +74,7 @@ class Settings(BaseModel):
             data = json.load(f)
         return cls(**data)
 
-settings = Settings.from_json(BASE_DIR / "../_instance/config/settings_dev.json")
+settings = Settings.from_json(BASE_DIR / "../config/settings_dev.json")
 
 if __name__ == "__main__":
     print(settings)

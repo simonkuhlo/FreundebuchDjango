@@ -1,9 +1,10 @@
 from django.urls import path
+from .. import views
 
 urls = [
-    path('<int:entry_id>/', apps.Entries.views.editor.editor, name='editor/edit_entry'),
-    path('new/', apps.Entries.views.editor.editor, name='editor/new_entry'),
-    path('enter_key/', apps.Entries.views.editor.enter_key, name='enter_key'),
-    path('enter_key/<str:key>', apps.Entries.views.editor.enter_key, name='enter_key'),
-    path('partial/custom_field/', apps.Entries.views.editor.custom_field, name='custom_field'),
+    path('<int:entry_id>/', views.editor.editor, name='editor/edit_entry'),
+    path('new/', views.editor.editor, name='editor/new_entry'),
+    path('enter_key/', views.editor.enter_key, name='enter_key'),
+    path('enter_key/<str:key>', views.editor.enter_key, name='enter_key'),
+    path('partial/custom_field/', views.editor.custom_field, name='custom_field'),
 ]

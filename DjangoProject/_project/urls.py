@@ -19,9 +19,12 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from . import settings
 from apps.Blog import urls as blog_urls
+from apps.Entries import urls as entry_urls
+from apps.FreundebuchWebpage import urls as webpage_urls
 
 urlpatterns = [
         path('blogposts/', include(blog_urls), name='blog'),
         path('admin/', admin.site.urls),
-        path('', include('apps.FreundebuchWebpage.urls')),
+        path('entries/', include(entry_urls)),
+        path('', include(webpage_urls)),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

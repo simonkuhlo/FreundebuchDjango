@@ -8,15 +8,15 @@
     "language_code" : "en-us",
     "timezone" : "UTC",
     "paths" : {
-      "path_dotenv" : "_instance/config/.env.local",
-      "path_database" : "_instance/data/django.db",
-      "path_nginx_conf" : "_instance/config/nginx.conf",
-      "media_root" : "_instance/data/media",
-      "static_root" : "_instance/data/staticfiles"
+      "path_dotenv" : "config/.env.local",
+      "path_database" : "data/django.db",
+      "path_nginx_conf" : "config/nginx.conf",
+      "media_root" : "data/media",
+      "static_root" : "data/staticfiles"
     },
     "database" : {
       "engine" : "sqlite3",
-      "name" : "_instance/data/django.db",
+      "name" : "data/django.db",
       "host" : "127.0.0.1",
       "port" : 5432
     }
@@ -38,7 +38,7 @@
       "active" : true,
       "log_level_override" : null,
       "file_path" : "",
-      "file_name" : "log.txt"
+      "file_name" : "data/log.txt"
     },
     "database" : {
       "active" : true,
