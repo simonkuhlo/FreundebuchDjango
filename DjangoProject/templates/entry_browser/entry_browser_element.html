@@ -1,4 +1,4 @@
-<a href="/explorer/entry/{{ entry.id }}/">
+<a href="{% url "Entries:Entry:view" entry_id=entry.id %}">
 <div
      style="min-height:200px; height: 200px; min-width:170px; width: 170px; box-sizing:border-box; border:1px solid black;
             display:flex; flex-direction:column;">

@@ -9,20 +9,20 @@
             <h1>Frontend</h1>
         </div>
         <div class="navbar">
-            <a href="/">Home</a>
-            <a href="/entry/new/">+ Create own entry</a>
+            <a href="{% url "WebPage:Pages:index" %}">Home</a>
+            <a href="{% url "Entries:Entry:new" %}">+ Create own entry</a>
             <div class="dropdown">
-                <a href="/explorer/" class="dropdown-toggle">View entries</a>
+                <a href="{% url "Entries:Explorer:book_start" %}" class="dropdown-toggle">View entries</a>
                 <div class="dropdown-menu">
-                    <a href="/explorer/">Explorer</a>
-                    <a href="/browser/">Browser</a>
+                    <a href="{% url "Entries:Explorer:book_start" %}">Explorer</a>
+                    <a href="{% url "Entries:Browser:root" %}">Browser</a>
                 </div>
             </div>
             <div class="spacer-h"></div>
             <div class="dropdown">
                 <a href="/other-stuff/" class="dropdown-toggle">Other Stuff</a>
                 <div class="dropdown-menu">
-                    <a href="/blogposts/browser/">Blog</a>
+                    <a href="{% url "Blog:browser" %}">Blog</a>
                 </div>
             </div>
             {% if request.user.is_superuser %}

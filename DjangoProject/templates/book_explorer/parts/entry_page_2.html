@@ -8,7 +8,7 @@
             {% if edit_mode %}
                 <input class="button" type="submit">
             {% else %}
-                <button hx-get="/explorer/partial/entry/{{ entry.id }}/next" hx-target="#page-root">Next</button>
+                <button hx-get="{% url "Entries:Explorer:next_entry" source_id=entry.id %}" hx-target="#page-root">Next</button>
             {% endif %}
         </div>
     </div>

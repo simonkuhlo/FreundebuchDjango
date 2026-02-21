@@ -19,7 +19,7 @@
             <p>Error: Your session is using an invalid code. Either you entered a code that doesn't exist or it expired.</p>
         {% endif %}
 
-        <form action="/creator/enter_key/" method="post">
+        <form action="{% url "Entries:Editor:enter_key" %}" method="post">
             {% csrf_token %}
             <input type="text" name="code">
             <input type="submit" value="Submit">

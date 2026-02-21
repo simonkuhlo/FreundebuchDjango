@@ -18,7 +18,9 @@ from django.urls import path, include
 from . import user
 from . import pages
 
+app_name = "WebPage"
+
 urlpatterns = [
-    path('', include(pages.urls), name='pages'),
-    path('user/', include(user.urls), name='user'),
+    path('', include(pages), name='pages'),
+    path('user/', include(user), name='user'),
 ]

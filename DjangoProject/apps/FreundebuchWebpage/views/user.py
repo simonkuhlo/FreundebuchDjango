@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render
 from apps.Entries.models import EntryV1
+from apps.Entries.helpers import can_create_entry
 
 
 def login_page(request):

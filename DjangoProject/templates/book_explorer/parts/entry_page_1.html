@@ -6,7 +6,7 @@
         {% include "book_explorer/parts/entry_elements/preferences.html" %}
         {% if not edit_mode %}
             <div class="box-h control-element">
-                <button hx-get="/explorer/partial/entry/{{ entry.id }}/prev" hx-target="#page-root">Back</button>
+                <button hx-get="{% url "Entries:Explorer:prev_entry" source_id=entry.id %}" hx-target="#page-root">Back</button>
                 <div class="spacer-h"></div>
             </div>
         {% endif %}

@@ -29,13 +29,13 @@
                     </div>
                     <div class="box-h-center">{{ entry.id }}</div>
                     <div class="box-h basic-spacing">
-                        <a href="/editor/{{ entry.id }}/" class="button expand-h">✏️</a>
-                        <a href="/editor/{{ entry.id }}/delete" class="button expand-h">❌</a>
+                        <a href="{% url "Entries:Entry:edit" entry_id=entry.id %}" class="button expand-h">✏️</a>
+                        <a href="{% url "Entries:Entry:delete" entry_id=entry.id %}" class="button expand-h">❌</a>
                     </div>
                 </div>
             {% endfor %}
             {% if can_create_entry %}
-                <a href="/entry/new/" class="clean_text">
+                <a href="{% url "Entries:Entry:new" %}" class="clean_text">
                     <div class="box-v basic-spacing card-s">
                         <div class="box-center">
                             +

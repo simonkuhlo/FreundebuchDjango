@@ -1,7 +1,11 @@
 {% extends "book_explorer/book.html" %}
 
 {% block start %}
-    <form action="/editor/{% if entry %}{{ entry.id }}{% else %}new{% endif %}/" method="post" enctype="multipart/form-data">
+    {% if entry %}
+        <form action="{% url "Entries:Editor:edit_entry" entry_id=entry.id %}" method="post" enctype="multipart/form-data">
+    {% else %}
+        <form action="{% url "Entries:Editor:new" %}" method="post" enctype="multipart/form-data">
+    {% endif %}
     {% csrf_token %}
     {{ entry_form.non_field_errors }}
     {% include "editor/settings-menu.html" %}

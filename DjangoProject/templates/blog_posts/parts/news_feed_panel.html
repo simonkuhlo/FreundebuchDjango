@@ -4,11 +4,11 @@
         <div class="box-h" id="news_feed-toolbar">
             <h3>News Feed</h3>
             <div class="spacer-h"></div>
-            <a class="button" href="/blogposts/browser/">Browse</a>
-            <button hx-get="/blogposts/partial/news/" hx-target="#news_feed-root">Refresh</button>
+            <a class="button" href="{% url "Blog:browser" %}">Browse</a>
+            <button hx-get="{% url "Blog:news_feed" %}" hx-target="#news_feed-root">Refresh</button>
         </div>
         <div class="box-v" id="news_feed-root">
-            <p hx-get="/blogposts/partial/news/" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
+            <p hx-get="{% url "Blog:news_feed" %}" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
                 Unable to load news feed.
             </p>
         </div>

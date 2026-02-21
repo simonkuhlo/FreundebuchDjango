@@ -5,7 +5,7 @@
     <div class="box-v blog_browser-frame">
     <h1>Blog Post Browser</h1>
     <div class="blog_browser-content_root">
-        <p hx-get="/blogposts/partial/news/" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
+        <p hx-get="{% url "Blog:news_feed" %}" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
             Unable to load browser content.
         </p>
     </div>

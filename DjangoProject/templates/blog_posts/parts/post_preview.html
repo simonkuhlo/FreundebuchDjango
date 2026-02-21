@@ -1,4 +1,4 @@
-<a href="/blogposts/read/{{ blog_post.id }}/" class="clean_text">
+<a href="{% url "Blog:reader" post_id=blog_post.id %}" class="clean_text">
 <div class="box-v blog_post_preview">
     <h3>{{ blog_post.title }}</h3>
     <p>{{ blog_post.preview|linebreaksbr }}</p>
