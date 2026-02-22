@@ -13,3 +13,4 @@ DjangoProject/django
 DjangoProject/.env.prod
 DjangoProject/log.txt
 /DjangoProject/data
+*.db
