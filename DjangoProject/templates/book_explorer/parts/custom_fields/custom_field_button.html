@@ -1,0 +1,13 @@
+{% extends "book_explorer/parts/custom_fields/custom_field_frame.html" %}
+
+{% block field_display %}
+    <a href="{{ custom_field_db_object.onclick_url }}">{{ custom_field_db_object.text }}</a>
+{% endblock %}
+
+{% block field_editor %}
+    <input type="hidden" id="custom_field_type" name="custom_field_type" value="button"/>
+    <div class="box-v basic-spacing">
+        <input type="text" name="custom_button_text" placeholder="Button Text">
+        <input type="url" name="custom_button_url" placeholder="Button URL">
+    </div>
+{% endblock %}

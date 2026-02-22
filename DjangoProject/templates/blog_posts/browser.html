@@ -1,0 +1,18 @@
+{% extends "main/main.html" %}
+
+{% block main %}
+    <link rel="stylesheet" href="/static/blog_posts/blog_posts.css">
+    <div class="box-v blog_browser-frame">
+    <h1>Blog Post Browser</h1>
+    <div class="blog_browser-content_root">
+        <p hx-get="{% url "Blog:news_feed" %}" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
+            Unable to load browser content.
+        </p>
+    </div>
+        <div class="spacer-v"></div>
+    <div class="blog_browser-control_panel">
+        <button disabled>Latest</button><button disabled>Previous</button><button disabled>Next</button><button disabled>Earliest</button><div class="spacer-h"></div>
+        <input disabled type="text" placeholder="Search"><button disabled>Go!</button>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "book_explorer/parts/custom_fields/custom_field_frame.html" %}
+
+{% block field_display %}
+    Custom field not found.
+{% endblock %}
+
+{% block field_editor %}
+    <div class="box-v">
+        Custom field type not found. Please reselect:
+        {% include "book_explorer/parts/custom_fields/custom_field_selector.html" %}
+    </div>
+{% endblock %}

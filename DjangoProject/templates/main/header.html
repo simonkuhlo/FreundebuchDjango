@@ -9,25 +9,33 @@
             <h1>Frontend</h1>
         </div>
         <div class="navbar">
-            <a href="/">Home</a>
-            <a href="/creator">+ Create own entry</a>
+            <a href="{% url "WebPage:Pages:index" %}">Home</a>
+            <a href="{% url "Entries:Entry:new" %}">+ Create own entry</a>
             <div class="dropdown">
-                <a href="/explorer" class="dropdown-toggle">View entries</a>
+                <a href="{% url "Entries:Explorer:book_start" %}" class="dropdown-toggle">View entries</a>
                 <div class="dropdown-menu">
-                    <a href="/explorer">Explorer</a>
-                    <a href="/browser">Browser</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <a target="_blank" rel="noopener noreferrer" href="/admin" class="dropdown-toggle">Admin</a>
-                <div class="dropdown-menu">
-                    <a target="_blank" rel="noopener noreferrer" href="/admin">Admin UI</a>
-                    <a target="_blank" rel="noopener noreferrer" href="/admin/Entries/createcode/">Manage creation keys</a>
-                    <a target="_blank" rel="noopener noreferrer" href="/admin/Entries/entryv1/">Manage entries</a>
+                    <a href="{% url "Entries:Explorer:book_start" %}">Explorer</a>
+                    <a href="{% url "Entries:Browser:root" %}">Browser</a>
                 </div>
             </div>
             <div class="spacer-h"></div>
-            <a href="/dedication">Dedication</a>
+            <div class="dropdown">
+                <a href="/other-stuff/" class="dropdown-toggle">Other Stuff</a>
+                <div class="dropdown-menu">
+                    <a href="{% url "Blog:browser" %}">Blog</a>
+                </div>
+            </div>
+            {% if request.user.is_superuser %}
+                <div class="dropdown">
+                    <a target="_blank" rel="noopener noreferrer" href="/admin/" class="dropdown-toggle">Admin</a>
+                    <div class="dropdown-menu dropdown-reverse">
+                        <a target="_blank" rel="noopener noreferrer" href="/admin">Admin UI</a>
+                        <a target="_blank" rel="noopener noreferrer" href="/admin/Entries/createcode/">Manage creation keys</a>
+                        <a target="_blank" rel="noopener noreferrer" href="/admin/Entries/entryv1/">Manage entries</a>
+                    </div>
+                </div>
+            {% endif %}
+            {% include "generic_parts/user_dropdown.html" %}
         </div>
     </div>
 </div>

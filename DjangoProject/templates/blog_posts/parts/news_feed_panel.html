@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="/static/blog_posts/blog_posts.css">
+<div class="box-v" id="news_feed_panel-frame">
+    <div class="box-v" id="news_feed-panel">
+        <div class="box-h" id="news_feed-toolbar">
+            <h3>News Feed</h3>
+            <div class="spacer-h"></div>
+            <a class="button" href="{% url "Blog:browser" %}">Browse</a>
+            <button hx-get="{% url "Blog:news_feed" %}" hx-target="#news_feed-root">Refresh</button>
+        </div>
+        <div class="box-v" id="news_feed-root">
+            <p hx-get="{% url "Blog:news_feed" %}" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
+                Unable to load news feed.
+            </p>
+        </div>
+    </div>
+</div>

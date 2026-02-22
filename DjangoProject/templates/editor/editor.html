@@ -1,0 +1,31 @@
+{% extends "book_explorer/book.html" %}
+
+{% block start %}
+    {% if entry %}
+        <form action="{% url "Entries:Editor:edit_entry" entry_id=entry.id %}" method="post" enctype="multipart/form-data">
+    {% else %}
+        <form action="{% url "Entries:Editor:new_entry" %}" method="post" enctype="multipart/form-data">
+    {% endif %}
+    {% csrf_token %}
+    {{ entry_form.non_field_errors }}
+    {% include "editor/settings-menu.html" %}
+{% endblock %}
+
+{% block content %}
+    {% with edit_mode=True %}
+        <div class="flip already_flipped">
+            <div class="back" data-entry_id="{{ entry.id }}" id="p{{ entry.id }}b">
+                {% include "book_explorer/parts/entry_page_1.html" with entry=current_entry %}
+            </div>
+        </div>
+        <div class="flip">
+            <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
+                {% include "book_explorer/parts/entry_page_2.html" with entry=previous_entry%}
+            </div>
+        </div>
+    {% endwith %}
+{% endblock %}
+
+{% block end %}
+    </form>
+{% endblock %}

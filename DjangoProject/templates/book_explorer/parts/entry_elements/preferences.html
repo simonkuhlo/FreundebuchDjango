@@ -1,0 +1,34 @@
+<div class="entry-element" id="preferences">
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.likes.as_field_group }}
+        {% else %}
+            I really like:
+            <p>{{ entry.likes }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.dislikes.as_field_group }}
+        {% else %}
+            I really don't like:
+            <p>{{ entry.dislikes }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.craziest_experience.as_field_group }}
+        {% else %}
+            My craziest experience:
+            <p>{{ entry.craziest_experience }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.loveliest_experience.as_field_group }}
+        {% else %}
+            My loveliest experience:
+            <p>{{ entry.loveliest_experience }}</p>
+        {% endif %}
+    </div>
+</div>

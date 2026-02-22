@@ -1,0 +1,15 @@
+{% extends "main/main.html" %}
+
+
+{% block main %}
+    <link rel="stylesheet" href="/static/blog_posts/blog_posts.css">
+    <a class="button" href="{% url "Blog:browser" %}" id="back_to_browser_button"><- Browser</a>
+    {% if blogpost %}
+        <div class="blogpost_reader-frame-outer">
+            <h1>{{ blogpost.title }}</h1>
+            <p>{{ blogpost.content|linebreaksbr }}</p>
+        </div>
+    {% else %}
+        Post not found.
+    {% endif %}
+{% endblock %}

@@ -25,6 +25,13 @@
     font-size: 18px;
 }
 
+.entry-element-field input:hover {
+    background-color: lightyellow;
+}
+.entry-element-field input:active {
+    background-color: antiquewhite;
+}
+
 .entry-element-field p{
     padding: 0;
     margin: 0;

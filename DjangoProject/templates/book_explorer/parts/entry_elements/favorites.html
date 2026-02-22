@@ -1,0 +1,47 @@
+<div class="entry-element" id="favorites-name">
+    MY FAVORITES
+</div>
+<div class="entry-element" id="favorites-1">
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.favorite_movie.as_field_group }}
+        {% else %}
+            Movie / Show
+            <p>{{ entry.favorite_movie }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.favorite_animal.as_field_group }}
+        {% else %}
+            Animal
+            <p>{{ entry.favorite_animal }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.favorite_food.as_field_group }}
+        {% else %}
+            Food
+            <p>{{ entry.favorite_food }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.favorite_book.as_field_group }}
+        {% else %}
+            Book / Literature
+            <p>{{ entry.favorite_book }}</p>
+        {% endif %}
+    </div>
+</div>
+<div class="entry-element" id="favorites-2">
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.favorite_music.as_field_group }}
+        {% else %}
+            Music
+            <p>{{ entry.favorite_music }}</p>
+        {% endif %}
+    </div>
+</div>

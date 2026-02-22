@@ -1,0 +1,88 @@
+<style>
+    #settings_container {
+        position: absolute;
+        top: 160px;
+        z-index: 1000;
+        background-color: lightcoral;
+    }
+  .float-controller {
+      min-height: 50px;
+      width: 20px;
+      cursor: move;
+      background-color: lightblue;
+      text-align: center;
+      align-content: center;
+  }
+  #settings_container label{
+      text-align: center;
+      align-content: center;
+      padding: 5px;
+  }
+  #settings-toggle {
+      display: none;
+  }
+  #settings-menu {
+      display: none;
+      background-color: lightcoral;
+  }
+  #settings-toggle-label {
+      transform: rotate(0);
+  }
+  #settings-toggle:checked ~ #settings-toggle-label {
+      transform: rotate(180deg);
+  }
+  #settings-toggle:checked ~ #settings-menu {
+      display: block;
+  }
+</style>
+
+<div class="box-h" id="settings_container">
+    <div class="float-controller" id="move">
+      ♥
+    </div>
+    <input id="settings-toggle" type="checkbox">
+    <label for="settings-toggle" id="settings-toggle-label">< <br> ⚙️ <br> <</label>
+    <div id="settings-menu">
+        <div class="box-v basic-spacing">
+            <div class="box-h-center">⚙️ Settings Menu ⚙️</div>
+            {{ customization_form }}
+        </div>
+    </div>
+</div>
+
+<script>
+    dragElement(document.getElementById("settings_container"));
+
+    function dragElement(element) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      const header = document.getElementById("move");
+      if (header) {
+        header.onmousedown = dragMouseDown;
+      } else {
+        element.onmousedown = dragMouseDown;
+      }
+
+      function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+      }
+
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+</script>

@@ -8,7 +8,7 @@
                         <a style="pointer-events: all" href="/browser/">entry browser</a>.
                     </p>
                 <div class="spacer-v"></div>
-                <button  hx-get="/explorer/partial/start" hx-target="#page-root" style="width: 100%">Start</button>
+                <button  hx-get="{% url "Entries:Explorer:first_entry" %}" hx-target="#page-root" style="width: 100%">Start</button>
             </div>
         </div>
     </div>

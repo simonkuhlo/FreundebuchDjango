@@ -1,0 +1,34 @@
+<div class="entry-element" id="about_me">
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.name.as_field_group }}
+        {% else %}
+            My name is:
+            <p>{{ entry.name }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.nicknames.as_field_group }}
+        {% else %}
+            People also call me:
+            <p>{{ entry.nicknames }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.birthday.as_field_group }}
+        {% else %}
+            My birthday is on:
+            <p>{{ entry.birthday }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.size.as_field_group }}
+        {% else %}
+            I am this tall:
+            <p>{{ entry.size }}</p>
+        {% endif %}
+    </div>
+</div>

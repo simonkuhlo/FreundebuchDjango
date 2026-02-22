@@ -1,0 +1,12 @@
+{% extends "book_explorer/parts/custom_fields/custom_field_frame.html" %}
+
+{% block field_display %}
+    <video controls preload="auto">
+        <source src="{{ custom_field_db_object.video.url }}">
+    </video>
+{% endblock %}
+
+{% block field_editor %}
+    <input type="hidden" id="custom_field_type" name="custom_field_type" value="video"/>
+    <input type="file" name="custom_video" accept="video/*">
+{% endblock %}

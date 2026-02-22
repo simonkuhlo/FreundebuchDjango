@@ -1,0 +1,13 @@
+.expand {
+    height: 100%;
+    width: 100%;
+    flex: 1 0 auto;
+}
+
+.expand-h {
+    width: 100%;
+}
+
+.expand-v {
+    height: 100%;
+}

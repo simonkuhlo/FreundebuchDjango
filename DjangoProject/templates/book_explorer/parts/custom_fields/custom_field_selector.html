@@ -1,0 +1,16 @@
+<div class="box-center">
+    <div class="box-h" style="gap: 5px;">
+        <input type="hidden" id="custom_field_type" name="custom_field_type" value=""/>
+        <form>
+            <select name="custom_field_select" id="custom_field_select">
+                <option value="txt">Custom Text</option>
+                <option value="img">Upload Image</option>
+                <option value="audio">Upload Audio</option>
+                <option value="canvas">Draw something</option>
+                <option value="video">Upload Video</option>
+                <option value="button">Make a button</option>
+            </select>
+            <button hx-post="{% url "Entries:Editor:custom_field" %}" hx-target="#custom" hx-encoding='multipart/form-data'>+ Add custom field</button>
+        </form>
+    </div>
+</div>

@@ -1,7 +1,7 @@
-<a href="/explorer/entry/{{ entry.id }}/">
-<div class="box-v basic-spacing"
+<a href="{% url "Entries:Entry:view" entry_id=entry.id %}">
+<div
      style="min-height:200px; height: 200px; min-width:170px; width: 170px; box-sizing:border-box; border:1px solid black;
-            display:flex; flex-direction:column; overflow:hidden;">
+            display:flex; flex-direction:column;">
 
         <div style="flex:1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
             {% if entry.image %}
@@ -10,7 +10,7 @@
             {% endif %}
         </div>
 
-    <div style="flex-shrink:0; padding:4px 8px;">
+    <div class="clean_text" style="flex-shrink:0; padding:4px 8px;">
         <h4 style="margin:0; text-overflow:ellipsis; white-space:nowrap; text-align: center">
             {{ entry.name }} {% if entry.nickname %} ({{ entry.nicknames }}) {% endif %}
         </h4>

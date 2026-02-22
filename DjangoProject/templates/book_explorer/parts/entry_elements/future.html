@@ -1,0 +1,18 @@
+<div class="entry-element" id="future">
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.want_to_become.as_field_group }}
+        {% else %}
+            In the future, I want to become...
+            <p>{{ entry.want_to_become }}</p>
+        {% endif %}
+    </div>
+    <div class="entry-element-field">
+        {% if edit_mode %}
+            {{ entry_form.biggest_idol.as_field_group }}
+        {% else %}
+            My biggest idol:
+            <p>{{ entry.biggest_idol }}</p>
+        {% endif %}
+    </div>
+</div>

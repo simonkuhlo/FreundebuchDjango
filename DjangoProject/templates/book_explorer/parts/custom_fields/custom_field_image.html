@@ -1,0 +1,10 @@
+{% extends "book_explorer/parts/custom_fields/custom_field_frame.html" %}
+
+{% block field_display %}
+    <img src="{{ custom_field_db_object.image.url }}" alt="Custom image">
+{% endblock %}
+
+{% block field_editor %}
+    <input type="hidden" id="custom_field_type" name="custom_field_type" value="img"/>
+    <input type="file" id="" name="custom_image" accept="image/*">
+{% endblock %}

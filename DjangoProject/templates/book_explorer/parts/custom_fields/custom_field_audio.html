@@ -1,0 +1,14 @@
+{% extends "book_explorer/parts/custom_fields/custom_field_frame.html" %}
+
+{% block field_display %}
+    <div class="box-center">
+        <audio controls preload="auto">
+            <source src="{{ custom_field_db_object.audio.url }}" type="audio/mpeg">
+        </audio>
+    </div>
+{% endblock %}
+
+{% block field_editor %}
+    <input type="hidden" id="custom_field_type" name="custom_field_type" value="audio"/>
+    <input type="file" name="custom_audio" accept="audio/*">
+{% endblock %}

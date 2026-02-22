@@ -1,0 +1,108 @@
+.blog_post_preview {
+    min-height: 150px;
+    min-width: 200px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #cccccc;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+.blog_post_preview:hover {
+    background-color: lightyellow;
+}
+
+.blog_post_preview:active {
+    background-color: antiquewhite;
+}
+
+.blog_post_preview h3 {
+    margin: 0;
+    padding-bottom: 2px;
+}
+.blog_post_preview P {
+    margin: 0;
+}
+
+#back_to_browser_button {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    width: 80px;
+}
+.blogpost_reader-frame-outer {
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+.blogpost_reader-frame-outer h1 {
+    text-align: center;
+}
+
+    #news_feed_panel-frame {
+    max-height: 100%;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+#news_feed-panel {
+    width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+#news_feed-toolbar {
+    padding: 5px;
+    align-items: center;
+    text-align: center;
+    text-wrap: nowrap;
+    gap: 5px;
+    box-sizing: border-box;
+}
+#news_feed-root {
+    width: 100%;
+    border: 1px solid black;
+    overflow-y: scroll;
+    gap: 5px;
+    padding: 3px;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.blog_browser-frame {
+    width: 100%;
+    padding-left: 20%;
+    padding-right: 20%;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+}
+.blog_browser-content_root {
+    width: 100%;
+    min-width: 300px;
+    flex: 0 1 auto;
+    box-sizing: border-box;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.blog_browser-content_root .blog_post_preview{
+    width: 250px;
+}
+.blog_browser-control_panel {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+    padding: 5px;
+    border: 1px solid black;
+}
+.blog_browser-control_panel button {
+    min-width: 80px;
+}

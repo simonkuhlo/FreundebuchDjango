@@ -9,6 +9,10 @@
     flex-direction: column;
 }
 
+.box-h input {
+    flex: 1 0 auto;
+}
+
 .basic-spacing {
     gap: 3px;
     padding: 3px;
@@ -16,6 +20,29 @@
 
 .box-center {
     width: 100%;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.box-center audio {
+    flex: 1 0 auto;
+}
+
+.box-h-center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.box-v-center {
     height: 100%;
     display: flex;
     justify-content: center;
@@ -24,3 +51,11 @@
     align-items: center;
     box-sizing: border-box;
 }
+
+.toolbar {
+      display: flex;
+      flex-direction: row;
+      padding: 5px;
+      gap: 3px;
+    align-items: center;
+  }

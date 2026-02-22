@@ -1,0 +1,233 @@
+{% extends "book_explorer/parts/custom_fields/custom_field_frame.html" %}
+
+{% block field_display %}
+    Canvas renderer goes here
+{% endblock %}
+
+{% block field_editor %}
+    <input type="hidden" id="custom_field_type" name="custom_field_type" value="canvas"/>
+    <!-- Trigger button -->
+    <button id="openPopup">Open popup</button>
+
+    <!-- Overlay + popup -->
+    <div id="overlay">
+      <div class="popup">
+        <h2>Draw something :)</h2>
+          <div class="toolbar">
+            <label>Color: <input type="color" id="colorPicker" value="#000000" /></label>
+            <label>Brush Size: <input type="range" id="brushSize" min="1" max="50" value="5" /></label>
+            <button id="eraserBtn">Eraser</button>
+            <button id="clearBtn">Clear</button>
+          </div>
+        <canvas id="canvas"></canvas>
+        <div id="brushPreview"></div>
+        <button id="closePopup">Close</button>
+      </div>
+    </div>
+    <style>
+      body { display: flex; flex-direction: column; align-items: center; font-family: sans-serif; margin: 20px; }
+      canvas {
+          border: 1px solid #ccc;
+          cursor: none;
+          height: 100%;
+          width: 100%;
+      }
+      .toolbar {
+          display: flex;
+          flex-direction: row;
+          padding: 5px;
+          gap: 3px;
+      }
+      #brushPreview {
+        position: absolute;
+        pointer-events: none;
+        border: 2px solid black;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.1);
+        transform: translate(-50%, -50%);
+      }
+    </style>
+    <style>
+            /* Hide overlay by default */
+        #overlay {
+          position: fixed;          /* Stay in same place while scrolling */
+          top: 0;
+          left: 0;
+          width: 100vw;             /* Full viewport width */
+          height: 100vh;            /* Full viewport height */
+          background: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+          display: none;            /* Hidden initially */
+          align-items: center;      /* Center popup vertically */
+          justify-content: center;  /* Center popup horizontally */
+          z-index: 9999;            /* In front of all other content */
+        }
+
+        /* The popup box */
+        .popup {
+          background: #fff;
+            display: flex;
+            flex-direction: column;
+          padding: 20px;
+          border-radius: 8px;
+          width: 400px;
+          max-width: 90%;
+          box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            box-sizing: border-box;
+        }
+    </style>
+    <script>
+        // Target your fixed child div(s)
+        const childDiv = document.getElementById('overlay');
+        const body = document.body;
+
+        // Append to body (moves it, doesn't copy)
+        body.appendChild(childDiv);
+    </script>
+    <script>
+        const overlay = document.getElementById('overlay');
+        document.getElementById('openPopup').onclick = () => overlay.style.display = 'flex';
+        document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';
+    </script>
+    <script>
+        dragElement(document.getElementById("controls"));
+
+        function dragElement(element) {
+          let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+          const header = document.getElementById("move");
+          if (header) {
+            header.onmousedown = dragMouseDown;
+          } else {
+            element.onmousedown = dragMouseDown;
+          }
+
+          function dragMouseDown(e) {
+            e.preventDefault();
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+          }
+
+          function elementDrag(e) {
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            element.style.top = (element.offsetTop - pos2) + "px";
+            element.style.left = (element.offsetLeft - pos1) + "px";
+          }
+
+          function closeDragElement() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+          }
+        }
+    </script>
+
+    <script>
+      const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+// Make the internal drawing buffer match the displayed size.
+// Call this whenever the popup opens or when you want to resize.
+function resizeCanvasToDisplaySize() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+
+  const displayWidth  = Math.round(rect.width * dpr);
+  const displayHeight = Math.round(rect.height * dpr);
+
+  if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+    canvas.width = displayWidth;
+    canvas.height = displayHeight;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // so drawing uses CSS pixels
+  }
+}
+
+// Example: resize when popup opens
+document.getElementById('openPopup').addEventListener('click', () => {
+  overlay.style.display = 'flex';
+  resizeCanvasToDisplaySize();
+});
+
+// Drawing logic
+let isDrawing = false;
+let currentColor = colorPicker.value;
+let currentSize = brushSize.value;
+let isEraser = false;
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  const x = (e.clientX - rect.left);
+  const y = (e.clientY - rect.top);
+  return { x, y };
+}
+
+canvas.addEventListener('mousedown', e => {
+  isDrawing = true;
+  const { x, y } = getPos(e);
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+});
+
+canvas.addEventListener('mouseup', () => {
+  isDrawing = false;
+  ctx.closePath();
+});
+
+canvas.addEventListener('mouseleave', () => {
+  isDrawing = false;
+});
+
+canvas.addEventListener('mousemove', e => {
+  // Brush preview
+  brushPreview.style.left = e.pageX + 'px';
+  brushPreview.style.top = e.pageY + 'px';
+  brushPreview.style.width = currentSize + 'px';
+  brushPreview.style.height = currentSize + 'px';
+  brushPreview.style.borderColor = isEraser ? 'white' : currentColor;
+
+  if (!isDrawing) return;
+
+  const { x, y } = getPos(e);
+  ctx.lineTo(x, y);
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.lineWidth = currentSize;
+  ctx.strokeStyle = isEraser ? 'white' : currentColor;
+  ctx.stroke();
+});
+
+// Controls
+colorPicker.addEventListener('input', e => {
+  currentColor = e.target.value;
+  if (!isEraser) brushPreview.style.borderColor = currentColor;
+});
+
+brushSize.addEventListener('input', e => {
+  currentSize = e.target.value;
+});
+
+eraserBtn.addEventListener('click', () => {
+  isEraser = !isEraser;
+  eraserBtn.textContent = isEraser ? 'Brush' : 'Eraser';
+});
+
+clearBtn.addEventListener('click', () => {
+  // Always clear full logical canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+// Init preview
+brushPreview.style.width = currentSize + 'px';
+brushPreview.style.height = currentSize + 'px';
+brushPreview.style.borderColor = currentColor;
+
+// Optional: keep canvas in sync on window resize
+window.addEventListener('resize', resizeCanvasToDisplaySize);
+
+    </script>
+
+
+{% endblock %}

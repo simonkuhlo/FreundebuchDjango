@@ -1,0 +1,55 @@
+
+
+
+<!-- Overlay + popup -->
+<div id="overlay">
+  <div class="popup">
+    <h2>My Popup</h2>
+
+    <canvas id="canvas" width="800" height="500"></canvas>
+    <div id="brushPreview"></div>
+    <button id="closePopup">Close</button>
+  </div>
+</div>
+
+<style>
+        /* Hide overlay by default */
+    #overlay {
+      position: fixed;          /* Stay in same place while scrolling */
+      top: 0;
+      left: 0;
+      width: 100vw;             /* Full viewport width */
+      height: 100vh;            /* Full viewport height */
+      background: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+      display: none;            /* Hidden initially */
+      align-items: center;      /* Center popup vertically */
+      justify-content: center;  /* Center popup horizontally */
+      z-index: 9999;            /* In front of all other content */
+    }
+
+    /* The popup box */
+    .popup {
+      background: #fff;
+        display: flex;
+        flex-direction: column;
+      padding: 20px;
+      border-radius: 8px;
+      width: 400px;
+      max-width: 90%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        box-sizing: border-box;
+    }
+</style>
+<script>
+    // Target your fixed child div(s)
+    const childDiv = document.getElementById('overlay');
+    const body = document.body;
+
+    // Append to body (moves it, doesn't copy)
+    body.appendChild(childDiv);
+</script>
+<script>
+    const overlay = document.getElementById('overlay');
+    document.getElementById('openPopup').onclick = () => overlay.style.display = 'flex';
+    document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';
+</script>

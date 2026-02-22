@@ -17,7 +17,7 @@
             *Available in v3
         </form>
     </div>
-    <div style="padding: 10px; display: flex; flex-wrap: wrap; flex-direction: row; width: 100%; overflow-x: scroll; align-items: center; gap: 15px; justify-content: center">
+    <div style="padding: 10px; flex: 1 0 auto; display: flex; flex-wrap: wrap; flex-direction: row; width: 100%; overflow-x: scroll; align-items: center; gap: 15px; justify-content: center">
         {% if entries %}
             {% for entry in entries %}
                 {% include "entry_browser/entry_browser_element.html" %}
@@ -30,17 +30,17 @@
     <div class="box-h basic-spacing" style="padding: 10px;">
         <a href="/browser/0/{{ interval }}/"> |< </a>
         {% if page > 0 %}
-        <a href="/browser/{{page|add:"-1"}}/{{ interval }}/"> < </a>
+        <a href="{% url "Entries:Browser:page" page=page|add:"-1" interval=interval %}"> > </a>
         {% else %}
         <
         {% endif %}
         Page: {{ page }}
         {% if not last_page %}
-        <a href="/browser/{{page|add:"1"}}/{{ interval }}/"> > </a>
+        <a href="{% url "Entries:Browser:page" page=page|add:"1" interval=interval %}"> > </a>
         {% else %}
         >
         {% endif %}
-        <a href="/browser/last/{{ interval }}"> >| </a>
+        <a href="{% url "Entries:Browser:last_page" interval=interval %}"> >| </a>
     </div>
 </div>
 {% endblock %}

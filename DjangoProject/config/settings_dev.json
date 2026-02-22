@@ -1,0 +1,48 @@
+{
+  "network" : {
+    "host" : "localhost",
+    "port" : 6969
+  },
+  "system" : {
+    "debug_mode" : true,
+    "language_code" : "en-us",
+    "timezone" : "UTC",
+    "paths" : {
+      "path_dotenv" : "config/.env.local",
+      "path_database" : "data/django.db",
+      "path_nginx_conf" : "config/nginx.conf",
+      "media_root" : "data/media",
+      "static_root" : "data/staticfiles"
+    },
+    "database" : {
+      "engine" : "sqlite3",
+      "name" : "data/django.db",
+      "host" : "127.0.0.1",
+      "port" : 5432
+    }
+  },
+  "entries" : {
+    "creation_protected" : true
+  },
+  "user" : {
+    "max_entries" : 1,
+    "code_overrides_limit" : true
+  },
+  "logging" : {
+    "level" : 5,
+    "console" : {
+      "active" : true,
+      "log_level_override" : null
+    },
+    "file" : {
+      "active" : true,
+      "log_level_override" : null,
+      "file_path" : "",
+      "file_name" : "data/log.txt"
+    },
+    "database" : {
+      "active" : true,
+      "log_level_override" : null
+    }
+  }
+}

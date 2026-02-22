@@ -1,0 +1,11 @@
+{% if request.user.is_authenticated %}
+    <div class="dropdown">
+        <a href="{% url "WebPage:User:account" %}" class="dropdown-toggle">Account</a>
+        <div class="dropdown-menu dropdown-reverse">
+            <a href="{% url "WebPage:User:account" %}">Manage Account</a>
+            <a href="{% url "WebPage:User:logout" %}">Logout</a>
+        </div>
+    </div>
+{% else %}
+    <a href="{% url "WebPage:User:login" %}">Login</a>
+{% endif %}
