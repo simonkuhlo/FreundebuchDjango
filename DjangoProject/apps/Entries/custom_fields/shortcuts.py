@@ -42,12 +42,12 @@ def render_field(key:str, request:HttpRequest, entry:Optional[EntryV1] = None, e
     try:
         handler = get_handler(key)
     except KeyError:
-        return render(request, "book_explorer/parts/custom_fields/not_found.html")
+        return render(request, "book/parts/custom_fields/not_found.html")
     return handler.get_rendered(request, entry, edit_mode=edit_mode)
 
 def render_field_str(key:str, entry:Optional[EntryV1] = None, edit_mode: bool = False) -> str:
     try:
         handler = get_handler(key)
     except KeyError:
-        return render_to_string("book_explorer/parts/custom_fields/not_found.html")
+        return render_to_string("book/parts/custom_fields/not_found.html")
     return handler.get_rendered_str(entry, edit_mode=edit_mode)

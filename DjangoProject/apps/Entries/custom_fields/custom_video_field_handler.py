@@ -9,7 +9,7 @@ from ..models import EntryV1, CustomVideoField
 class CustomVideoFieldHandler(CustomFieldHandler):
     @property
     def template_name(self) -> str:
-        return "book_explorer/parts/custom_fields/custom_field_video.html"
+        return "book/parts/custom_fields/custom_field_video.html"
 
     @property
     def model(self) -> Type[models.Model]:

@@ -10,7 +10,7 @@ from ..models import EntryV1, CustomImageField
 class CustomImageFieldHandler(CustomFieldHandler):
     @property
     def template_name(self) -> str:
-        return "book_explorer/parts/custom_fields/custom_field_image.html"
+        return "book/parts/custom_fields/custom_field_image.html"
 
     @property
     def model(self) -> Type[models.Model]:

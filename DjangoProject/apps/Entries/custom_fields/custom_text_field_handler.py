@@ -8,7 +8,7 @@ from ..models import EntryV1, CustomTextField
 class CustomTextFieldHandler(CustomFieldHandler):
     @property
     def template_name(self) -> str:
-        return "book_explorer/parts/custom_fields/custom_field_text.html"
+        return "book/parts/custom_fields/custom_field_text.html"
 
     @property
     def model(self) -> Type[models.Model]:
