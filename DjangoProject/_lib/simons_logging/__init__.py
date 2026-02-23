@@ -1,6 +1,6 @@
 from typing import List
 from .logger import Logger
-from .logging_output import SimpleFileOutput, SimplePrintOutput, LoggingOutput
+from .logging_output import SimpleFileOutput, SimplePrintOutput, AbstractLoggingOutput
 from _lib.settings import settings
 
 file_output: SimpleFileOutput = SimpleFileOutput(
@@ -13,5 +13,5 @@ console_output: SimplePrintOutput = SimplePrintOutput(
     log_level_override=settings.logging.console.log_level_override
 )
 
-outputs: List[LoggingOutput] = [file_output, console_output]
+outputs: List[AbstractLoggingOutput] = [file_output, console_output]
 default_logger = Logger(outputs)

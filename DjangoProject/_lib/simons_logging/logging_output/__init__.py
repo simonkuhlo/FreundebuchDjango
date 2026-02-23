@@ -1,3 +1,3 @@
-from .abstract_logging_output import LoggingOutput
+from .abstract_logging_output import AbstractLoggingOutput
 from .simple_file_output import SimpleFileOutput
 from .simple_print_output import SimplePrintOutput

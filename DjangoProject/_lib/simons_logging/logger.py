@@ -1,11 +1,11 @@
 from typing import List
 from .log_level import LogLevel
-from .logging_output import LoggingOutput
+from .logging_output import AbstractLoggingOutput
 from .log_message import LogMessage
 
 class Logger:
-    def __init__(self, outputs: List[LoggingOutput]):
-        self.outputs: List[LoggingOutput] = outputs
+    def __init__(self, outputs: List[AbstractLoggingOutput]):
+        self.outputs: List[AbstractLoggingOutput] = outputs
 
     def log(self, msg:LogMessage):
         for output in self.outputs:

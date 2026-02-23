@@ -13,6 +13,9 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from _lib.settings import settings as instance_settings
+from _lib.simons_logging import default_logger, Logger
+
+logger:Logger = default_logger
 
 load_dotenv(instance_settings.system.paths.path_dotenv)
 

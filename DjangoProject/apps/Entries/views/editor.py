@@ -26,14 +26,14 @@ def editor(request, entry_id: Optional[int] = None):
                     "entry_form": entry_form
                 }
                 return render(request, "editor/editor.html", context=context)
-            entry = entry_form.save()
+            entry:EntryV1 = entry_form.save()
+            entry.custom_field_mode = request.POST.get("custom_field_type")
+            entry.save()
+            custom_field_shortcuts.create(request, entry)
             if request.user.is_authenticated:
                 entry.owner = request.user
             entry.save()
-            try:
-                return redirect(f"/entries/explorer/entry/{entry.get_previous_by_created().id}/")
-            except:
-                return redirect(f"/entries/explorer/entry/first/")
+            return redirect("Entries:Entry:view", entry_id=entry.id)
         case 'GET':
             if entry:
                 entry.rendered_custom_field = custom_field_shortcuts.render_field_str(entry.custom_field_mode, entry)
