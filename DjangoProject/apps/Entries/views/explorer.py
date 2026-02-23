@@ -61,6 +61,7 @@ def book_start(request) -> HttpResponse:
 
 def entry(request, source_id:int) -> HttpResponse:
     entry_object = get_object_or_404(EntryV1, pk=source_id)
+    entry_object.rendered_custom_field = shortcuts.render_field_str(entry_object.custom_field_mode, entry_object)
     context = {
         "current_entry": entry_object
                }

@@ -11,6 +11,7 @@ from .custom_canvas_field_handler import CustomCanvasFieldHandler
 from .custom_button_field_handler import CustomButtonFieldHandler
 from .custom_video_field_handler import CustomVideoFieldHandler
 from apps.Entries.models import EntryV1
+from _project.settings import logger
 
 custom_field_mapping = {
     "txt" : CustomTextFieldHandler,
@@ -28,10 +29,12 @@ def get_handler(key:str) -> CustomFieldHandler:
     else:
         raise KeyError("Custom field key not found.")
 
-def create(key:str, request:HttpRequest, entry:EntryV1) -> None:
+def create(request:HttpRequest, entry:EntryV1) -> None:
     try:
-        handler = get_handler(key)
+        handler = get_handler(entry.custom_field_mode)
         handler.create(request, entry)
+    except Exception as e:
+        logger.log_error(f"Error while creating custom field: {e}")
     finally:
         pass
 
