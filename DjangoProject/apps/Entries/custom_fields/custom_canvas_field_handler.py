@@ -9,7 +9,7 @@ from ..models import EntryV1, CustomCanvasField
 class CustomCanvasFieldHandler(CustomFieldHandler):
     @property
     def template_name(self) -> str:
-        return "book_explorer/parts/custom_fields/custom_field_canvas.html"
+        return "book/parts/custom_fields/custom_field_canvas.html"
 
     @property
     def model(self) -> Type[models.Model]:

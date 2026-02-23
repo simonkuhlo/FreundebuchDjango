@@ -1,0 +1,29 @@
+{% include "book/parts/entry_custom_style.html" with entry=current_entry%}
+
+{% if previous_entry != None %}
+    {% include "book/parts/entry_custom_style.html" with entry=previous_entry%}
+    <div class="flip already_flipped">
+        <div class="back">
+            {% include "book/parts/entry_page_1.html" with entry=previous_entry %}
+        </div>
+    </div>
+{% endif %}
+
+<div class="flip {% if transition == "prev" %} unflipped {% else %} flipped {% endif %}" style="z-index:1;">
+    <div class="back">
+        {% include "book/parts/entry_page_1.html" with entry=current_entry %}
+    </div>
+    <div class="front">
+        {% if previous_entry != None %}
+            {% include "book/parts/entry_page_2.html" with entry=previous_entry%}
+        {% else %}
+            {% include "book/parts/start_page.html" %}
+        {% endif %}
+    </div>
+</div>
+
+<div class="flip">
+    <div class="front">
+        {% include "book/parts/entry_page_2.html" with entry=current_entry %}
+    </div>
+</div>

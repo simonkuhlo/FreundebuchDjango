@@ -2,13 +2,13 @@
     {% if entry.rendered_custom_field %}
         {{ entry.rendered_custom_field|safe }}
         {% if edit_mode %}
-            {% include "book_explorer/parts/custom_fields/custom_field_selector.html" %}
+            {% include "book/parts/custom_fields/custom_field_selector.html" %}
         {% endif %}
     {% else %}
         {% if edit_mode %}
-            {% include "book_explorer/parts/custom_fields/custom_field_selector.html" %}
+            {% include "book/parts/custom_fields/custom_field_selector.html" %}
         {% else %}
-            {% include "book_explorer/parts/custom_fields/not_found.html" %}
+            {% include "book/parts/custom_fields/not_found.html" %}
         {% endif %}
     {% endif %}
 </div>

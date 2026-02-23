@@ -15,7 +15,7 @@ def first(request) -> HttpResponse:
         "transition": "next",
         "edit_mode": False
     }
-    return render(request, "book_explorer/parts/animated_entry.html", context)
+    return render(request, "book/parts/animated_entry.html", context)
 
 def next_entry(request, source_id: int) -> HttpResponse:
     source_entry = EntryV1.objects.filter(pk=source_id).first()
@@ -34,7 +34,7 @@ def next_entry(request, source_id: int) -> HttpResponse:
         "transition": "next",
         "edit_mode": False
                }
-    return render(request, "book_explorer/parts/animated_entry.html", context)
+    return render(request, "book/parts/animated_entry.html", context)
 
 
 def previous_entry(request, source_id: int) -> HttpResponse:
@@ -54,10 +54,10 @@ def previous_entry(request, source_id: int) -> HttpResponse:
         "transition" : "prev",
         "edit_mode" : False
     }
-    return render(request, "book_explorer/parts/animated_entry.html", context)
+    return render(request, "book/parts/animated_entry.html", context)
 
 def book_start(request) -> HttpResponse:
-    return render(request, "book_explorer/book.html")
+    return render(request, "book/book.html")
 
 def entry(request, source_id:int) -> HttpResponse:
     entry_object = get_object_or_404(EntryV1, pk=source_id)
@@ -65,4 +65,4 @@ def entry(request, source_id:int) -> HttpResponse:
     context = {
         "current_entry": entry_object
                }
-    return render(request, "book_explorer/view_entry.html", context)
+    return render(request, "book/view_entry.html", context)

@@ -9,7 +9,7 @@ from ..models import EntryV1, CustomAudioField
 class CustomAudioFieldHandler(CustomFieldHandler):
     @property
     def template_name(self) -> str:
-        return "book_explorer/parts/custom_fields/custom_field_audio.html"
+        return "book/parts/custom_fields/custom_field_audio.html"
 
     @property
     def model(self) -> Type[models.Model]:
