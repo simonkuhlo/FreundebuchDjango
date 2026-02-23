@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.Entries.apps.EntriesConfig',
     'apps.FreundebuchWebpage.apps.FreundebuchwebpageConfig',
-    'apps.Blog.apps.BlogConfig'
+    'apps.Blog.apps.BlogConfig',
+    "apps.EntryEditor.apps.EntryeditorConfig"
 ]
 
 MIDDLEWARE = [

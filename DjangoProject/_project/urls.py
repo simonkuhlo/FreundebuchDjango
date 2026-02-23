@@ -21,10 +21,12 @@ from . import settings
 from apps.Blog import urls as blog_urls
 from apps.Entries import urls as entry_urls
 from apps.FreundebuchWebpage import urls as webpage_urls
+from apps.EntryEditor import urls as editor_urls
 
 urlpatterns = [
         path('blogposts/', include(blog_urls), name='blog'),
         path('admin/', admin.site.urls),
         path('entries/', include(entry_urls)),
+        path('editor/', include(editor_urls)),
         path('', include(webpage_urls)),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
