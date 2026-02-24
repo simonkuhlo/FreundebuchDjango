@@ -20,7 +20,7 @@ def editor(request, entry_id: Optional[int] = None):
     match request.method:
         case 'POST':
             entry_form = EntryForm(request.POST, request.FILES, instance = entry)
-            entry_settings_form = EntrySettingsForm(request.POST, instance = entry)
+
             if not entry_form.is_valid():
                 entry.rendered_custom_field = custom_field_shortcuts.render_field_str(entry.custom_field_mode, entry)
                 context = {
@@ -35,13 +35,19 @@ def editor(request, entry_id: Optional[int] = None):
             if request.user.is_authenticated:
                 entry.owner = request.user
             entry.save()
+            entry_settings_form = EntrySettingsForm(request.POST, instance=entry)
+            entry_settings_form.save()
+            customization_form = EntryCustomizationForm(request.POST, instance=entry)
+            new_customization = customization_form.save()
+            entry.customization = new_customization
+            entry.save()
             return redirect("Entries:Entry:view", entry_id=entry.id)
         case 'GET':
             if entry:
                 entry.rendered_custom_field = custom_field_shortcuts.render_field_str(entry.custom_field_mode, entry)
             entry_form = EntryForm(instance = entry)
             entry_settings_form = EntrySettingsForm(instance = entry)
-            customization_form = EntryCustomizationForm()
+            customization_form = EntryCustomizationForm(instance = entry)
             context = {
                 'entry': entry,
                 "entry_form" : entry_form,

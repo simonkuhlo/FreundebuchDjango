@@ -1,24 +1,22 @@
 {% if entry %}
-{% if entry.custom_style %}
 <style>
 .entry-{{ entry.id }} {
-    background-color: {{ entry.custom_style.background_color }};
+    background-color: {{ entry.background_color }};
 }
 
 .entry-{{ entry.id }} *{
-    font-color: {{ entry.custom_style.font_color }};
-    font-style: {{ entry.custom_style.font_style }};
+    color: {{ entry.font_color }};
+    font-style: {{ entry.font_style }};
 }
 
 .entry-{{ entry.id }} .bordered{
-    border-color: {{ entry.custom_style.border_color }};
-    border-width: {{ entry.custom_style.border_width }};
-    border-style: {{ entry.custom_style.border_style }};
-    border-radius: {{ entry.custom_style.border_radius }};
+    border-color: {{ entry.border_color }};
+    border-width: {{ entry.border_width }};
+    border-style: {{ entry.border_style }};
+    border-radius: {{ entry.border_radius }};
 }
 
-{{ entry.custom_style.additional_css }}
+{{ entry.customization.additional_css }}
 
 </style>
-{% endif %}
 {% endif %}

@@ -1,11 +1,11 @@
 from django.forms import ModelForm, ColorInput
 from django.forms.fields import CharField
 
-from apps.Entries.models import EntryCustomization
+from apps.Entries.models import EntryV1
 
 class EntryCustomizationForm(ModelForm):
     class Meta:
-        model = EntryCustomization
+        model = EntryV1
         fields = [
             "font_color",
             "font_style",
