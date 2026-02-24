@@ -1,0 +1,12 @@
+<table>
+    {% for field in customization_form %}
+        <tr>
+            <td>
+                {{ field.errors }}{{ field.label_tag }}
+            </td>
+            <td>
+                {{ field }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>

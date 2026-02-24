@@ -45,7 +45,10 @@
     <div id="settings-menu">
         <div class="box-v basic-spacing">
             <div class="box-h-center">⚙️ Settings Menu ⚙️</div>
-            {{ customization_form }}
+            {% block menu-content %}
+                {% include "editor/entry_settings_form.html" %}
+                {% include "editor/customization_form.html" %}
+            {% endblock %}
         </div>
     </div>
 </div>
