@@ -15,6 +15,7 @@ class EntryV1(models.Model):
     ## Meta Information
     owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     published = models.BooleanField(default=True)
+    enable_custom_style = models.BooleanField(default=False)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
     ## -- Questions --
@@ -43,6 +44,8 @@ class EntryV1(models.Model):
     ## -- Customization --
     font_color = models.CharField(max_length=20, blank=True, null=True)
     font_style = models.CharField(max_length=30, blank=True, null=True)
+    font_family = models.CharField(max_length=30, blank=True, null=True)
+    font_size = models.IntegerField(blank=True, null=True)
     border_color = models.CharField(max_length=20, blank=True, null=True)
     border_width = models.IntegerField(blank=True, null=True)
     border_style = models.CharField(max_length=100, blank=True, null=True)

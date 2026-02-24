@@ -32,7 +32,7 @@
     background-color: antiquewhite;
 }
 
-.entry-field h4 {
+.entry-field h4,h3 {
     margin: 0;
     font-weight: normal;
 }

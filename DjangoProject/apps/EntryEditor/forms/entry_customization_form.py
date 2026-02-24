@@ -9,6 +9,8 @@ class EntryCustomizationForm(ModelForm):
         fields = [
             "font_color",
             "font_style",
+            "font_family",
+            "font_size",
             "border_color",
             "border_width",
             "border_style",

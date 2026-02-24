@@ -5,5 +5,6 @@ class EntrySettingsForm(ModelForm):
     class Meta:
         model = EntryV1
         fields = [
-            "published"
+            "published",
+            "enable_custom_style"
         ]

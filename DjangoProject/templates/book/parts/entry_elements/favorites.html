@@ -1,7 +1,7 @@
-<div class="entry-element" id="favorites-name">
-    MY FAVORITES
+<div class="entry-element bordered" id="favorites-name">
+    <h3>MY FAVORITES</h3>
 </div>
-<div class="entry-element" id="favorites-1">
+<div class="entry-element bordered" id="favorites-1">
     <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.favorite_movie.as_field_group }}
@@ -35,7 +35,7 @@
         {% endif %}
     </div>
 </div>
-<div class="entry-element" id="favorites-2">
+<div class="entry-element bordered" id="favorites-2">
     <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.favorite_music.as_field_group }}
