@@ -4,19 +4,7 @@
 {% block main %}
     <div class="box-v" style="width: 100%; align-items: center">
 <h1>Entry list</h1>
-    <div class="box-h">
-        <form action="">
-            <input disabled type="text" placeholder="Search...">
-            <input disabled type="submit">
-            <label for="">Sort by: </label>
-            <select disabled name="" id="">
-                <option value="">ID</option>
-                <option value="">Name</option>
-            </select>
-            <button disabled>Asc</button>
-            *Available in v3
-        </form>
-    </div>
+    {% include "entry_browser/entry_browser_toolbar.html" %}
     <div style="padding: 10px; flex: 1 0 auto; display: flex; flex-wrap: wrap; flex-direction: row; width: 100%; overflow-x: scroll; align-items: center; gap: 15px; justify-content: center">
         {% if entries %}
             {% for entry in entries %}
