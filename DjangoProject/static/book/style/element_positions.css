@@ -43,7 +43,7 @@
     background: #FFFFFFFF;
 }
 
-.entry-container #about_me .entry-element-field {
+.entry-container #about_me .entry-field {
     flex-direction: row;
     gap: 5px;
 }

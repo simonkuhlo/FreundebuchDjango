@@ -1,34 +1,34 @@
 <div class="entry-element" id="about_me">
-    <div class="entry-element-field">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.name.as_field_group }}
         {% else %}
-            My name is:
-            <p>{{ entry.name }}</p>
+            <h4 class="entry-field-title">My name is:</h4>
+            <p class="entry-field-value">{{ entry.name }}</p>
         {% endif %}
     </div>
-    <div class="entry-element-field">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.nicknames.as_field_group }}
         {% else %}
-            People also call me:
-            <p>{{ entry.nicknames }}</p>
+            <h4 class="entry-field-title">People also call me:</h4>
+            <p class="entry-field-value">{{ entry.nicknames }}</p>
         {% endif %}
     </div>
-    <div class="entry-element-field">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.birthday.as_field_group }}
         {% else %}
-            My birthday is on:
-            <p>{{ entry.birthday }}</p>
+            <h4 class="entry-field-title">My birthday is on:</h4>
+            <p class="entry-field-value">{{ entry.birthday }}</p>
         {% endif %}
     </div>
-    <div class="entry-element-field">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.size.as_field_group }}
         {% else %}
-            I am this tall:
-            <p>{{ entry.size }}</p>
+            <h4 class="entry-field-title">I am this tall:</h4>
+            <p class="entry-field-value">{{ entry.size }}</p>
         {% endif %}
     </div>
 </div>

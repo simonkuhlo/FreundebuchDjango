@@ -10,7 +10,7 @@
     pointer-events: auto;
 }
 
-.entry-element-field {
+.entry-field {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -18,21 +18,26 @@
     pointer-events: auto;
 }
 
-.entry-element-field input{
+.entry-field input{
     flex-grow: 1;
     border: none;
     border-bottom: 1px dashed black;
     font-size: 18px;
 }
 
-.entry-element-field input:hover {
+.entry-field input:hover {
     background-color: lightyellow;
 }
-.entry-element-field input:active {
+.entry-field input:active {
     background-color: antiquewhite;
 }
 
-.entry-element-field p{
+.entry-field h4 {
+    margin: 0;
+    font-weight: normal;
+}
+
+.entry-field p{
     padding: 0;
     margin: 0;
     min-height: 28px;
@@ -42,7 +47,7 @@
     font-size: 18px;
 }
 
-.entry-element-field input:focus {
+.entry-field input:focus {
     outline: none;
     border: none;
     border-bottom: 2px dashed blue;
