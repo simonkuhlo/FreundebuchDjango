@@ -1,9 +1,15 @@
 {% if entry %}
 {% if entry.enable_custom_style %}
 <style>
-.entry-{{ entry.id }} {
+.entry-{{ entry.id }}{
     {% if entry.background_color %}
         background-color: {{ entry.background_color }};
+    {% endif %}
+}
+
+.entry-{{ entry.id }} .entry-element{
+    {% if entry.element_background_color %}
+        background-color: {{ entry.element_background_color }};
     {% endif %}
 }
 
@@ -20,6 +26,14 @@
     {% if entry.font_size %}
         font-size: {{ entry.font_size }}px;
     {% endif %}
+}
+
+.entry-{{ entry.id }} .entry-field-title{
+    font-size: {{ entry.question_font_size }}px;
+}
+
+.entry-{{ entry.id }} .entry-field-value{
+    font-size: {{ entry.answer_font_size }}px;
 }
 
 .entry-{{ entry.id }} .bordered{

@@ -73,7 +73,6 @@
   left: 0;
   background-color: #F8F0E9;
   box-sizing: border-box;
-  padding: 10px;
 }
 
 .back {
@@ -87,7 +86,6 @@
   backface-visibility: hidden;
   background-color: #F8F0E9;
     box-sizing: border-box;
-    padding: 10px;
 }
 
 .flip .control-element {

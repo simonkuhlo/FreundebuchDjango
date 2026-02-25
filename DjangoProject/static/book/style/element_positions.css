@@ -26,7 +26,6 @@
     height: 100%;
     justify-content: center;
     align-items:center;
-    background-color: white;
 }
 .entry-container #image label:hover {
     background-color: lightyellow;
@@ -40,7 +39,6 @@
     top: 25px;
     width: 450px;
     max-height: 255px;
-    background: #FFFFFFFF;
 }
 
 .entry-container #about_me .entry-field {
@@ -54,7 +52,6 @@
     top: 317px;
     max-height: 300px;
     width: 230px;
-    background: #FFFFFFFF;
     rotate: 350deg;
 }
 
@@ -64,7 +61,6 @@
     top: 285px;
     max-height: 350px;
     width: 320px;
-    background: #FFFFFFFF;
 }
 
 .entry-container #future{

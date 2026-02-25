@@ -43,14 +43,15 @@ class EntryV1(models.Model):
 
     ## -- Customization --
     font_color = models.CharField(max_length=20, blank=True, null=True)
-    font_style = models.CharField(max_length=30, blank=True, null=True)
-    font_family = models.CharField(max_length=30, blank=True, null=True)
-    font_size = models.IntegerField(blank=True, null=True)
+    font = models.CharField(max_length=30, blank=True, null=True)
+    question_font_size = models.IntegerField(default=20)
+    answer_font_size = models.IntegerField(default=20)
     border_color = models.CharField(max_length=20, blank=True, null=True)
     border_width = models.IntegerField(blank=True, null=True)
     border_style = models.CharField(max_length=100, blank=True, null=True)
     border_radius = models.IntegerField(blank=True, null=True)
     background_color = models.CharField(max_length=20, blank=True, null=True)
+    element_background_color = models.CharField(max_length=20, blank=True, null=True)
     # TODO add validation
     additional_css = models.TextField(blank=True, null=True)
 
