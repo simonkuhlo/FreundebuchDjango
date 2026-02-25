@@ -1,26 +1,26 @@
-<div class="entry-element" id="contact">
-    <div class="entry-element-field">
+<div class="entry-element bordered" id="contact">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.origin.as_field_group }}
         {% else %}
-            I am from:
-            <p>{{ entry.origin }}</p>
+            <h4 class="entry-field-title">I am from:</h4>
+            <p class="entry-field-value">{{ entry.origin }}</p>
         {% endif %}
     </div>
-    <div class="entry-element-field">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.location.as_field_group }}
         {% else %}
-            I live in:
-            <p>{{ entry.location }}</p>
+            <h4 class="entry-field-title">I live in:</h4>
+            <p class="entry-field-value">{{ entry.location }}</p>
         {% endif %}
     </div>
-    <div class="entry-element-field">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.contact.as_field_group }}
         {% else %}
-            How you can reach me:
-            <p>{{ entry.contact }}</p>
+            <h4 class="entry-field-title">How you can reach me:</h4>
+            <p class="entry-field-value">{{ entry.contact }}</p>
         {% endif %}
     </div>
 </div>

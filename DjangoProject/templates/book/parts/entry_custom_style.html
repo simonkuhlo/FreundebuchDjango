@@ -1,23 +1,55 @@
 {% if entry %}
-{% if entry.custom_style %}
+{% if entry.enable_custom_style %}
 <style>
-.entry-{{ entry.id }} {
-    background-color: {{ entry.custom_style.background_color }};
+.entry-{{ entry.id }}{
+    {% if entry.background_color %}
+        background-color: {{ entry.background_color }};
+    {% endif %}
+}
+
+.entry-{{ entry.id }} .entry-element{
+    {% if entry.element_background_color %}
+        background-color: {{ entry.element_background_color }};
+    {% endif %}
 }
 
 .entry-{{ entry.id }} *{
-    font-color: {{ entry.custom_style.font_color }};
-    font-style: {{ entry.custom_style.font_style }};
+    {% if entry.font_color %}
+        color: {{ entry.font_color }};
+    {% endif %}
+    {% if entry.font_style %}
+        font-style: {{ entry.font_style }};
+    {% endif %}
+    {% if entry.font_family %}
+        font-family: {{ entry.font_family|safe }};
+    {% endif %}
+    {% if entry.font_size %}
+        font-size: {{ entry.font_size }}px;
+    {% endif %}
+}
+
+.entry-{{ entry.id }} .entry-field-title{
+    font-size: {{ entry.question_font_size }}px;
+}
+
+.entry-{{ entry.id }} .entry-field-value{
+    font-size: {{ entry.answer_font_size }}px;
 }
 
 .entry-{{ entry.id }} .bordered{
-    border-color: {{ entry.custom_style.border_color }};
-    border-width: {{ entry.custom_style.border_width }};
-    border-style: {{ entry.custom_style.border_style }};
-    border-radius: {{ entry.custom_style.border_radius }};
+    {% if entry.border_color %}
+        border-color: {{ entry.border_color }};
+    {% endif %}
+    {% if entry.border_width %}
+        border-width: {{ entry.border_width }}px;
+    {% endif %}
+    {% if entry.border_style %}
+        border-style: {{ entry.border_style }};
+    {% endif %}
+    {% if entry.border_radius %}
+        border-radius: {{ entry.border_radius }}px;
+    {% endif %}
 }
-
-{{ entry.custom_style.additional_css }}
 
 </style>
 {% endif %}

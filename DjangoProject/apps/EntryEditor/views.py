@@ -6,6 +6,7 @@ from apps.Entries.custom_fields import shortcuts as custom_field_shortcuts
 from .forms.entry_customization_form import EntryCustomizationForm
 from .forms.entry_form import EntryForm
 from apps.Entries.helpers import can_create_entry, can_edit_entry
+from .forms.entry_settings import EntrySettingsForm
 
 
 def editor(request, entry_id: Optional[int] = None):
@@ -19,6 +20,7 @@ def editor(request, entry_id: Optional[int] = None):
     match request.method:
         case 'POST':
             entry_form = EntryForm(request.POST, request.FILES, instance = entry)
+
             if not entry_form.is_valid():
                 entry.rendered_custom_field = custom_field_shortcuts.render_field_str(entry.custom_field_mode, entry)
                 context = {
@@ -33,15 +35,23 @@ def editor(request, entry_id: Optional[int] = None):
             if request.user.is_authenticated:
                 entry.owner = request.user
             entry.save()
+            entry_settings_form = EntrySettingsForm(request.POST, instance=entry)
+            entry_settings_form.save()
+            customization_form = EntryCustomizationForm(request.POST, instance=entry)
+            new_customization = customization_form.save()
+            entry.customization = new_customization
+            entry.save()
             return redirect("Entries:Entry:view", entry_id=entry.id)
         case 'GET':
             if entry:
                 entry.rendered_custom_field = custom_field_shortcuts.render_field_str(entry.custom_field_mode, entry)
             entry_form = EntryForm(instance = entry)
-            customization_form = EntryCustomizationForm()
+            entry_settings_form = EntrySettingsForm(instance = entry)
+            customization_form = EntryCustomizationForm(instance = entry)
             context = {
                 'entry': entry,
                 "entry_form" : entry_form,
+                "settings_form" : entry_settings_form,
                 "customization_form" : customization_form
             }
             return render(request, "editor/editor.html", context=context)

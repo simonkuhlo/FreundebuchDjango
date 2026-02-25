@@ -11,25 +11,11 @@ CUSTOM_FIELD_CHOICES = {
     "button" : "Button Field",
 }
 
-class EntryCustomization(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True, unique=True)
-    public = models.BooleanField(default=False, blank=True, null=True)
-    font_color = models.CharField(max_length=20, blank=True, null=True)
-    font_style = models.CharField(max_length=30, blank=True, null=True)
-    border_color = models.CharField(max_length=20, blank=True, null=True)
-    border_width = models.IntegerField(blank=True, null=True)
-    border_style = models.CharField(max_length=100, blank=True, null=True)
-    border_radius = models.IntegerField(blank=True, null=True)
-    background_color = models.CharField(max_length=20, blank=True, null=True)
-
-    #TODO add validation
-    additional_css = models.TextField(blank=True, null=True)
-
 class EntryV1(models.Model):
     ## Meta Information
     owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    customization = models.ForeignKey(EntryCustomization, on_delete=models.CASCADE, blank=True, null=True)
     published = models.BooleanField(default=True)
+    enable_custom_style = models.BooleanField(default=False)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
     ## -- Questions --
@@ -54,6 +40,18 @@ class EntryV1(models.Model):
     want_to_become = models.CharField(verbose_name="In the future, I want to become...", blank=True, null=True)
 
     custom_field_mode = models.CharField(max_length=10, choices=CUSTOM_FIELD_CHOICES, null=True, blank=True)
+
+    ## -- Customization --
+    font_color = models.CharField(max_length=20, blank=True, null=True)
+    font = models.CharField(max_length=30, blank=True, null=True)
+    question_font_size = models.IntegerField(default=20)
+    answer_font_size = models.IntegerField(default=20)
+    border_color = models.CharField(max_length=20, blank=True, null=True)
+    border_width = models.IntegerField(blank=True, null=True)
+    border_style = models.CharField(max_length=100, blank=True, null=True)
+    border_radius = models.IntegerField(blank=True, null=True)
+    background_color = models.CharField(max_length=20, blank=True, null=True)
+    element_background_color = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return f"Entry {self.id} by {self.name}"

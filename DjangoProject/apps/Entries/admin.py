@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from apps.Entries.models import EntryV1, CreateCode, CustomTextField
 
 

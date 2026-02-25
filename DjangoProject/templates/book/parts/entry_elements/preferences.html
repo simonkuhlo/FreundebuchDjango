@@ -1,34 +1,34 @@
-<div class="entry-element" id="preferences">
-    <div class="entry-element-field">
+<div class="entry-element  bordered" id="preferences">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.likes.as_field_group }}
         {% else %}
-            I really like:
-            <p>{{ entry.likes }}</p>
+            <h4 class="entry-field-title">I really like:</h4>
+            <p class="entry-field-value">{{ entry.likes }}</p>
         {% endif %}
     </div>
-    <div class="entry-element-field">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.dislikes.as_field_group }}
         {% else %}
-            I really don't like:
-            <p>{{ entry.dislikes }}</p>
+            <h4 class="entry-field-title">I really don't like:</h4>
+            <p class="entry-field-value">{{ entry.dislikes }}</p>
         {% endif %}
     </div>
-    <div class="entry-element-field">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.craziest_experience.as_field_group }}
         {% else %}
-            My craziest experience:
-            <p>{{ entry.craziest_experience }}</p>
+            <h4 class="entry-field-title">My craziest experience:</h4>
+            <p class="entry-field-value">{{ entry.craziest_experience }}</p>
         {% endif %}
     </div>
-    <div class="entry-element-field">
+    <div class="entry-field">
         {% if edit_mode %}
             {{ entry_form.loveliest_experience.as_field_group }}
         {% else %}
-            My loveliest experience:
-            <p>{{ entry.loveliest_experience }}</p>
+            <h4 class="entry-field-title">My loveliest experience:</h4>
+            <p class="entry-field-value">{{ entry.loveliest_experience }}</p>
         {% endif %}
     </div>
 </div>
