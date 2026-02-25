@@ -52,8 +52,6 @@ class EntryV1(models.Model):
     border_radius = models.IntegerField(blank=True, null=True)
     background_color = models.CharField(max_length=20, blank=True, null=True)
     element_background_color = models.CharField(max_length=20, blank=True, null=True)
-    # TODO add validation
-    additional_css = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"Entry {self.id} by {self.name}"
