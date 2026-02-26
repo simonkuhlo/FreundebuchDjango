@@ -1,7 +1,8 @@
+from django.http import HttpResponse
 from ..models import EntryV1
 from django.shortcuts import render
 
-def entry_browser(request, page: int = 0, interval: int = 20):
+def entry_browser(request, page: int = 0, interval: int = 20) -> HttpResponse:
     if page == -1:
         page = len(EntryV1.objects.all()) // interval
     start: int = (page * interval)

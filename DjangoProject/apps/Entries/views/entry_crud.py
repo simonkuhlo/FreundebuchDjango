@@ -1,9 +1,9 @@
-from django.http import HttpResponseNotAllowed
+from django.http import HttpResponseNotAllowed, HttpResponse
 from django.shortcuts import render, redirect
 from apps.Entries.models import EntryV1
 
 
-def delete(request, entry_id: int):
+def delete(request, entry_id: int) -> HttpResponse:
     entry = EntryV1.objects.filter(id=entry_id).first()
     context = {"entry": entry}
     if not entry:
