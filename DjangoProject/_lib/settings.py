@@ -1,4 +1,5 @@
 # config.py
+from os import PathLike
 from pathlib import Path
 from typing import Optional
 
@@ -53,7 +54,7 @@ class DatabaseLoggingSettings(BaseLoggingOutputSettings):
     pass
 
 class FileLoggingSettings(BaseLoggingOutputSettings):
-    file_path: str = Field(default="")
+    file_path: PathLike = Field(default="")
     file_name: str = Field(default="log.txt")
 
 class LoggingSettings(BaseModel):
@@ -63,18 +64,14 @@ class LoggingSettings(BaseModel):
     database: DatabaseLoggingSettings = DatabaseLoggingSettings()
 
 class Settings(BaseModel):
+    json_path: Path = Field()
     network: NetworkSettings = NetworkSettings()
     system: SystemSettings = SystemSettings()
     user: UserSettings = UserSettings()
     logging: LoggingSettings = LoggingSettings()
 
     @classmethod
-    def from_json(cls, path: Path) -> "Settings":
+    def from_json(cls, path: Path = json_path) -> "Settings":
         with path.open() as f:
             data = json.load(f)
-        return cls(**data)
-
-settings = Settings.from_json(BASE_DIR / "../config/settings_dev.json")
-
-if __name__ == "__main__":
-    print(settings)
+        return cls(**data, json_path=path)

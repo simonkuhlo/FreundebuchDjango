@@ -1,23 +1,26 @@
-from typing import Optional
-from _lib.settings import settings
+from typing import Optional, TYPE_CHECKING
 from _lib.simons_logging.log_level import LogLevel
 from _lib.simons_logging.log_message import LogMessage
 from abc import ABC, abstractmethod
+if TYPE_CHECKING:
+    from ..logger import Logger
 
 
 class AbstractLoggingOutput(ABC):
-    def __init__(self, log_level_override: Optional[LogLevel] = None):
+    def __init__(self, parent_logger: Optional["Logger"] = None, log_level_override: Optional[LogLevel] = None):
+        self.parent_logger: Optional["Logger"] = parent_logger
         self.log_level_override: LogLevel = log_level_override
 
+    @property
+    def effective_log_level(self) -> LogLevel:
+        if self.log_level_override:
+            return self.log_level_override
+        if self.parent_logger:
+            return self.parent_logger.log_level
+        return LogLevel.DEBUG
+
     def should_log(self, msg: LogMessage) -> bool:
-        if settings.system.debug_mode:
-            return True
-        log_level = self.log_level_override
-        if not log_level:
-            log_level = settings.system.log_level
-        if msg.level.value <= log_level:
-            return True
-        return False
+        return msg.level.value <= self.effective_log_level.value
 
     def log(self, msg: LogMessage):
         if self.should_log(msg):

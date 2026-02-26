@@ -11,7 +11,7 @@ from .custom_canvas_field_handler import CustomCanvasFieldHandler
 from .custom_button_field_handler import CustomButtonFieldHandler
 from .custom_video_field_handler import CustomVideoFieldHandler
 from apps.Entries.models import EntryV1
-from _project.settings import logger
+from _project.logger import logger
 
 custom_field_mapping = {
     "txt" : CustomTextFieldHandler,

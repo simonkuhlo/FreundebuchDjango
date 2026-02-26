@@ -8,9 +8,9 @@ import os
 
 class SimpleFileOutput(AbstractLoggingOutput):
     def __init__(self, log_level_override: Optional[LogLevel] = None, log_file_path: PathLike[str] = "", file_name: str = "log.txt"):
-        super().__init__(log_level_override)
         self.log_file_path: PathLike[str] = log_file_path
         self.file_name: str = file_name
+        super().__init__(log_level_override=log_level_override)
 
     def _format_message(self, msg: LogMessage) -> str:
         return f"{msg.timestamp} - [{msg.level.name}] {msg.message}"

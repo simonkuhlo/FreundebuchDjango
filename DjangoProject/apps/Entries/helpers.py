@@ -1,6 +1,6 @@
 from typing import Optional
 from apps.Entries.models import EntryV1, CreateCode
-from _lib.settings import settings
+from _project.settings import instance_settings
 
 def check_permission(request, entry: Optional[EntryV1] = None) -> bool:
     if entry:
@@ -9,10 +9,10 @@ def check_permission(request, entry: Optional[EntryV1] = None) -> bool:
 
 def can_create_entry(request) -> bool:
     if request.user.is_authenticated:
-        if settings.user.max_entries == -1:
+        if instance_settings.user.max_entries == -1:
             return True
         entries = EntryV1.objects.filter(owner_id=request.user.id)
-        if entries.count() >= settings.user.max_entries:
+        if entries.count() >= instance_settings.user.max_entries:
             return False
     else:
         if not request.session.get("code"):
