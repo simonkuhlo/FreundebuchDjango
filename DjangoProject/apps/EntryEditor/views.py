@@ -5,11 +5,11 @@ from apps.Entries.models import EntryV1, CreateCode
 from apps.Entries.custom_fields import shortcuts as custom_field_shortcuts
 from .forms.entry_customization_form import EntryCustomizationForm
 from .forms.entry_form import EntryForm
-from apps.Entries.helpers import can_create_entry, can_edit_entry
+from apps.Entries.helpers.permission_checks import can_create_entry, can_edit_entry
 from .forms.entry_settings import EntrySettingsForm
 
 
-def editor(request, entry_id: Optional[int] = None):
+def editor(request, entry_id: Optional[int] = None) -> HttpResponse:
     entry = EntryV1.objects.filter(id=entry_id).first() if entry_id else None
     if entry:
         if not can_edit_entry(request, entry):
@@ -58,7 +58,7 @@ def editor(request, entry_id: Optional[int] = None):
         case _:
             return HttpResponseNotAllowed(['GET', 'POST'])
 
-def enter_key(request, key: Optional[str] = None):
+def enter_key(request, key: Optional[str] = None) -> HttpResponse:
     code = key
     match request.method:
         case "GET":
@@ -76,7 +76,7 @@ def enter_key(request, key: Optional[str] = None):
         context = {"failure" : True}
         return render(request, "editor/enter_creation_code.html", context)
 
-def custom_field(request):
+def custom_field(request) -> HttpResponse:
     match request.method:
         case "POST":
             key = request.POST.get("custom_field_select")

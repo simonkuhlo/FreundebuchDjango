@@ -1,13 +1,13 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, HttpResponseNotAllowed
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render
 from apps.Entries.models import EntryV1
-from apps.Entries.helpers import can_create_entry
+from apps.Entries.helpers.permission_checks import can_create_entry
 
 
-def login_page(request):
+def login_page(request) -> HttpResponse:
     match request.method:
         case 'POST':
             username = request.POST['username']
@@ -24,11 +24,11 @@ def login_page(request):
             return HttpResponseNotAllowed(['GET', 'POST'])
 
 @login_required
-def logout_page(request):
+def logout_page(request) -> HttpResponse:
     auth.logout(request)
     return HttpResponseRedirect('/')
 
-def register_page(request):
+def register_page(request) -> HttpResponse:
     match request.method:
         case 'POST':
             username = request.POST['username']
@@ -47,8 +47,7 @@ def register_page(request):
             return HttpResponseNotAllowed(['GET', 'POST'])
 
 @login_required
-def account_page(request):
-    #TODO Change to HTMX request
+def account_page(request) -> HttpResponse:
     entries = EntryV1.objects.filter(owner_id=request.user.id)
     context = {
         "entries": entries,
