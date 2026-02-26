@@ -37,17 +37,21 @@ class Logger:
             output.log(msg)
 
     def log_debug(self, content: str) -> None:
+        """Shortcut for logging events with LogLevel DEBUG"""
         message: LogMessage = LogMessage(level=LogLevel.DEBUG, message=content)
         self.log(message)
 
     def log_info(self, content: str) -> None:
+        """Shortcut for logging events with LogLevel INFO"""
         message: LogMessage = LogMessage(level=LogLevel.INFO, message=content)
         self.log(message)
 
     def log_warning(self, content: str) -> None:
+        """Shortcut for logging events with LogLevel WARNING"""
         message: LogMessage = LogMessage(level=LogLevel.WARNING, message=content)
         self.log(message)
 
     def log_error(self, content: str) -> None:
+        """Shortcut for logging events with LogLevel ERROR"""
         message: LogMessage = LogMessage(level=LogLevel.ERROR, message=content)
         self.log(message)
