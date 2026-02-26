@@ -12,13 +12,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from _lib.settings import Settings as SettingsModule
-
+from .instance_settings import instance_settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-instance_settings = SettingsModule.from_json(path = BASE_DIR / "./config/settings_dev.json")
 
 load_dotenv(instance_settings.system.paths.path_dotenv)
 
