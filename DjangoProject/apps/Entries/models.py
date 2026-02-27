@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from .helpers.generate_secret import generate_secret
+from .helpers.crypto import generate_secret
 
 CUSTOM_FIELD_CHOICES = {
     "txt" : "Text Field",
