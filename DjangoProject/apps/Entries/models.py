@@ -89,7 +89,7 @@ class CustomVideoField(models.Model):
 class CustomCanvasField(models.Model):
     entry = models.ForeignKey(EntryV1, on_delete=models.CASCADE)
     # TODO add validators
-    canvas = models.FileField(upload_to='uploads/', blank=True, null=True)
+    canvas = models.ImageField(upload_to='uploads/', blank=True, null=True)
 
 class CustomButtonField(models.Model):
     entry = models.ForeignKey(EntryV1, on_delete=models.CASCADE)

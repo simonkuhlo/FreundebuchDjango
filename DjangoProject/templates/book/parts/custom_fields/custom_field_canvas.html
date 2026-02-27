@@ -1,11 +1,10 @@
 {% extends "book/parts/custom_fields/custom_field_frame.html" %}
 {% block field_display %}
-Canvas renderer goes here
+<img src="{{ custom_field_db_object.canvas.url }}" alt="Drawing"/>
 {% endblock %}
 {% block field_editor %}
 <input type="hidden" id="custom_field_type" name="custom_field_type" value="canvas"/>
-<input type="hidden" id="canvas_data" name="canvas_data" value=""/>  <!-- Field for saving drawing -->
-
+<input type="hidden" id="canvas_data" name="canvas_data" value=""/>
 <!-- Clickable preview replaces the button -->
 <img id="canvasPreview" alt="Canvas preview (Click to draw!)" style="border:1px solid #ccc; flex: 1 1 auto; max-height: 100%; box-sizing: border-box; cursor: pointer" />
 <!-- Overlay + popup -->

@@ -3,7 +3,7 @@ from django.forms.fields import CharField, IntegerField
 from apps.Entries.models import EntryV1
 
 BORDER_STYLES = [
-    ('', 'None'),  # Default empty option
+    ('none', 'None'),
     ('solid', 'Solid'),
     ('dashed', 'Dashed'),
     ('dotted', 'Dotted'),
@@ -12,7 +12,6 @@ BORDER_STYLES = [
     ('ridge', 'Ridge'),
     ('inset', 'Inset'),
     ('outset', 'Outset'),
-    ('none', 'None'),
     ('hidden', 'Hidden'),
 ]
 
@@ -67,4 +66,4 @@ class EntryCustomizationForm(ModelForm):
     border_radius = SliderIntegerField(min_value=1, max_value=30)
     border_color = CharField(widget=ColorInput(), required=False)
     background_color = CharField(widget=ColorInput(), required=False)
-    element_background_color = CharField(widget=ColorInput())
+    element_background_color = CharField(widget=ColorInput(), required=False)
