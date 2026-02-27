@@ -1,233 +1,186 @@
 {% extends "book/parts/custom_fields/custom_field_frame.html" %}
-
 {% block field_display %}
-    Canvas renderer goes here
+Canvas renderer goes here
 {% endblock %}
-
 {% block field_editor %}
-    <input type="hidden" id="custom_field_type" name="custom_field_type" value="canvas"/>
-    <!-- Trigger button -->
-    <button id="openPopup">Open popup</button>
+<input type="hidden" id="custom_field_type" name="custom_field_type" value="canvas"/>
+<input type="hidden" id="canvas_data" name="canvas_data" value=""/>  <!-- Field for saving drawing -->
 
-    <!-- Overlay + popup -->
-    <div id="overlay">
-      <div class="popup">
+<!-- Clickable preview replaces the button -->
+<img id="canvasPreview" alt="Canvas preview (Click to draw!)" style="border:1px solid #ccc; flex: 1 1 auto; max-height: 100%; box-sizing: border-box; cursor: pointer" />
+<!-- Overlay + popup -->
+<div id="overlay">
+    <div class="popup">
         <h2>Draw something :)</h2>
-          <div class="toolbar">
+        <div class="toolbar">
             <label>Color: <input type="color" id="colorPicker" value="#000000" /></label>
             <label>Brush Size: <input type="range" id="brushSize" min="1" max="50" value="5" /></label>
             <button id="eraserBtn">Eraser</button>
             <button id="clearBtn">Clear</button>
-          </div>
+        </div>
         <canvas id="canvas"></canvas>
         <div id="brushPreview"></div>
         <button id="closePopup">Close</button>
-      </div>
     </div>
-    <style>
-      body { display: flex; flex-direction: column; align-items: center; font-family: sans-serif; margin: 20px; }
-      canvas {
-          border: 1px solid #ccc;
-          cursor: none;
-          height: 100%;
-          width: 100%;
+</div>
+
+<style>
+canvas {
+  border: 1px solid #ccc;
+  cursor: none;
+  height: 100%;
+  width: 100%;
+}
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  gap: 3px;
+}
+#brushPreview {
+  position: absolute;
+  pointer-events: none;
+  border: 2px solid black;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.1);
+  transform: translate(-50%, -50%);
+}
+#overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.popup {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  box-sizing: border-box;
+}
+</style>
+
+<script>
+  document.body.appendChild(document.getElementById('overlay'));
+  const overlay = document.getElementById('overlay');
+  const closePopup = document.getElementById('closePopup');
+  const canvasPreview = document.getElementById('canvasPreview');
+
+  // Open popup when clicking the preview
+  canvasPreview.onclick = () => {
+      overlay.style.display = 'flex';
+      resizeCanvasToDisplaySize();
+      loadSavedDrawing();
+  };
+
+  // Close popup and update preview
+  closePopup.onclick = () => {
+      saveCanvasDrawing();
+      updatePreview();
+      overlay.style.display = 'none';
+  };
+
+  // Draw preview from saved data
+  function updatePreview() {
+      const dataField = document.getElementById('canvas_data');
+      const savedData = dataField.value;
+      if (savedData) {
+          canvasPreview.src = savedData;
       }
-      .toolbar {
-          display: flex;
-          flex-direction: row;
-          padding: 5px;
-          gap: 3px;
-      }
-      #brushPreview {
-        position: absolute;
-        pointer-events: none;
-        border: 2px solid black;
-        border-radius: 50%;
-        background: rgba(0,0,0,0.1);
-        transform: translate(-50%, -50%);
-      }
-    </style>
-    <style>
-            /* Hide overlay by default */
-        #overlay {
-          position: fixed;          /* Stay in same place while scrolling */
-          top: 0;
-          left: 0;
-          width: 100vw;             /* Full viewport width */
-          height: 100vh;            /* Full viewport height */
-          background: rgba(0, 0, 0, 0.5); /* Dark transparent background */
-          display: none;            /* Hidden initially */
-          align-items: center;      /* Center popup vertically */
-          justify-content: center;  /* Center popup horizontally */
-          z-index: 9999;            /* In front of all other content */
-        }
-
-        /* The popup box */
-        .popup {
-          background: #fff;
-            display: flex;
-            flex-direction: column;
-          padding: 20px;
-          border-radius: 8px;
-          width: 400px;
-          max-width: 90%;
-          box-shadow: 0 0 15px rgba(0,0,0,0.3);
-            box-sizing: border-box;
-        }
-    </style>
-    <script>
-        // Target your fixed child div(s)
-        const childDiv = document.getElementById('overlay');
-        const body = document.body;
-
-        // Append to body (moves it, doesn't copy)
-        body.appendChild(childDiv);
-    </script>
-    <script>
-        const overlay = document.getElementById('overlay');
-        document.getElementById('openPopup').onclick = () => overlay.style.display = 'flex';
-        document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';
-    </script>
-    <script>
-        dragElement(document.getElementById("controls"));
-
-        function dragElement(element) {
-          let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-          const header = document.getElementById("move");
-          if (header) {
-            header.onmousedown = dragMouseDown;
-          } else {
-            element.onmousedown = dragMouseDown;
-          }
-
-          function dragMouseDown(e) {
-            e.preventDefault();
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onmouseup = closeDragElement;
-            document.onmousemove = elementDrag;
-          }
-
-          function elementDrag(e) {
-            e.preventDefault();
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            element.style.top = (element.offsetTop - pos2) + "px";
-            element.style.left = (element.offsetLeft - pos1) + "px";
-          }
-
-          function closeDragElement() {
-            document.onmouseup = null;
-            document.onmousemove = null;
-          }
-        }
-    </script>
-
-    <script>
-      const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-
-// Make the internal drawing buffer match the displayed size.
-// Call this whenever the popup opens or when you want to resize.
-function resizeCanvasToDisplaySize() {
-  const rect = canvas.getBoundingClientRect();
-  const dpr = window.devicePixelRatio || 1;
-
-  const displayWidth  = Math.round(rect.width * dpr);
-  const displayHeight = Math.round(rect.height * dpr);
-
-  if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
-    canvas.width = displayWidth;
-    canvas.height = displayHeight;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // so drawing uses CSS pixels
   }
-}
+  // Initialize preview on page load
+  updatePreview();
+</script>
 
-// Example: resize when popup opens
-document.getElementById('openPopup').addEventListener('click', () => {
-  overlay.style.display = 'flex';
-  resizeCanvasToDisplaySize();
-});
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
 
-// Drawing logic
-let isDrawing = false;
-let currentColor = colorPicker.value;
-let currentSize = brushSize.value;
-let isEraser = false;
+  function resizeCanvasToDisplaySize() {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const displayWidth  = Math.round(rect.width * dpr);
+      const displayHeight = Math.round(rect.height * dpr);
+      if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+          canvas.width = displayWidth;
+          canvas.height = displayHeight;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+  }
 
-function getPos(e) {
-  const rect = canvas.getBoundingClientRect();
-  const x = (e.clientX - rect.left);
-  const y = (e.clientY - rect.top);
-  return { x, y };
-}
+  // Drawing logic
+  let isDrawing = false;
+  let currentColor = colorPicker.value;
+  let currentSize = brushSize.value;
+  let isEraser = false;
 
-canvas.addEventListener('mousedown', e => {
-  isDrawing = true;
-  const { x, y } = getPos(e);
-  ctx.beginPath();
-  ctx.moveTo(x, y);
-});
+  function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }
 
-canvas.addEventListener('mouseup', () => {
-  isDrawing = false;
-  ctx.closePath();
-});
+  canvas.addEventListener('mousedown', e => {
+      isDrawing = true;
+      const {x, y} = getPos(e);
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+  });
 
-canvas.addEventListener('mouseleave', () => {
-  isDrawing = false;
-});
+  canvas.addEventListener('mouseup', () => { isDrawing = false; ctx.closePath(); });
+  canvas.addEventListener('mouseleave', () => { isDrawing = false; });
 
-canvas.addEventListener('mousemove', e => {
-  // Brush preview
-  brushPreview.style.left = e.pageX + 'px';
-  brushPreview.style.top = e.pageY + 'px';
-  brushPreview.style.width = currentSize + 'px';
-  brushPreview.style.height = currentSize + 'px';
-  brushPreview.style.borderColor = isEraser ? 'white' : currentColor;
+  canvas.addEventListener('mousemove', e => {
+      brushPreview.style.left = e.pageX + 'px';
+      brushPreview.style.top = e.pageY + 'px';
+      brushPreview.style.width = currentSize + 'px';
+      brushPreview.style.height = currentSize + 'px';
+      brushPreview.style.borderColor = isEraser ? 'white' : currentColor;
+      if (!isDrawing) return;
+      const {x, y} = getPos(e);
+      ctx.lineTo(x, y);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = currentSize;
+      ctx.strokeStyle = isEraser ? 'white' : currentColor;
+      ctx.stroke();
+  });
 
-  if (!isDrawing) return;
+  colorPicker.addEventListener('input', e => {
+      currentColor = e.target.value;
+      if (!isEraser) brushPreview.style.borderColor = currentColor;
+  });
+  brushSize.addEventListener('input', e => currentSize = e.target.value);
+  eraserBtn.addEventListener('click', () => {
+      isEraser = !isEraser;
+      eraserBtn.textContent = isEraser ? 'Brush' : 'Eraser';
+  });
+  clearBtn.addEventListener('click', () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+  window.addEventListener('resize', resizeCanvasToDisplaySize);
+</script>
 
-  const { x, y } = getPos(e);
-  ctx.lineTo(x, y);
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  ctx.lineWidth = currentSize;
-  ctx.strokeStyle = isEraser ? 'white' : currentColor;
-  ctx.stroke();
-});
+<!-- Canvas save & load logic -->
+<script>
+  function saveCanvasDrawing() {
+      const dataField = document.getElementById('canvas_data');
+      dataField.value = canvas.toDataURL('image/png');
+  }
 
-// Controls
-colorPicker.addEventListener('input', e => {
-  currentColor = e.target.value;
-  if (!isEraser) brushPreview.style.borderColor = currentColor;
-});
-
-brushSize.addEventListener('input', e => {
-  currentSize = e.target.value;
-});
-
-eraserBtn.addEventListener('click', () => {
-  isEraser = !isEraser;
-  eraserBtn.textContent = isEraser ? 'Brush' : 'Eraser';
-});
-
-clearBtn.addEventListener('click', () => {
-  // Always clear full logical canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-});
-
-// Init preview
-brushPreview.style.width = currentSize + 'px';
-brushPreview.style.height = currentSize + 'px';
-brushPreview.style.borderColor = currentColor;
-
-// Optional: keep canvas in sync on window resize
-window.addEventListener('resize', resizeCanvasToDisplaySize);
-
-    </script>
-
-
+  function loadSavedDrawing() {
+      const dataField = document.getElementById('canvas_data');
+      const savedData = dataField.value;
+      if (!savedData) return;
+      const img = new Image();
+      img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      img.src = savedData;
+  }
+</script>
 {% endblock %}
