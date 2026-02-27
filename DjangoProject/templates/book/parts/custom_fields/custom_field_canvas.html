@@ -1,12 +1,12 @@
 {% extends "book/parts/custom_fields/custom_field_frame.html" %}
 {% block field_display %}
-<img src="{{ custom_field_db_object.canvas.url }}" alt="Drawing"/>
+<img src="{{ custom_field_db_object.canvas.url }}" alt="Drawing" style="flex: 1 1 auto; max-height: 100%; max-width: 100%; box-sizing: border-box;"/>
 {% endblock %}
 {% block field_editor %}
 <input type="hidden" id="custom_field_type" name="custom_field_type" value="canvas"/>
 <input type="hidden" id="canvas_data" name="canvas_data" value=""/>
 <!-- Clickable preview replaces the button -->
-<img id="canvasPreview" alt="Canvas preview (Click to draw!)" style="border:1px solid #ccc; flex: 1 1 auto; max-height: 100%; box-sizing: border-box; cursor: pointer" />
+<img id="canvasPreview" alt="Canvas preview (Click to draw!)" style="border:1px solid #ccc; flex: 0 1 auto; max-height: 100%; box-sizing: border-box; cursor: pointer" />
 <!-- Overlay + popup -->
 <div id="overlay">
     <div class="popup">
@@ -27,8 +27,8 @@
 canvas {
   border: 1px solid #ccc;
   cursor: none;
-  height: 100%;
-  width: 100%;
+  height: 190px;
+  width: 625px;
 }
 .toolbar {
   display: flex;
@@ -61,7 +61,6 @@ canvas {
   flex-direction: column;
   padding: 20px;
   border-radius: 8px;
-  width: 400px;
   max-width: 90%;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
   box-sizing: border-box;
