@@ -40,7 +40,7 @@ class CustomFieldHandler(ABC):
         return render(request, self.template_name, context=context)
 
     @abstractmethod
-    def create(self, request: HttpRequest, entry: EntryV1) -> None:
+    def edit(self, request: HttpRequest, entry: EntryV1) -> None:
         raise NotImplementedError()
 
 

@@ -15,7 +15,7 @@ class CustomVideoFieldHandler(CustomFieldHandler):
     def model(self) -> Type[models.Model]:
         return CustomVideoField
 
-    def create(self, request: HttpRequest, entry: EntryV1) -> None:
+    def edit(self, request: HttpRequest, entry: EntryV1) -> None:
         video_file = request.FILES['custom_video']
         if not video_file:
             raise ValidationError("No video file provided")

@@ -17,7 +17,7 @@ class CustomCanvasFieldHandler(CustomFieldHandler):
     def model(self) -> Type[models.Model]:
         return CustomCanvasField
 
-    def create(self, request: HttpRequest, entry: EntryV1) -> None:
+    def edit(self, request: HttpRequest, entry: EntryV1) -> None:
         canvas_data = request.POST['canvas_data']
         if not canvas_data:
             raise ValidationError("No canvas data provided")

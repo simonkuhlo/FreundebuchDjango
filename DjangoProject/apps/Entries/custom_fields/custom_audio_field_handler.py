@@ -15,7 +15,7 @@ class CustomAudioFieldHandler(CustomFieldHandler):
     def model(self) -> Type[models.Model]:
         return CustomAudioField
 
-    def create(self, request: HttpRequest, entry: EntryV1) -> None:
+    def edit(self, request: HttpRequest, entry: EntryV1) -> None:
         audio_file = request.FILES['custom_audio']
         if not audio_file:
             raise ValidationError("No audio file provided")

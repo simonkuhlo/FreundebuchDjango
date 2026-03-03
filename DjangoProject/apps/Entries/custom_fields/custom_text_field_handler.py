@@ -14,7 +14,7 @@ class CustomTextFieldHandler(CustomFieldHandler):
     def model(self) -> Type[models.Model]:
         return CustomTextField
 
-    def create(self, request: HttpRequest, entry: EntryV1) -> None:
+    def edit(self, request: HttpRequest, entry: EntryV1) -> None:
         custom_text = request.POST["custom_text"]
         if custom_text:
             self.model.objects.update_or_create(entry=entry, text=custom_text)
