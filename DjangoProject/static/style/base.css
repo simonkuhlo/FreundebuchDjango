@@ -17,47 +17,6 @@ body {
     color: black;
 }
 
-button {
-    border: 1px solid black;
-    background: white;
-    font-size: 13px;
-    height: 22px;
-    padding: 1px 4px 1px 4px;
-}
-
-button:hover {
-    background: lightyellow;
-}
-
-button:active {
-    background: antiquewhite;
-}
-
-.button {
-    border: 1px solid black;
-    background: white;
-    text-decoration: none;
-    color: black;
-    font-size: 13px;
-    height: 22px;
-    padding: 1px 4px 1px 4px;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.button:hover {
-    background: lightyellow;
-}
-
-.button:active {
-    background: antiquewhite;
-}
-
-.button_inline {
-    border-top: none;
-    border-bottom: none;
-}
-
 input {
     border: 1px solid black;
     border-radius: 0;
