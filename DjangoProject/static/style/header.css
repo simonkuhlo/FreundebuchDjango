@@ -6,6 +6,8 @@
     z-index: 1000;
   background-color: #cccccc;
   border-radius: 1rem;
+  border: 1px solid black;
+  box-sizing: border-box;
 }
 
 .header-main img {

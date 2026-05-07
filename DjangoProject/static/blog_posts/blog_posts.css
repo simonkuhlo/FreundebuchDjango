@@ -48,11 +48,14 @@
     min-height: 0;
 }
 #news_feed-panel {
-    width: 300px;
+    width: 400px;
+    margin-top: 10px;
     padding: 10px;
     box-sizing: border-box;
     flex: 1 1 auto;
-    min-height: 0;
+    border: 1px solid black;
+    border-radius: 1rem;
+    background-color: #cccccc;
 }
 #news_feed-toolbar {
     padding: 5px;
@@ -64,13 +67,12 @@
 }
 #news_feed-root {
     width: 100%;
-    border: 1px solid black;
+    border-top: 1px solid black;
     overflow-y: scroll;
     gap: 5px;
     padding: 3px;
     box-sizing: border-box;
     flex: 1 1 auto;
-    min-height: 0;
 }
 
 .blog_browser-frame {

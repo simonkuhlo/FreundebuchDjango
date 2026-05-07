@@ -1,6 +1,6 @@
 {% if request.user.is_authenticated %}
-    <div class="dropdown button">
-        <a href="{% url "WebPage:User:account" %}" class="dropdown-toggle clean_text">Account</a>
+    <div class="dropdown">
+        <a href="{% url "WebPage:User:account" %}" class="dropdown-toggle button">Account</a>
         <div class="dropdown-menu dropdown-reverse">
             <a href="{% url "WebPage:User:account" %}">Manage Account</a>
             <a href="{% url "WebPage:User:logout" %}">Logout</a>
