@@ -29,10 +29,10 @@ def get_handler(key:str) -> CustomFieldHandler:
     else:
         raise KeyError("Custom field key not found.")
 
-def create(request:HttpRequest, entry:EntryV1) -> None:
+def edit(request:HttpRequest, entry:EntryV1) -> None:
     try:
         handler = get_handler(entry.custom_field_mode)
-        handler.create(request, entry)
+        handler.edit(request, entry)
     except Exception as e:
         logger.log_error(f"Error while creating custom field: {e}")
     finally:

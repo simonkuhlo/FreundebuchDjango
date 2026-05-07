@@ -15,7 +15,7 @@ class CustomButtonFieldHandler(CustomFieldHandler):
     def model(self) -> Type[models.Model]:
         return CustomButtonField
 
-    def create(self, request: HttpRequest, entry: EntryV1) -> None:
+    def edit(self, request: HttpRequest, entry: EntryV1) -> None:
         button_url = request.POST['custom_button_url']
         button_text = request.POST['custom_button_text']
         if not button_url:

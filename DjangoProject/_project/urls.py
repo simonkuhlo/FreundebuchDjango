@@ -29,4 +29,5 @@ urlpatterns = [
         path('entries/', include(entry_urls)),
         path('editor/', include(editor_urls)),
         path('', include(webpage_urls)),
+        path("", include("django_components.urls")),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

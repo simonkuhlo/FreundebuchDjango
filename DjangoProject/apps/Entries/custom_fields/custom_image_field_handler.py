@@ -16,7 +16,7 @@ class CustomImageFieldHandler(CustomFieldHandler):
     def model(self) -> Type[models.Model]:
         return CustomImageField
 
-    def create(self, request: HttpRequest, entry: EntryV1) -> None:
+    def edit(self, request: HttpRequest, entry: EntryV1) -> None:
         image = request.FILES.get("custom_image")
         if not image:
             raise ValidationError("Image field is required")

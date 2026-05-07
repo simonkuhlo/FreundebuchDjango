@@ -31,7 +31,7 @@ def editor(request, entry_id: Optional[int] = None) -> HttpResponse:
             entry:EntryV1 = entry_form.save()
             entry.custom_field_mode = request.POST.get("custom_field_type")
             entry.save()
-            custom_field_shortcuts.create(request, entry)
+            custom_field_shortcuts.edit(request, entry)
             if request.user.is_authenticated:
                 entry.owner = request.user
             entry.save()

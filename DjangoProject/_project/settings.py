@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_components',
     'apps.Entries.apps.EntriesConfig',
     'apps.FreundebuchWebpage.apps.FreundebuchwebpageConfig',
     'apps.Blog.apps.BlogConfig',
@@ -64,13 +65,21 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders': [(
+                'django.template.loaders.cached.Loader', [
+                # Default Django loader
+                'django.template.loaders.filesystem.Loader',
+                # Including this is the same as APP_DIRS=True
+                'django.template.loaders.app_directories.Loader',
+                # Components loader
+                'django_components.template_loader.Loader']
+            )],
         },
     },
 ]
@@ -127,6 +136,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
+STATICFILES_FINDERS = [
+    # Default finders
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    # Django components
+    "django_components.finders.ComponentsFileSystemFinder",
+]
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
@@ -146,3 +163,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+from django_components import ComponentsSettings
+
+COMPONENTS = ComponentsSettings(
+    dirs=[
+        Path(BASE_DIR) / "components",
+    ],
+    app_dirs=[
+        "components",
+    ],
+)
