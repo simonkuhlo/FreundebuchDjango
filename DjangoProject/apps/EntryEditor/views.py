@@ -16,7 +16,7 @@ def editor(request, entry_id: Optional[int] = None) -> HttpResponse:
             return render(request, "main/status_pages/permission_denied.html", status=401)
     else:
         if not can_create_entry(request):
-            return redirect("/entries/editor/enter_key/", status=401)
+            return redirect("Editor:enter_key")
     match request.method:
         case 'POST':
             entry_form = EntryForm(request.POST, request.FILES, instance = entry)

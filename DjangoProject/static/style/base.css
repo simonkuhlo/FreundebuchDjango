@@ -10,6 +10,7 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    background-color: #c8d6e5;
 }
 
 .clean_text {
