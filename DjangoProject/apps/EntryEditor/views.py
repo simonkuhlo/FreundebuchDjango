@@ -71,7 +71,7 @@ def enter_key(request, key: Optional[str] = None) -> HttpResponse:
     code_objects = CreateCode.objects.filter(secret=code).first()
     if code_objects:
         request.session["code"] = code
-        return redirect("/creator/")
+        return redirect("Entries:Entry:view")
     else:
         context = {"failure" : True}
         return render(request, "editor/enter_creation_code.html", context)
