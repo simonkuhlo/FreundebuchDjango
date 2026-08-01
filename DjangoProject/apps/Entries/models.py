@@ -21,7 +21,7 @@ class EntryV1(models.Model):
     ## -- Questions --
     name = models.CharField(verbose_name="My name is:", max_length=100)
     nicknames = models.CharField(verbose_name="People also call me:", max_length=500, blank=True, null=True)
-    birthday = models.DateField(verbose_name="My birthday is on:", blank=True, null=True)
+    birthday = models.CharField(verbose_name="My birthday is on:", max_length=100, blank=True, null=True)
     size = models.CharField(verbose_name="I am this tall:", max_length=100, blank=True, null=True)
     origin = models.CharField(verbose_name="I am from:", max_length=100, blank=True, null=True)
     location = models.CharField(verbose_name="I live in:", max_length=500, blank=True, null=True)

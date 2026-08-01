@@ -20,9 +20,8 @@ def editor(request, entry_id: Optional[int] = None) -> HttpResponse:
     match request.method:
         case 'POST':
             entry_form = EntryForm(request.POST, request.FILES, instance = entry)
-
             if not entry_form.is_valid():
-                entry.rendered_custom_field = custom_field_shortcuts.render_field_str(entry.custom_field_mode, entry)
+                #entry.rendered_custom_field = custom_field_shortcuts.render_field_str(entry.custom_field_mode, entry)
                 context = {
                     'entry': entry,
                     "entry_form": entry_form

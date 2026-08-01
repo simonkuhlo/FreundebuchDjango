@@ -2,6 +2,7 @@ from typing import Optional
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from pydantic_core.core_schema import none_schema
 
 from .custom_audio_field_handler import CustomAudioFieldHandler
 from .custom_field_handler import CustomFieldHandler
@@ -23,20 +24,20 @@ custom_field_mapping = {
 }
 
 
-def get_handler(key:str) -> CustomFieldHandler:
+def get_handler(key:str) -> Optional[CustomFieldHandler]:
     if key in custom_field_mapping.keys():
         return custom_field_mapping[key]()
     else:
-        raise KeyError("Custom field key not found.")
+        return None
 
 def edit(request:HttpRequest, entry:EntryV1) -> None:
     try:
         handler = get_handler(entry.custom_field_mode)
+        if not handler:
+            return
         handler.edit(request, entry)
     except Exception as e:
         logger.log_error(f"Error while creating custom field: {e}")
-    finally:
-        pass
 
 def render_field(key:str, request:HttpRequest, entry:Optional[EntryV1] = None, edit_mode: bool = False) -> HttpResponse:
     try:
@@ -49,5 +50,7 @@ def render_field_str(key:str, entry:Optional[EntryV1] = None, edit_mode: bool = 
     try:
         handler = get_handler(key)
     except KeyError:
+        return render_to_string("book/parts/custom_fields/not_found.html")
+    if not handler:
         return render_to_string("book/parts/custom_fields/not_found.html")
     return handler.get_rendered_str(entry, edit_mode=edit_mode)
