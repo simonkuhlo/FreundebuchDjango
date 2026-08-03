@@ -29,8 +29,8 @@
                     </div>
                     <div class="box-h-center">{{ entry.id }}</div>
                     <div class="box-h basic-spacing">
-                        <a href="{% url "Entries:Entry:edit" entry_id=entry.id %}" class="button expand-h">✏️</a>
-                        <a href="{% url "Entries:Entry:delete" entry_id=entry.id %}" class="button expand-h">❌</a>
+                        <a href="{% url "Entries:Entry:edit" entry_id=entry.id %}" class="expand-h btn btn-primary">✏️</a>
+                        <a href="{% url "Entries:Entry:delete" entry_id=entry.id %}" class="expand-h btn btn-danger">🗑️</a>
                     </div>
                 </div>
             {% endfor %}

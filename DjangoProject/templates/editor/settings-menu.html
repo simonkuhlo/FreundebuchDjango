@@ -3,15 +3,13 @@
         position: absolute;
         top: 160px;
         z-index: 1000;
-        background-color: lightcoral;
+        background-color: var(--color-bg-elevated);
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-md);
+        overflow: hidden;
     }
-  .float-controller {
-      min-height: 50px;
-      width: 20px;
+  #move {
       cursor: move;
-      background-color: lightblue;
-      text-align: center;
-      align-content: center;
   }
   #settings_container label{
       text-align: center;
@@ -21,37 +19,25 @@
   #settings-toggle {
       display: none;
   }
-  #settings-menu {
-      display: none;
-      background-color: lightcoral;
-  }
+    .window-toolbar {
+        border-bottom: 1px solid var(--color-border-strong);
+    }
   #settings-toggle-label {
-      transform: rotate(0);
-      background-color: coral;
+      background-color: var(--color-danger);
   }
     #settings-toggle-label:hover {
-      background-color: lightyellow;
-  }
-    #settings-toggle-label:hover {
-      background-color: antiquewhite;
-  }
-  #settings-toggle:checked ~ #settings-toggle-label {
-      transform: rotate(180deg);
-  }
-  #settings-toggle:checked ~ #settings-menu {
-      display: block;
+      background-color: var(--color-danger-hover);
   }
 </style>
 
-<div class="box-h" id="settings_container">
-    <div class="float-controller" id="move">
-      ♥
+<div class="box-v" id="settings_container">
+    <div class="box-h window-toolbar">
+        <div class="box-h-center" id="move">⚙️ Settings Menu ⚙️</div>
+        <input id="settings-toggle" type="checkbox">
+        <label for="settings-toggle" id="settings-toggle-label">✖️️</label>
     </div>
-    <input id="settings-toggle" type="checkbox">
-    <label for="settings-toggle" id="settings-toggle-label">< <br> ⚙️ <br> <</label>
     <div id="settings-menu">
         <div class="box-v basic-spacing">
-            <div class="box-h-center">⚙️ Settings Menu ⚙️</div>
             {% block menu-content %}
                 {% include "editor/entry_settings_form.html" %}
                 {% include "editor/customization_form.html" %}

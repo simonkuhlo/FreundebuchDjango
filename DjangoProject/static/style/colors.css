@@ -22,6 +22,12 @@
   --color-primary-active: #2379e6;
   --color-primary-contrast: #ffffff;
 
+  /* Danger / destructive */
+  --color-danger: #ff4d4f;
+  --color-danger-hover: #ff3b3d;
+  --color-danger-active: #e03234;
+  --color-danger-contrast: #ffffff;
+
   /* Accent */
   --color-accent: #df993d;
   --color-accent-hover: #cf8622;
