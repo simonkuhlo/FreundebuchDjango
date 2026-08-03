@@ -4,29 +4,28 @@
 
 <div class="header-main">
     <div class="box-v">
-        <div class="header-decorator-bar">
-            <h1>Simons friend book ♥</h1>
-        </div>
         <div class="navbar">
-            <a href="{% url "WebPage:Pages:index" %}" class="button">Home</a>
-            <a href="{% url "Entries:Entry:new" %}" class="button">+ Create entry</a>
+            <a href="{% url "WebPage:Pages:index" %}" class="btn btn-primary">Home</a>
+            <a href="{% url "Entries:Entry:new" %}" class="btn btn-primary">+ Create entry</a>
             <div class="dropdown">
-                <a href="{% url "Entries:Explorer:book_start" %}" class="dropdown-toggle button">View entries</a>
+                <a href="{% url "Entries:Explorer:book_start" %}" class="dropdown-toggle btn btn-primary">View entries</a>
                 <div class="dropdown-menu">
                     <a href="{% url "Entries:Explorer:book_start" %}">Explorer</a>
                     <a href="{% url "Entries:Browser:root" %}">Browser</a>
                 </div>
             </div>
             <div class="spacer-h"></div>
+            <h1>♥ Simons friend book ♥</h1>
+            <div class="spacer-h"></div>
             <div class="dropdown">
-                <a href="/other-stuff/" class="dropdown-toggle button">Other Stuff</a>
+                <a href="/other-stuff/" class="dropdown-toggle btn btn-secondary">Other Stuff</a>
                 <div class="dropdown-menu">
                     <a href="{% url "Blog:browser" %}">Blog</a>
                 </div>
             </div>
             {% if request.user.is_superuser %}
                 <div class="dropdown">
-                    <a target="_blank" rel="noopener noreferrer" href="/admin/" class="dropdown-toggle button">Admin</a>
+                    <a target="_blank" rel="noopener noreferrer" href="/admin/" class="dropdown-toggle btn btn-primary">Admin</a>
                     <div class="dropdown-menu dropdown-reverse">
                         <a target="_blank" rel="noopener noreferrer" href="/admin">Admin UI</a>
                         <a target="_blank" rel="noopener noreferrer" href="/admin/Entries/createcode/">Manage creation keys</a>

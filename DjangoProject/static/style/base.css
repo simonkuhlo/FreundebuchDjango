@@ -10,7 +10,8 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background-color: #c8d6e5;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
 }
 
 .clean_text {
