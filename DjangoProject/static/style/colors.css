@@ -47,6 +47,13 @@
   --color-shadow: rgba(0, 0, 0, 0.18);
   --color-overlay: rgba(27, 36, 48, 0.62);
 
+  /* Book explorer */
+  --color-book-text: black;
+  --color-book-page: #fff4f0;
+  --color-book-cover: #873e23;
+  --color-book-widget-background: #ffffff;
+  --color-book-widget-border: #000000;
+
   /* Optional radius / spacing tokens */
   --radius-sm: 6px;
   --radius-md: 10px;

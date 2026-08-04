@@ -4,11 +4,12 @@
 }
 
 .entry-element {
-    border: 1px solid black;
+    color: var(--color-book-text);
+    border: 1px solid var(--color-book-widget-border);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background: #FFFFFFFF;
+    background: var(--color-book-widget-background);
     padding: 20px;
     gap: 30px;
     overflow-y: scroll;

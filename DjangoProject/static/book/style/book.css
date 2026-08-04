@@ -5,6 +5,7 @@
     justify-content: end;
     perspective: 1400px;
     perspective-origin: 50% 50%;
+    color: var(--color-book-text);
 }
 
 .book-container {
@@ -38,7 +39,7 @@
     padding-bottom: 13px;
     padding-top: 10px;
     padding-right: 13px;
-    background-color: antiquewhite;
+    background-color: var(--color-book-cover);
     position: absolute;
     top: -10px;
     left: 0;
@@ -71,7 +72,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  background-color: #F8F0E9;
+  background-color: var(--color-book-page);
   box-sizing: border-box;
 }
 
@@ -84,7 +85,7 @@
   z-index: 99;
   transform: rotateY(180deg);
   backface-visibility: hidden;
-  background-color: #F8F0E9;
+  background-color: var(--color-book-page);
     box-sizing: border-box;
 }
 
