@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_components',
     'apps.Entries.apps.EntriesConfig',
     'apps.FreundebuchWebpage.apps.FreundebuchwebpageConfig',
     'apps.Blog.apps.BlogConfig',
@@ -76,9 +75,7 @@ TEMPLATES = [
                 # Default Django loader
                 'django.template.loaders.filesystem.Loader',
                 # Including this is the same as APP_DIRS=True
-                'django.template.loaders.app_directories.Loader',
-                # Components loader
-                'django_components.template_loader.Loader']
+                'django.template.loaders.app_directories.Loader',]
             )],
         },
     },
@@ -140,8 +137,6 @@ STATICFILES_FINDERS = [
     # Default finders
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    # Django components
-    "django_components.finders.ComponentsFileSystemFinder",
 ]
 
 STATIC_URL = '/static/'
@@ -163,14 +158,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
-from django_components import ComponentsSettings
-
-COMPONENTS = ComponentsSettings(
-    dirs=[
-        Path(BASE_DIR) / "components",
-    ],
-    app_dirs=[
-        "components",
-    ],
-)
