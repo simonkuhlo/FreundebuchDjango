@@ -55,9 +55,12 @@
   --color-book-widget-border: #000000;
 
   /* Optional radius / spacing tokens */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 16px;
+
+  --padding-s: 0.6rem;
+  --padding-m: 1rem;
 
   /* helpful extras for borders */
   --border-default: 1px solid var(--color-border);

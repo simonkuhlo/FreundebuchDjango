@@ -21,7 +21,8 @@ body {
 
 input {
     border: 1px solid black;
-    border-radius: 0;
+    border-radius: var(--radius-m);
+    padding: var(--padding-s) var(--padding-m);
 }
 
 .border {
