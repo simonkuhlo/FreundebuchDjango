@@ -2,24 +2,32 @@
 
 
 {% block main %}
-
-<div class="box-center">
-    <form action="/user/login/" method="post">
-        {% csrf_token %}
-        <div class="box-v basic-spacing">
-            {{ error }}
-            <div class="box-h basic-spacing">
-                <label for="username_input">Username: </label>
-                <input name="username" type="text" id="username_input">
-            </div>
-            <div class="box-h basic-spacing">
-                <label for="password_input">Password: </label>
-                <input name="password" type="password" id="password_input">
-            </div>
-            <input class="btn btn-primary"  type="submit" value="Login">
-            <a class="btn btn-secondary" href="/user/register/">Register instead</a>
+<section class="section is-large">
+    <div class="container is-max-tablet">
+        <div class="box">
+            <form action="/user/login/" method="post">
+                {% csrf_token %}
+                {{ error }}
+                <div class="field">
+                    <label class="label" for="username_input">Username: </label>
+                    <div class="control">
+                        <input class="input" name="username" type="text" id="username_input">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="password_input">Password: </label>
+                    <div class="control">
+                        <input class="input" name="password" type="password" id="password_input">
+                    </div>
+                </div>
+                <div class="">
+                    <input class="button is-primary"  type="submit" value="Login">
+                    <a class="button is-link is-outlined" href="/user/register/">Register instead</a>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
+    </div>
+</section>
+
 
 {% endblock %}
