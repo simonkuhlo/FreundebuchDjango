@@ -1,16 +1,41 @@
-<link rel="stylesheet" href="/static/blog_posts/blog_posts.css">
-<div class="box-v" id="news_feed_panel-frame">
-    <div class="box-v" id="news_feed-panel">
-        <div class="box-h" id="news_feed-toolbar">
+<div class="card" id="news_feed_panel-frame">
+    <div class="card-content" id="news_feed-panel">
+        <div class="card-header" id="news_feed-toolbar">
             <h3>News Feed</h3>
-            <div class="spacer-h"></div>
-            <a class="btn btn-primary" href="{% url "Blog:browser" %}">Browse</a>
-            <button class="btn btn-primary" hx-get="{% url "Blog:news_feed" %}" hx-target="#news_feed-root">Refresh</button>
         </div>
-        <div class="box-v" id="news_feed-root">
+        <div class="content" id="news_feed-root">
             <p hx-get="{% url "Blog:news_feed" %}" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
                 Unable to load news feed.
             </p>
         </div>
+        <div class="card-footer">
+            <a class="button" href="{% url "Blog:browser" %}">Browse</a>
+            <button class="button" hx-get="{% url "Blog:news_feed" %}" hx-target="#news_feed-root">Refresh</button>
+        </div>
     </div>
+</div>
+
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title">Component</p>
+    <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
+      iaculis mauris.
+      <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+      <br />
+      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a href="#" class="card-footer-item">Save</a>
+    <a href="#" class="card-footer-item">Edit</a>
+    <a href="#" class="card-footer-item">Delete</a>
+  </footer>
 </div>

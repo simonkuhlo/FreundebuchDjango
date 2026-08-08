@@ -1,19 +1,15 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon.ico">
     <link rel="icon" type="image/png" sizes="512x512" href="/static/img/favicon512.ico">
     <link rel="stylesheet" href="/static/style/settings.css">
-    <link rel="stylesheet" href="/static/style/boxes.css">
-    <link rel="stylesheet" href="/static/style/base.css">
-    <link rel="stylesheet" href="/static/style/buttons.css">
-    <link rel="stylesheet" href="/static/style/spacers.css">
-    <link rel="stylesheet" href="/static/style/cards.css">
-    <link rel="stylesheet" href="/static/style/sizing.css">
     <meta charset="UTF-8" />
     <title>Simon's frontend</title>
     <!--<script src="https://unpkg.com/htmx.org@1.9.3"></script>-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <script src="{% static '/js/htmx.js' %}"></script>
     <script>
         htmx.on("htmx:responseError", function (evt) {
@@ -45,11 +41,7 @@
         v2.8</p>
 </a>
 {% block main %}
-    <div class="box-h" style="flex: 1 1 auto; min-height: 0;">
-        <p>Hello :)</p>
-        <div class="spacer-h"></div>
-        {% include "blog_posts/parts/news_feed_panel.html" %}
-    </div>
+ Main Content goes here!
 {% endblock %}
 </body>
 </html>
