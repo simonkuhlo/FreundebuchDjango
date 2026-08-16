@@ -50,7 +50,6 @@ def register_page(request) -> HttpResponse:
 def account_page(request) -> HttpResponse:
     entries = EntryV1.objects.filter(owner_id=request.user.id)
     context = {
-        "entries": entries,
-        "can_create_entry": can_create_entry(request),
+        "entries": entries
         }
     return render(request, "user/account_page.html", context)

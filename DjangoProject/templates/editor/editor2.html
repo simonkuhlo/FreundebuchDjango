@@ -1,33 +1,53 @@
-{% extends "book/book.html" %}
+  <style>
+    .editor-layout {
+        height: 100%;
+    }
 
-{% block start %}
-    {% if entry %}
-        <form action="{% url "Editor:edit_entry" entry_id=entry.id %}" method="post" enctype="multipart/form-data">
-    {% else %}
-        <form action="{% url "Editor:new_entry" %}" method="post" enctype="multipart/form-data">
-    {% endif %}
-    {% csrf_token %}
-    {{ entry_form.non_field_errors }}
-    {% include "editor/settings-menu.html" %}
-{% endblock %}
+    .editor-content {
+      height: 100%;
+      padding: 1rem;
+      background: #fafafa;
+      overflow: auto;
+    }
 
-{% block content %}
-    <div class="columns is-gapless editor-layout">
+    /* Sidebar styles */
+    .sidebar {
+      height: 100%;
+      border-left: 1px solid #dbdbdb;
+      background: #fff;
+      transition: width 0.2s ease;
+      overflow: hidden;
+    }
+
+    .sidebar.is-collapsed {
+      width: 0 !important;
+      border-left: none;
+    }
+
+    .sidebar-inner {
+      width: 260px; /* fixed width when open */
+      padding: 1rem;
+    }
+
+    .editor-area {
+      width: 100%;
+      height: 100%;
+      border: none;
+      resize: none;
+      font-family: monospace;
+      font-size: 14px;
+      outline: none;
+    }
+  </style>
+
+{% extends "main/main.html" %}
+
+  {% block main %}
+<div class="columns is-gapless editor-layout">
   <!-- Editor content (majority of screen) -->
   <div class="column">
     <div class="editor-content">
-      {% with edit_mode=True %}
-        <div class="flip already_flipped">
-            <div class="back" data-entry_id="{{ entry.id }}" id="p{{ entry.id }}b">
-                {% include "book/parts/entry_page_1.html" with entry=current_entry %}
-            </div>
-        </div>
-        <div class="flip">
-            <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
-                {% include "book/parts/entry_page_2.html" with entry=previous_entry%}
-            </div>
-        </div>
-    {% endwith %}
+      <textarea class="editor-area" placeholder="Start typing here..."></textarea>
     </div>
   </div>
 
@@ -68,10 +88,4 @@
     sidebar.classList.toggle('is-collapsed');
   });
 </script>
-
-
-{% endblock %}
-
-{% block end %}
-    </form>
-{% endblock %}
+  {% endblock %}

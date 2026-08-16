@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "apps.Entries.context_processors.entry_permissions",
             ],
             'loaders': [(
                 'django.template.loaders.cached.Loader', [

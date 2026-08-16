@@ -53,7 +53,7 @@ def editor(request, entry_id: Optional[int] = None) -> HttpResponse:
                 "settings_form" : entry_settings_form,
                 "customization_form" : customization_form
             }
-            return render(request, "editor/editor.html", context=context)
+            return render(request, "editor/editor2.html", context=context)
         case _:
             return HttpResponseNotAllowed(['GET', 'POST'])
 

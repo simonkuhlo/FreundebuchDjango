@@ -2,34 +2,36 @@
 
 
 {% block main %}
-
-<div class="box-center">
-    <form action="/user/register/" method="post">
-        {% csrf_token %}
-        <div class="box-v basic-spacing">
-            {% if error %}
-                Error: {{ error }}
-            {% endif %}
-            <div class="box-h basic-spacing">
-                <label for="username_input">Username: </label>
-                <input name="username" type="text" id="username_input" required>
+    <section class="section">
+        <div class="container is-max-tablet">
+            <div class="box">
+                <form action="/user/register/" method="post">
+                    {% csrf_token %}
+                    <div class="box-v basic-spacing">
+                        {% if error %}
+                            Error: {{ error }}
+                        {% endif %}
+                        <div class="field">
+                            <label class="label" for="username_input">Username: </label>
+                            <input class="input" name="username" type="text" id="username_input" required>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="email_input">Email: </label>
+                            <input class="input" name="email" type="email" id="email_input">
+                        </div>
+                        <div class="field">
+                            <label class="label" for="password_input">Password: </label>
+                            <input class="input" name="password" type="password" id="password_input" required>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="confirm_password_input">Confirm Password: </label>
+                            <input class="input" name="confirm_password" type="password" id="confirm_password_input" required>
+                        </div>
+                        <input class="button is-primary" type="submit" value="Register">
+                        <a class="button is-link is-outlined" href="/user/login/">Login instead</a>
+                    </div>
+                </form>
             </div>
-            <div class="box-h basic-spacing">
-                <label for="email_input">Email: </label>
-                <input name="email" type="email" id="email_input">
-            </div>
-            <div class="box-h basic-spacing">
-                <label for="password_input">Password: </label>
-                <input name="password" type="password" id="password_input" required>
-            </div>
-            <div class="box-h basic-spacing">
-                <label for="confirm_password_input">Confirm Password: </label>
-                <input name="confirm_password" type="password" id="confirm_password_input" required>
-            </div>
-            <input class="btn btn-primary" type="submit" value="Register">
-            <a class="btn btn-secondary" href="/user/login/">Login instead</a>
         </div>
-    </form>
-</div>
-
+    </section>
 {% endblock %}
